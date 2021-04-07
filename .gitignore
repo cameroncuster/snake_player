@@ -1,2 +1,5 @@
+*.o
+*.d
+*.dat
 snake
 driver
