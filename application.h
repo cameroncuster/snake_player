@@ -9,6 +9,7 @@ class Application : public olc::PixelGameEngine
 {
    int width, height;
    bool obstacles;
+   double delay;
    int nMapWidth;
    int nMapHeight;
    int nCellSize;
@@ -18,7 +19,7 @@ class Application : public olc::PixelGameEngine
    Game *game;
    std::map<int, olc::Pixel> colorMap;
 public:
-   Application(int, int, bool obstacles = false);
+   Application(int, int, bool obstacles, double d);
 
 public:
    bool OnUserCreate() override;

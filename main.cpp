@@ -12,13 +12,15 @@ int main(int argc, char *argv[])
 {
    int width, height;
    bool ob = false;
+   double delay = 0.0;
 
-   if (argc != 3 && argc != 4)
+   if (argc != 3 && argc != 4 && argc != 5)
    {
       std::cout << "Usage: " << argv[0] << " width height [true/FALSE]" << std::endl;
       std::cout << "width: width of the playfield in cells" << std::endl;
       std::cout << "height: height of playfield in cells" << std::endl;
       std::cout << "[optional] add obstacles default FALSE" << std::endl;
+      std::cout << "[optional] delay between timesteps [ms]" << std::endl;
    }
    else
    {
@@ -41,16 +43,38 @@ int main(int argc, char *argv[])
             std::cout << "width: width of the playfield in cells" << std::endl;
             std::cout << "height: height of playfield in cells" << std::endl;
             std::cout << "[optional] add obstacles default FALSE" << std::endl;
+            std::cout << "[optional] delay between timesteps [ms]" << std::endl;
             return -1;
          }
       }
-      if (argc == 4)
+      if (argc >= 4)
       {
          std::string obstacles(argv[3]);
          if (obstacles == "true" || obstacles == "TRUE" || obstacles == "True")
             ob = true; 
-      } 
-      Application demo(width, height, ob);
+      }
+      if (argc == 5)
+      {
+         try
+         {
+            delay = std::stoi(argv[4]);
+            if (delay < 0.0)
+            {
+               std::cout << "Delay cannot be negative" << std::endl;
+               return -1;
+            }
+         }
+         catch (...)
+         {
+            std::cout << "Usage: " << argv[0] << " width height [true/FALSE]" <<std::endl;
+            std::cout << "width: width of the playfield in cells" << std::endl;
+            std::cout << "height: height of playfield in cells" << std::endl;
+            std::cout << "[optional] add obstacles default FALSE" << std::endl;
+            std::cout << "[optional] delay between timesteps [ms]" << std::endl;
+            return -1;
+         }
+      }
+      Application demo(width, height, ob, delay);
       if (demo.Construct(demo.screenWidth(), demo.screenHeight(), 1, 1))
          demo.Start();
    }

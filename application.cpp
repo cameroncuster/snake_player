@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Application::Application(int w, int h, bool ob) : width(w), height(h), obstacles(ob)
+Application::Application(int w, int h, bool ob, double delay) : width(w), height(h), obstacles(ob), delay(delay)
 {
    nBorderWidth = 2;
    nCellSize = 15;
@@ -51,22 +51,28 @@ void Application::redraw()
 bool Application::OnUserUpdate(float fElapsedTime)
 {
    static double gameOverTime = 0.0;
+   static double stepTime = 0.0;
 
    redraw();
 
-   if (game->isGameOver())
+   if (stepTime + fElapsedTime * 1000.0 > delay)
    {
-      gameOverTime += fElapsedTime;
-   }
-   else
-      game->makeMove();
+      if (game->isGameOver())
+      {
+         gameOverTime += fElapsedTime;
+      }
+      else
+         game->makeMove();
 
-   if (gameOverTime > 5.0)
-   {
-      std::cout << "Game ends.  Score = " << game->getScore() << std::endl;
-      return false;
+      if (gameOverTime > 5.0)
+      {
+         std::cout << "Game ends.  Score = " << game->getScore() << std::endl;
+         return false;
+      }
+      stepTime = 0.0;
    }
-
+   stepTime += fElapsedTime * 1000.0;
+ 
    // If the escape or 'q' key is pressed, exit 
    return (!(GetKey(olc::Key::ESCAPE).bPressed) &&
            !(GetKey(olc::Key::Q).bPressed));
