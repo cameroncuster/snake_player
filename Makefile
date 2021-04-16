@@ -47,12 +47,12 @@ libPlayer.so: $(PLAYER_OBJS)
 clean:
 	rm -rf *.o *.d core snake driver libPlayer.so
 
-debug: CXXFLAGS = -DDEBUG -Wall -g
-debug: LIBS = -L. -lX11 -lGL -lpng -lpthread -lstdc++fs -ldl -lPlayer_debug
+debug: CXXFLAGS = -DDEBUG -Wall -g -fPIC -shared
+debug: LIBS = -L. -lX11 -lGL -lpng -lpthread -lstdc++fs -ldl
 debug: snake
 
-debug_driver: CXXFLAGS = -DDEBUG -Wall -g
-debug_driver: LIBS = -L. -ldl -lPlayer_debug
+debug_driver: CXXFLAGS = -DDEBUG -Wall -g -fPIC -shared
+debug_driver: LIBS = -L. -ldl
 debug_driver: driver
 
 tar: clean
