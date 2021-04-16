@@ -1,5 +1,26 @@
 April 6:
-	* created the repository (csc315_spr2021_snake) and downloaded the startup 
+	* created the repository (csc315_spr2021_snake) and downloaded the startup
 	  code
 	* compiled and ran the startup code
 	* made first commit of startup code source with CHANGELOG
+
+April 10:
+	* attempted bfs search, could not get implementation to work smoothly with
+	  interface
+	* fought debugger for extensive amount of time before deciding the bfs was
+	  not worth it
+	* brainstormed ideas for more successful player
+
+April 12:
+	* thinking about new ideas every day and different graph algorithms becuase
+	  nothing else appears to be valid ( A*, Dijkstras with dynamic weights, etc. )
+
+April 14:
+	* confused about how anyone scored perfectly in the game with A* without
+	  using an algorithm which eventually created or approximated a Hamaltonian
+	  Path
+
+April 15:
+	* had idea for genetic algorithm to determine weights for A* dynamically
+	  throughout the search to be marketed as a "graph algorithm"
+	* idea to use GA through evolution of random paths
