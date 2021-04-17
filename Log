@@ -30,3 +30,5 @@ April 17:
       and if biconnected the then become a scanner until a path becomes available
     * going to implement one of the last two idea's, maybe both in the next few
       hours
+    * going to implement GA with A* algorithm, A* builds length and GA build
+      survival, with the focus of both algorithms the player must be successful

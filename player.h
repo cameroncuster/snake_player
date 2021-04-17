@@ -8,6 +8,7 @@
 
 class Player
 {
+    std::queue<ValidMove> moves;
 public:
    Player ();
    ValidMove makeMove(const Playfield *);
