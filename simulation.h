@@ -26,6 +26,6 @@ public:
    bool isGameOver() const;
    void gameIsOver();
    int getScore() const;
-   bool makeMove();
+   ValidMove makeMove();
 };
 #endif

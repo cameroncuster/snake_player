@@ -17,17 +17,17 @@ Simulation::~Simulation()
 // 2. Execute the move on the playfield
 // 3. Check that the game hasn't ended
 // 4. Update the playfield
-bool Simulation::makeMove()
+ValidMove Simulation::makeMove()
 {
-   bool retVal = false;
+   bool valid = false;
 
    ValidMove playerMove = player->makeMove(playfield);
-   retVal = playfield->moveHead(playerMove);
+   valid = playfield->moveHead(playerMove);
 
-   if (!retVal) gameIsOver();
+   if (!valid) gameIsOver();
 
    playfield->updatePlayfield();
-   return !isGameOver();
+   return playerMove;
 }
 
 void Simulation::gameIsOver() { gameOver = true; }
