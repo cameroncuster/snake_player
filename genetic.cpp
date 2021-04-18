@@ -38,15 +38,14 @@ vector<queue<ValidMove>> Genetic::evolve( )
 {
 	vector<queue<ValidMove>> movesinSimulation( FIRSTGEN );
 	unsigned gamesOver = 0;
-    for( unsigned i = 0; i < FIRSTGEN && gamesOver < games.size( ) - 2; i++ )
+    for( unsigned i = 0; i < FIRSTGEN && gamesOver < FIRSTGEN - 2; i++ )
     {
-		for( unsigned j = 0; j < games.size( ); j++ )
+		for( unsigned j = 0; j < games.size( ) && gamesOver < FIRSTGEN - 2; j++ )
         {
-            if( gamesOver >= games.size( ) - 2 )
-                break;
-            if( !games[j]->isGameOver( ) )
-                movesinSimulation[j].push( games[j]->makeMove( ) );
-            else if( !ended[j] )
+            if( ended[i] )
+                continue;
+            movesinSimulation[j].push( games[j]->makeMove( ) );
+            if( games[j]->isGameOver( ) )
             {
                 ended[j] = 1;
                 gamesOver++;
