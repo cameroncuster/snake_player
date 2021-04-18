@@ -13,7 +13,7 @@ Genetic::Genetic( Simulatefield *pf )
 		games[i] = new Simulation( p, pf );
 	// expand for multiple generations
     vector<queue<ValidMove>> movesinSimulation = evolve( );
-	int optimalPlayer;
+	int optimalPlayer = 0;
 	int maxScore = 0;
 	for( unsigned i = 0; i < games.size( ); i++ )
 	{

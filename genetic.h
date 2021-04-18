@@ -5,7 +5,6 @@
 #define GENETIC_H
 #include "defineGen.h"
 #include "simulation.h"
-#include "randomPlayer.h"
 
 /********************************************************************//**
  * @class Genetic
