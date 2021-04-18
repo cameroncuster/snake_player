@@ -3,7 +3,6 @@
  ***********************************************************************/
 #ifndef SIMULATEFIELD_H
 #define SIMULATEFIELD_H
-#include <iostream>
 #include <utility>
 #include <queue>
 #include <vector>

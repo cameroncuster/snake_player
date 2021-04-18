@@ -105,19 +105,12 @@ bool Simulatefield::moveHead(ValidMove move)
    std::pair<int, int> newHeadPosition = translateHead(move);
 
    if (OutOfBounds(newHeadPosition))
-   {
-      std::cout << "Ran into boundary" << std::endl;
       return false;
-   }
 
    // Look at the destination cell to see if it's valid
    int val = grid[newHeadPosition.first][newHeadPosition.second];
    if (val == TAIL_VALUE || val == OBSTACLE_VALUE)
    {
-      std::cout << "Ran into ";
-      if (val == TAIL_VALUE) std::cout << "Tail";
-      if (val == OBSTACLE_VALUE) std::cout << "Obstacle";
-      std::cout << std::endl;
       grid[newHeadPosition.first][newHeadPosition.second] = COLLISION_VALUE;
       return false;
    }
