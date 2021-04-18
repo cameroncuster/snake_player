@@ -30,19 +30,25 @@ class Simulatefield
    std::vector<std::vector<int>> grid;
 public:
    Simulatefield( const Playfield * );
+   Simulatefield( const Simulatefield *pf );
    ~Simulatefield();
 
    /// The current state of the playfield 2-d grid[y][x] y+ is down on screen
    std::vector<std::vector<int>> getGrid() const;
+   /// Get the tail as a queue of points
+   std::queue<std::pair<int, int>> getTail() const;
    /// Get the current score, corresponds with the length of the tail
    int getScore() const;
    /// Current position of the head of the snake
    std::pair<int, int> headPosition() const;
    /// Current location of food on the grid
    std::pair<int, int> foodPosition() const;
+   /// Has obstacles on the playfield or not
+   bool obstacles() const;
 
    // Private member functions used by Playfield and Game objects
    friend class Simulation;
+   friend class RandomPlayer;
 private:
    void placeObstacles();
    void clearGrid();

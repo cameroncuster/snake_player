@@ -13,6 +13,5 @@ class RandomPlayer
     RandomPlayer ();
     ValidMove makeMove(Simulatefield *);
     private:
-	bool valid( ValidMove move ) const;
 };
 #endif

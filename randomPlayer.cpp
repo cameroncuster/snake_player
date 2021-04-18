@@ -1,37 +1,27 @@
 /********************************************************************//**
  * @file
  ***********************************************************************/
-#include <random>
 #include <chrono>
+#include <random>
+#include <algorithm>
 #include "randomPlayer.h"
 
 using namespace std;
 
 RandomPlayer::RandomPlayer() { }
 
-bool RandomPlayer::valid( ValidMove move ) const
-{
-	return 0;
-}
-
 ValidMove RandomPlayer::makeMove( Simulatefield *pf )
 {
-	srand( time( NULL ) );
 	ValidMove move = NONE;
-	/*
-	   while( !valid( move ) )
-	   {
-	   int m = rand( ) % 4;
-	   if( m == 0 ) move = UP;
-	   if( m == 1 ) move = DOWN;
-	   if( m == 2 ) move = RIGHT;
-	   if( m == 3 ) move = LEFT;
-	   }
-	 */
-	int m = rand( ) % 4;
-	if( m == 0 ) move = UP;
-	if( m == 1 ) move = DOWN;
-	if( m == 2 ) move = RIGHT;
-	if( m == 3 ) move = LEFT;
+	vector<ValidMove> randomMoves = { UP, DOWN, LEFT, RIGHT };
+	shuffle( randomMoves.begin( ), randomMoves.end( ), default_random_engine( chrono::system_clock::now().time_since_epoch().count() ) );
+	randomMoves.push_back( NONE );
+	bool valid = 0;
+	for( unsigned i = 0; i < randomMoves.size( ) && !valid; i++ )
+	{
+		move = randomMoves[i];
+		Simulatefield *copyfield = new Simulatefield( pf );
+		valid = copyfield->moveHead( move );
+	}
 	return move;
 }
