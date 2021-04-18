@@ -13,20 +13,21 @@ Simulation::~Simulation()
    delete player;
    delete playfield;
 }
-
 // 1. Send the playfield to the player
 // 2. Execute the move on the playfield
 // 3. Check that the game hasn't ended
 // 4. Update the playfield
-ValidMove Simulation::makeMove()
+bool Simulation::makeMove()
 {
-   ValidMove playerMove = player->makeMove(playfield);
-   bool over = playfield->moveHead(playerMove);
+   bool retVal = false;
 
-   if (!over) gameIsOver();
+   ValidMove playerMove = player->makeMove(playfield);
+   retVal = playfield->moveHead(playerMove);
+
+   if (!retVal) gameIsOver();
 
    playfield->updatePlayfield();
-   return playerMove;
+   return !isGameOver();
 }
 
 void Simulation::gameIsOver() { gameOver = true; }
