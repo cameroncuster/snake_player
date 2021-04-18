@@ -8,11 +8,11 @@ Simulatefield::Simulatefield( const Playfield *pf )
 	head = pf->headPosition( );
 	food = pf->foodPosition( );
 	tail = pf->getTail( );
+	grid = pf->getGrid( );
 	width = grid[0].size( );
 	height = grid.size( );
 	hasObstacles = pf->obstacles( );
 	tailLength = pf->getScore( ) - 1;
-	grid = pf->getGrid( );
 }
 
 // Getter functions

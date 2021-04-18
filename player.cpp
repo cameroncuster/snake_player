@@ -1,5 +1,4 @@
-/********************************************************************//**
- * @file
+/********************************************************************//** * @file
  ***********************************************************************/
 #include "player.h"
 #include "genetic.h"
@@ -13,13 +12,13 @@ Player::Player() { }
 // return the moves to execute if moves have been precalculated
 ValidMove Player::makeMove(const Playfield *pf)
 {
-    if( moves.empty( ) )
-    {
+	if( moves.empty( ) )
+	{
 		Simulatefield *playfield = new Simulatefield( pf );
-        Genetic snake( playfield );
-        moves = snake.moves( );
-    }
-    ValidMove move = moves.front( );
-    moves.pop( );
-    return move;
+		Genetic snake( playfield );
+		moves = snake.moves( );
+	}
+	ValidMove move = moves.front( );
+	moves.pop( );
+	return move;
 }

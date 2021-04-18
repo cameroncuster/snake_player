@@ -25,11 +25,7 @@ Genetic::Genetic( Simulatefield *pf )
 	delete p;
 }
 
-Genetic::~Genetic( )
-{
-	for( int i = 0; i < FIRSTGEN; i++ )
-		delete games[i];
-}
+Genetic::~Genetic( ) { }
 
 queue<ValidMove> Genetic::moves( ) const
 {
