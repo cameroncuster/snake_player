@@ -22,6 +22,7 @@ ValidMove RandomPlayer::makeMove( Simulatefield *pf )
 		move = randomMoves[i];
 		Simulatefield *copyfield = new Simulatefield( pf );
 		valid = copyfield->moveHead( move );
+        delete copyfield;
 	}
 	return move;
 }

@@ -17,6 +17,7 @@ ValidMove Player::makeMove(const Playfield *pf)
 		Simulatefield *playfield = new Simulatefield( pf );
 		Genetic snake( playfield );
 		moves = snake.moves( );
+        delete playfield;
 	}
 	ValidMove move = moves.front( );
 	moves.pop( );

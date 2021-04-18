@@ -25,8 +25,6 @@ Genetic::Genetic( Simulatefield *pf )
 	delete p;
 }
 
-Genetic::~Genetic( ) { }
-
 queue<ValidMove> Genetic::moves( ) const
 {
     return optimalMoves;

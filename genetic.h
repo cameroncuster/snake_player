@@ -18,7 +18,6 @@ class Genetic
     std::vector<Simulation *> games;
     public:
     Genetic( Simulatefield *pf );
-	~Genetic( );
     std::queue<ValidMove> moves( ) const;
     private:
 	std::vector<std::queue<ValidMove>> evolve( );
