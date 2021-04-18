@@ -5,6 +5,7 @@
 #include <map>
 #include <limits>
 #include "playfield.h"
+#include "simulatefield.h"
 
 class Player
 {

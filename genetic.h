@@ -3,6 +3,7 @@
  ***********************************************************************/
 #ifndef GENETIC_H
 #define GENETIC_H
+#include "defineGen.h"
 #include "simulation.h"
 #include "randomPlayer.h"
 
@@ -17,7 +18,8 @@ class Genetic
     std::queue<ValidMove> optimalMoves;
     std::vector<Simulation *> games;
     public:
-    Genetic( Playfield *pf );
+    Genetic( Simulatefield *pf );
+	~Genetic( );
     std::queue<ValidMove> moves( ) const;
     private:
     void evolve( );

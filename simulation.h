@@ -4,6 +4,7 @@
 #ifndef SIMULATION_H
 #define SIMULATION_H
 #include <map>
+#include "simulatefield.h"
 #include "randomPlayer.h"
 
 /********************************************************************//**
@@ -15,11 +16,11 @@
 class Simulation
 {
    RandomPlayer *player;
-   Playfield *playfield;
+   Simulatefield *playfield;
    bool gameOver;
    int  score;
 public:
-   Simulation(RandomPlayer *, Playfield *);
+   Simulation(RandomPlayer *, Simulatefield *);
    ~Simulation();
 
    bool isGameOver() const;

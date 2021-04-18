@@ -5,11 +5,20 @@
 
 using namespace std;
 
-Genetic::Genetic( Playfield *pf )
+Genetic::Genetic( Simulatefield *pf )
 {
-    RandomPlayer *p = RandomPlayer( );
-    games.resize( 1000, Simulation( p, pf ) );
+    RandomPlayer *p = new RandomPlayer( );
+    games.resize( FIRSTGEN );
+	for( int i = 0; i < FIRSTGEN; i++ )
+		games[i] = new Simulation( p, pf );
     evolve( );
+	delete p;
+}
+
+Genetic::~Genetic( )
+{
+	for( int i = 0; i < FIRSTGEN; i++ )
+		delete games[i];
 }
 
 queue<ValidMove> Genetic::moves( ) const
@@ -19,22 +28,21 @@ queue<ValidMove> Genetic::moves( ) const
 
 void Genetic::evolve( )
 {
+	unsigned gamesOver = 0;
     vector<bool> ended( games.size( ) );
-    for( int i = 0; i < 1000 || gamesOver < games.size( ) - 2; i++ )
+    for( unsigned i = 0; i < FIRSTGEN && gamesOver < games.size( ) - 2; i++ )
     {
-        int j = 0;
-        for( Simulation s : games )
+		for( unsigned j = 0; j < games.size( ); j++ )
         {
             if( gamesOver > games.size( ) - 2 )
                 break;
-            if( !s.isGameOver( ) )
-                s.makeMove( );
+            if( !games[i]->isGameOver( ) )
+                games[i]->makeMove( );
             else if( !ended[j] )
             {
                 ended[j] = 1;
                 gamesOver++;
             }
-            j++;
         }
     }
     // track the moves in the simulation and get those to interface here

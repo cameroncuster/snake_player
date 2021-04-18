@@ -5,14 +5,14 @@
 #include <map>
 #include <limits>
 #include <vector>
-#include "playfield.h"
-#include "simulation.h"
+#include "simulatefield.h"
 
 class RandomPlayer
 {
     public:
     RandomPlayer ();
-    ValidMove makeMove(Playfield *);
+    ValidMove makeMove(Simulatefield *);
     private:
+	bool valid( ValidMove move ) const;
 };
 #endif

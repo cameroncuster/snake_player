@@ -1,75 +1,38 @@
 /********************************************************************//**
  * @file
  ***********************************************************************/
-#include "playfield.h"
+#include "simulatefield.h"
 
-// Construct the playfield based on:
-//
-// int w  : width in cells
-// int h  : height in cells
-// bool ob: whether or not to place obstacles on the playfield
-//
-Playfield::Playfield(int w, int h, bool ob) : width(w), height(h), hasObstacles(ob), tailLength(0)
+Simulatefield::Simulatefield( const Playfield *pf )
 {
-   srand(time(NULL));
-
-   // Place the head and first food on the playfield
-   head = std::pair<int, int>(rand() % height, rand() % width);
-   food = std::pair<int, int>(rand() % height, rand() % width);
-
-   int count;
-
-   // Expand the grid to match the height and width
-   grid.resize(height);
-   for (int y = 0 ; y < height ; y++)
-      grid[y].resize(width);
-
-   if (hasObstacles)
-   {
-      std::cout << "Placing obstacles " << " and verifying solvability"
-                << std::endl;
-      std::cout << "this may take a few seconds." << std::endl;
-   }
-
-   // 1. Clear the grid
-   // 2. Place obstacles if requested
-   // 3. Check that the grid is solvable
-   do
-   {
-      clearGrid();
-      placeObstacles();
-      SnakeGraph graph(grid);
-      Biconnected bicon(&graph);
-      CC cc(&graph);
-      count = cc.count() + bicon.articulationNodes().size();
-   } while (count > 1);
-
-   // Place the head and the food and update the playfield
-   grid[head.first][head.second] = HEAD_VALUE;
-   grid[food.first][food.second] = FOOD_VALUE;
-   updatePlayfield();
+	head = pf->headPosition( );
+	food = pf->foodPosition( );
+	tail = pf->getTail( );
+	width = grid[0].size( );
+	height = grid.size( );
+	hasObstacles = pf->obstacles( );
+	tailLength = pf->getScore( ) - 1;
+	grid = pf->getGrid( );
 }
 
 // Getter functions
-std::pair<int, int> Playfield::headPosition() const { return head; }
-std::pair<int, int> Playfield::foodPosition() const { return food; }
-std::vector<std::vector<int>> Playfield::getGrid() const { return grid ; }
-std::queue<std::pair<int, int>> Playfield::getTail() const { return tail; }
-int Playfield::getScore() const { return tailLength + 1; }
-bool Playfield::obstacles() const { return hasObstacles; }
+std::pair<int, int> Simulatefield::headPosition() const { return head; }
+std::pair<int, int> Simulatefield::foodPosition() const { return food; }
+std::vector<std::vector<int>> Simulatefield::getGrid() const { return grid ; }
+int Simulatefield::getScore() const { return tailLength + 1; }
 
 // Helper function: Clear the grid initially
-void Playfield::clearGrid()
+void Simulatefield::clearGrid()
 {
    for (int y = 0 ; y < height ; y++)
       for (int x = 0 ; x < width ; x++)
         grid[y][x] = CLEAR_VALUE;
 }
 
-Playfield::~Playfield() {}
+Simulatefield::~Simulatefield() {}
 
 // Place obstacles on the playfield if requested
-void Playfield::placeObstacles()
+void Simulatefield::placeObstacles()
 {
    if (!hasObstacles) return;
    int obstacleCount = 0.05 * width * height;
@@ -87,7 +50,7 @@ void Playfield::placeObstacles()
 }
 
 // clean up after the tail once it has passed
-void Playfield::updatePlayfield()
+void Simulatefield::updatePlayfield()
 {
    while (tailLength < tail.size())
    {
@@ -97,7 +60,7 @@ void Playfield::updatePlayfield()
 }
 
 // Calculate a new head position based on the current head position + a move
-std::pair<int, int> Playfield::translateHead(ValidMove move)
+std::pair<int, int> Simulatefield::translateHead(ValidMove move)
 {
    return std::make_pair(head.first + translate[move].first,
                          head.second + translate[move].second);
@@ -105,7 +68,7 @@ std::pair<int, int> Playfield::translateHead(ValidMove move)
 
 // Once the food is consumed, place a new food randomly in an open space
 // Optimization: Only randomly select from open spaces
-std::pair<int, int> Playfield::placeNewFood()
+std::pair<int, int> Simulatefield::placeNewFood()
 {
    int x, y;
    do
@@ -120,7 +83,7 @@ std::pair<int, int> Playfield::placeNewFood()
 // Given a player move, attempt to move the head in that direction
 // Return false if the move hits the tail or other obstacle
 // otherwise return true, move the head, update the tail
-bool Playfield::moveHead(ValidMove move)
+bool Simulatefield::moveHead(ValidMove move)
 {
    // moves of 'NONE' end the game
    if (move == NONE) return false;

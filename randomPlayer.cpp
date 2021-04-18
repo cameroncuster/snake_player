@@ -9,10 +9,15 @@ using namespace std;
 
 RandomPlayer::RandomPlayer() { }
 
-ValidMove RandomPlayer::makeMove( Playfield *pf )
+bool RandomPlayer::valid( ValidMove move ) const
+{
+	return 0;
+}
+
+ValidMove RandomPlayer::makeMove( Simulatefield *pf )
 {
     srand( time( NULL ) );
-    ValidMove move = None;
+    ValidMove move = NONE;
     while( !valid( move ) )
     {
         int m = rand( ) % 4;

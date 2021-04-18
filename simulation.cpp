@@ -5,7 +5,7 @@
 
 // Very simple wrapper class to play the game
 
-Simulation::Simulation(RandomPlayer *p, Playfield *pf) : player(p), playfield(pf), gameOver(false), score(0) {}
+Simulation::Simulation(RandomPlayer *p, Simulatefield *pf) : player(p), playfield(pf), gameOver(false), score(0) {}
 
 // Clean up
 Simulation::~Simulation()

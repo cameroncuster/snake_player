@@ -21,7 +21,7 @@ Game::~Game()
 bool Game::makeMove()
 {
    bool retVal = false;
-   
+
    ValidMove playerMove = player->makeMove(playfield);
    retVal = playfield->moveHead(playerMove);
 
