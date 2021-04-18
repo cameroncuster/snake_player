@@ -32,3 +32,4 @@ April 17:
       hours
     * going to implement GA with A* algorithm, A* builds length and GA build
       survival, with the focus of both algorithms the player must be successful
+	* Working to implement the GA and have been unsuccessful thus far
