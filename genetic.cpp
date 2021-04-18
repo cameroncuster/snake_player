@@ -7,11 +7,14 @@ using namespace std;
 
 Genetic::Genetic( Simulatefield *pf )
 {
-    RandomPlayer *p = new RandomPlayer( );
     games.resize( FIRSTGEN );
     ended.resize( FIRSTGEN );
 	for( int i = 0; i < FIRSTGEN; i++ )
-		games[i] = new Simulation( p, pf );
+    {
+        RandomPlayer *p = new RandomPlayer( );
+        Simulatefield *playfield = new Simulatefield( pf );
+		games[i] = new Simulation( p, playfield );
+    }
 	// expand for multiple generations
     vector<queue<ValidMove>> movesinSimulation = evolve( );
 	int optimalPlayer = 0;
@@ -24,7 +27,6 @@ Genetic::Genetic( Simulatefield *pf )
                 optimalPlayer = i;
         }
 	optimalMoves = movesinSimulation[ optimalPlayer ];
-	delete p;
 }
 
 queue<ValidMove> Genetic::moves( ) const
