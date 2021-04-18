@@ -33,3 +33,7 @@ April 17:
     * going to implement GA with A* algorithm, A* builds length and GA build
       survival, with the focus of both algorithms the player must be successful
 	* Working to implement the GA and have been unsuccessful thus far
+
+April 18:
+    * Some success with the genetic player as a minimal improvement from the
+      previous player
