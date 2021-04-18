@@ -41,8 +41,8 @@ vector<queue<ValidMove>> Genetic::evolve( )
         {
             if( gamesOver > games.size( ) - 2 )
                 break;
-            if( !games[i]->isGameOver( ) )
-                movesinSimulation[i].push( games[i]->makeMove( ) );
+            if( !games[j]->isGameOver( ) )
+                movesinSimulation[j].push( games[j]->makeMove( ) );
             else if( !ended[j] )
             {
                 ended[j] = 1;
