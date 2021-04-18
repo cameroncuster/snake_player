@@ -16,6 +16,7 @@ class Genetic
 {
     std::queue<ValidMove> optimalMoves;
     std::vector<Simulation *> games;
+    std::vector<bool> ended;
     public:
     Genetic( Simulatefield *pf );
     std::queue<ValidMove> moves( ) const;

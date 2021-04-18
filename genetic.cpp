@@ -9,6 +9,7 @@ Genetic::Genetic( Simulatefield *pf )
 {
     RandomPlayer *p = new RandomPlayer( );
     games.resize( FIRSTGEN );
+    ended.resize( FIRSTGEN );
 	for( int i = 0; i < FIRSTGEN; i++ )
 		games[i] = new Simulation( p, pf );
 	// expand for multiple generations
@@ -16,11 +17,12 @@ Genetic::Genetic( Simulatefield *pf )
 	int optimalPlayer = 0;
 	int maxScore = 0;
 	for( unsigned i = 0; i < games.size( ); i++ )
-	{
-		maxScore = max( maxScore, games[i]->getScore( ) );
-		if( maxScore == games[i]->getScore( ) )
-			optimalPlayer = i;
-	}
+        if( !ended[i] )
+        {
+            maxScore = max( maxScore, games[i]->getScore( ) );
+            if( maxScore == games[i]->getScore( ) )
+                optimalPlayer = i;
+        }
 	optimalMoves = movesinSimulation[ optimalPlayer ];
 	delete p;
 }
@@ -34,12 +36,11 @@ vector<queue<ValidMove>> Genetic::evolve( )
 {
 	vector<queue<ValidMove>> movesinSimulation( FIRSTGEN );
 	unsigned gamesOver = 0;
-    vector<bool> ended( games.size( ) );
     for( unsigned i = 0; i < FIRSTGEN && gamesOver < games.size( ) - 2; i++ )
     {
 		for( unsigned j = 0; j < games.size( ); j++ )
         {
-            if( gamesOver > games.size( ) - 2 )
+            if( gamesOver >= games.size( ) - 2 )
                 break;
             if( !games[j]->isGameOver( ) )
                 movesinSimulation[j].push( games[j]->makeMove( ) );
