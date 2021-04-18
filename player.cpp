@@ -13,9 +13,9 @@ Player::Player() { }
 // return the moves to execute if moves have been precalculated
 ValidMove Player::makeMove(const Playfield *pf)
 {
-    Simulatefield *playfield = new Simulatefield( pf );
     if( moves.empty( ) )
     {
+		Simulatefield *playfield = new Simulatefield( pf );
         Genetic snake( playfield );
         moves = snake.moves( );
     }

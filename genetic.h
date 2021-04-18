@@ -10,8 +10,8 @@
 /********************************************************************//**
  * @class Genetic
  *
- * Genetic algorithm object to simulate x games and evaluate the best
- * player
+ * Genetic algorithm object to simulate x games and naturally select the best
+ * players to populate the next generation
  **********************************************************************/
 class Genetic
 {
@@ -22,6 +22,6 @@ class Genetic
 	~Genetic( );
     std::queue<ValidMove> moves( ) const;
     private:
-    void evolve( );
+	std::vector<std::queue<ValidMove>> evolve( );
 };
 #endif
