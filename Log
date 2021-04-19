@@ -37,3 +37,5 @@ April 17:
 April 18:
     * Some success with the genetic player as a minimal improvement from the
       previous player
+    * Working to expand the GA for multiple generations, current success with one
+      generation has been minimal
