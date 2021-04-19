@@ -35,3 +35,5 @@ void Simulation::gameIsOver() { gameOver = true; }
 bool Simulation::isGameOver() const { return gameOver; }
 
 int Simulation::getScore() const { return playfield->getScore() ; }
+
+Simulatefield Simulation::field( ) const { return playfield; }

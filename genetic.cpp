@@ -46,8 +46,13 @@ Genetic::Genetic( Simulatefield *pf )
 
         // populate the next generation
         // i = 10
-        for( auto &o : population )
-            o = fittest[i % 10];
+        for( auto &o : population ) // def has mem leaks
+        {
+            RandomPlayer *p = new RandomPlayer( );
+            Simulatefield *field = new Simulatefield( fittest[i % 10].simulation->field( ) );
+            Simulation *s = new Simulation( p, field );
+            o = { s, fittest[i++ % 10].moves };
+        }
     }
 }
 

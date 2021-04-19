@@ -26,6 +26,7 @@ public:
    bool isGameOver() const;
    void gameIsOver();
    int getScore() const;
+   Simulatefield field( ) const;
    ValidMove makeMove();
 };
 #endif
