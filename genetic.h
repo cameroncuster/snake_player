@@ -3,7 +3,7 @@
  ***********************************************************************/
 #ifndef GENETIC_H
 #define GENETIC_H
-#include "defineGen.h"
+#include "defineGEN.h"
 #include "simulation.h"
 
 /********************************************************************//**
@@ -14,13 +14,19 @@
  **********************************************************************/
 class Genetic
 {
-    std::queue<ValidMove> optimalMoves;
-    std::vector<Simulation *> games;
+    // c++ structure to associate a Game( playfield and player ) with the moves
+    struct Organism
+    {
+        Simulation * simulation;
+        std::queue<ValidMove> moves;
+    };
+    std::vector<Organism> population;
     std::vector<bool> ended;
+    Organism fittest;
     public:
     Genetic( Simulatefield *pf );
     std::queue<ValidMove> moves( ) const;
     private:
-	std::vector<std::queue<ValidMove>> evolve( );
+    void evolve( );
 };
 #endif
