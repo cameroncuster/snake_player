@@ -2,6 +2,7 @@
  * @file
  ***********************************************************************/
 #include "player.h"
+#include "astar.h"
 
 Player::Player() { }
 
@@ -13,7 +14,7 @@ ValidMove Player::makeMove(const Playfield *pf)
    std::pair<int, int> head = pf->headPosition();
 
    std::vector<ValidMove> nextMove =
-   { 
+   {
       RIGHT, RIGHT, RIGHT, DOWN,
       UP, DOWN, LEFT, LEFT,
       UP, RIGHT, RIGHT, DOWN,
