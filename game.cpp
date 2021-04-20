@@ -21,7 +21,7 @@ Game::~Game()
 bool Game::makeMove()
 {
    bool retVal = false;
-
+   
    ValidMove playerMove = player->makeMove(playfield);
    retVal = playfield->moveHead(playerMove);
 
@@ -31,7 +31,7 @@ bool Game::makeMove()
    return !isGameOver();
 }
 
-void Game::gameIsOver() { gameOver = true; }
+void Game::gameIsOver() { std::cout << "Game is over!\n" ; gameOver = true; }
 
 bool Game::isGameOver() const { return gameOver; }
 

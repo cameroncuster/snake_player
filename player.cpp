@@ -1,25 +1,25 @@
-/********************************************************************//** * @file
+/********************************************************************//**
+ * @file
  ***********************************************************************/
 #include "player.h"
-#include "genetic.h"
-
-using namespace std;
 
 Player::Player() { }
 
-// construct a genetic algorithm to play x games
-// the best player will be executed
-// return the moves to execute if moves have been precalculated
+// Scanner for simple 4 x 4 field to check for cases where final food can't
+// be placed due to random not behaving
 ValidMove Player::makeMove(const Playfield *pf)
 {
-	while( moves.empty( ) )
-	{
-		Simulatefield *playfield = new Simulatefield( pf );
-		Genetic snake( playfield );
-		moves = snake.moves( );
-        delete playfield;
-	}
-	ValidMove move = moves.front( );
-	moves.pop( );
-	return move;
+   std::vector<std::vector<int>> grid = pf->getGrid();
+   std::pair<int, int> head = pf->headPosition();
+
+   std::vector<ValidMove> nextMove =
+   { 
+      RIGHT, RIGHT, RIGHT, DOWN,
+      UP, DOWN, LEFT, LEFT,
+      UP, RIGHT, RIGHT, DOWN,
+      UP, LEFT, LEFT, LEFT
+   };
+
+   int index = head.first * grid[0].size() + head.second;
+   return nextMove[index];
 }
