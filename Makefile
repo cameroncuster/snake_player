@@ -1,6 +1,6 @@
 LIBNAME = libPlayer.so
 
-PLAYER_SOURCE = player.cpp genetic.cpp simulation.cpp simulatefield.cpp randomPlayer.cpp
+PLAYER_SOURCE = player.cpp
 
 COMMON_SOURCE = playfield.cpp snakeGraph.cpp biconnected.cpp cc.cpp game.cpp
 

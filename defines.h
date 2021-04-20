@@ -1,5 +1,6 @@
 #ifndef DEFINES_H
 #define DEFINES_H
+#include <utility>
 
 // Some helpful macros, enums, and constants
 
@@ -15,6 +16,8 @@ const std::vector<std::pair<int, int>> translate =
    {std::make_pair(-1,  0)}, /* UP    */
    {std::make_pair( 1,  0)}  /* DOWN  */
 };
+
+const std::pair<int, int> invalid_food_location {-1, -1};
 
 #define CLEAR_VALUE 0
 #define TAIL_VALUE 1

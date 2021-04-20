@@ -3,6 +3,20 @@
  ***********************************************************************/
 #include "playfield.h"
 
+// Copy constructor for running alternate games (GA players)
+// Create a playfield from a const Playfield pointer
+Playfield::Playfield(const Playfield *pf)
+{
+   head = pf->head;
+   food = pf->food;
+   tail = pf->tail;
+   width = pf->width;
+   height = pf->height;
+   hasObstacles = pf->hasObstacles;
+   tailLength = pf->tailLength;
+   grid = pf->grid;
+}
+
 // Construct the playfield based on:
 //
 // int w  : width in cells
@@ -26,7 +40,7 @@ Playfield::Playfield(int w, int h, bool ob) : width(w), height(h), hasObstacles(
 
    if (hasObstacles)
    {
-      std::cout << "Placing obstacles " << " and verifying solvability"
+      std::cout << "Placing obstacles " << " and verifying solvability" 
                 << std::endl;
       std::cout << "this may take a few seconds." << std::endl;
    }
@@ -54,9 +68,7 @@ Playfield::Playfield(int w, int h, bool ob) : width(w), height(h), hasObstacles(
 std::pair<int, int> Playfield::headPosition() const { return head; }
 std::pair<int, int> Playfield::foodPosition() const { return food; }
 std::vector<std::vector<int>> Playfield::getGrid() const { return grid ; }
-std::queue<std::pair<int, int>> Playfield::getTail() const { return tail; }
 int Playfield::getScore() const { return tailLength + 1; }
-bool Playfield::obstacles() const { return hasObstacles; }
 
 // Helper function: Clear the grid initially
 void Playfield::clearGrid()
@@ -107,14 +119,19 @@ std::pair<int, int> Playfield::translateHead(ValidMove move)
 // Optimization: Only randomly select from open spaces
 std::pair<int, int> Playfield::placeNewFood()
 {
-   int x, y;
-   do
+   std::vector<std::pair<int, int>> spots;
+   for (int row = 0 ; row < height ; row++)
+      for (int col = 0 ; col < width ; col++)
+         if (grid[row][col] == CLEAR_VALUE) 
+            spots.push_back(std::make_pair(row,col));
+
+   if (spots.size() > 0) 
    {
-      x = rand() % width;
-      y = rand() % height;
-   } while (grid[y][x] != CLEAR_VALUE);
-   grid[y][x] = FOOD_VALUE;
-   return std::pair<int, int>(y, x);
+      std::pair<int, int> choice = spots[rand() % spots.size()];
+      grid[choice.first][choice.second] = FOOD_VALUE;
+      return choice;
+   }
+   return invalid_food_location;
 }
 
 // Given a player move, attempt to move the head in that direction
@@ -144,9 +161,9 @@ bool Playfield::moveHead(ValidMove move)
       grid[newHeadPosition.first][newHeadPosition.second] = COLLISION_VALUE;
       return false;
    }
-
+  
    // If the destination cell is the food, grow the tail and
-   // place a new food.
+   // place a new food. 
    if (newHeadPosition == food)
    {
       tailLength++;
@@ -160,5 +177,5 @@ bool Playfield::moveHead(ValidMove move)
    head = newHeadPosition;
    // advance the head into its new position
    grid[head.first][head.second] = HEAD_VALUE;
-   return true;
+   return (food != invalid_food_location);
 }
