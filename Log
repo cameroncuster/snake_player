@@ -39,3 +39,14 @@ April 18:
       previous player
     * Working to expand the GA for multiple generations, current success with one
       generation has been minimal
+    * GA tracks score, but the length of the snake is not approximated correctly
+      because the apples in the simulated games spawn in different locations than
+      in actual gameplay so the snake thinks it is shorter than it is
+    * Potential Fixes: spawn more apples in the simulation, count number of moves,
+      not score for naturally selecting the next generation
+
+April 20:
+    * began exploring idea for astar where heuristic follows tail of snake
+    * rough pseudo implementation written on astar branch
+    * master cleaned and branching implemented for clean code base and proper
+      coding standard
