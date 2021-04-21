@@ -1,26 +1,48 @@
 /********************************************************************//**
  * @file
  ***********************************************************************/
+#include <utility>
 #include "player.h"
 #include "astar.h"
 
+// DEBUG
+#include <iostream>
+
+using namespace std;
+
 Player::Player() { }
 
-// Scanner for simple 4 x 4 field to check for cases where final food can't
-// be placed due to random not behaving
 ValidMove Player::makeMove(const Playfield *pf)
 {
-   std::vector<std::vector<int>> grid = pf->getGrid();
-   std::pair<int, int> head = pf->headPosition();
+    vector<std::vector<int>> grid = pf->getGrid();
+    int w = grid.size( );
+    pair<int, int> head = pf->headPosition();
+    pair<int, int> food = pf->foodPosition();
+    int headNode = head.first * w + head.second;
+    int foodNode = food.first * w + food.second;
 
-   std::vector<ValidMove> nextMove =
-   {
-      RIGHT, RIGHT, RIGHT, DOWN,
-      UP, DOWN, LEFT, LEFT,
-      UP, RIGHT, RIGHT, DOWN,
-      UP, LEFT, LEFT, LEFT
-   };
+    Graph *G = new Graph( grid );
+    AStar astar( G, headNode, foodNode );
 
-   int index = head.first * grid[0].size() + head.second;
-   return nextMove[index];
+    while( !astar.hasPath( foodNode ) )
+        break; // start scanning
+
+    // find the optimal move w/o caching
+    list<int> path = astar.pathTo( foodNode );
+    if( !path.empty( ) ) path.pop_front( ); // remove the source
+
+    // determine the move to make
+    ValidMove move = NONE;
+    const int delta[4] = { -w, 1, w, -1 };
+    for( int i = 0; i < 4; i++ )
+        if( headNode + delta[i] == path.front( ) )
+        {
+            if( i == 0 ) move = UP;
+            if( i == 1 ) move = RIGHT;
+            if( i == 2 ) move = DOWN;
+            if( i == 3 ) move = LEFT;
+        }
+
+    delete G; // memory clean-up
+    return move;
 }
