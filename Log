@@ -58,4 +58,4 @@ April 20:
     * potentially weight the heuristic by the amount of grid reachable based on
       given decision
     * Implemented DFS search with minimal success, the search traps itself often,
-      but is blazingly fast
+      but is blazingly fast, might be able to leverage this
