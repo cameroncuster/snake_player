@@ -1,0 +1,61 @@
+# Title:            Snake Player GitLab Runner
+# Attribute:        Devon Schneider
+# Descripttion:     GitLab Runner to verify compilation and execution on master
+# Source:           Discord Server:CSC315 Channel:Snake
+# Lisence:          Public Domain (free to use)
+stages:
+  - build
+  - trial
+
+build:driver:
+  stage: build
+  tags:
+    - 'csc340'
+  script:
+    - 'make driver'
+  artifacts:
+    paths:
+      - 'driver'
+
+build:libPlayer.so:
+  stage: build
+  tags:
+    - 'csc340'
+  script:
+    - 'make libPlayer.so'
+  artifacts:
+    paths:
+      - 'libPlayer.so'
+
+trial:15x17:
+  stage: trial
+  tags:
+    - 'csc340'
+  needs:
+    - 'build:driver'
+    - 'build:libPlayer.so'
+  script:
+    - 'LD_LIBRARY_PATH=. ./driver 15 17 false'
+  timeout: '15m'
+
+trial:15x17obstacles:
+  stage: trial
+  tags:
+    - 'csc340'
+  needs:
+    - 'build:driver'
+    - 'build:libPlayer.so'
+  script:
+    - 'LD_LIBRARY_PATH=. ./driver 15 17 true'
+  timeout: '15m'
+
+trial:20x20:
+  stage: trial
+  tags:
+    - 'csc340'
+  needs:
+    - 'build:driver'
+    - 'build:libPlayer.so'
+  script:
+    - 'LD_LIBRARY_PATH=. ./driver 20 20 false'
+  timeout: '15m'
