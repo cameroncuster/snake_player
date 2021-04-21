@@ -3,6 +3,7 @@
  ***********************************************************************/
 #ifndef ASTAR_H
 #define ASTAR_H
+#include <list>
 #include <queue>
 #include "graph.h"
 
@@ -54,5 +55,6 @@ class AStar
     list<int> pathTo( int );
     private:
     void relax( int, int, Graph * );
+    int straightLineDistance( int ) const;
 };
 #endif

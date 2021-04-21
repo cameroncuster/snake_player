@@ -1,10 +1,10 @@
 /********************************************************************//**
  * @file
  ***********************************************************************/
-#include "snakeGraph.h"
+#include "graph.h"
 
 // Construct a graph from a vector<vector<int>> grid
-SnakeGraph::SnakeGraph(std::vector<std::vector<int>> &grid)
+Graph::Graph(std::vector<std::vector<int>> &grid) : columns(grid.size())
 {
    int height = grid.size();
    int width  = grid[0].size();
@@ -28,10 +28,11 @@ SnakeGraph::SnakeGraph(std::vector<std::vector<int>> &grid)
    numEdges /= 2;
 }
 
-int SnakeGraph::V() const { return numVertices ; }
-int SnakeGraph::E() const { return numEdges ; }
+int Graph::V() const { return numVertices ; }
+int Graph::E() const { return numEdges ; }
+int Graph::Columns() const { return columns ; }
 
-std::set<int> SnakeGraph::Vertices() const
+std::set<int> Graph::Vertices() const
 {
    std::set<int> retVal;
    for (auto &kv : vertices)
@@ -40,12 +41,12 @@ std::set<int> SnakeGraph::Vertices() const
    return retVal;
 }
 
-std::set<int> SnakeGraph::adj(int v)
+std::set<int> Graph::adj(int v)
 {
    return vertices[v];
 }
 
-void SnakeGraph::addEdge(int v, int w)
+void Graph::addEdge(int v, int w)
 {
    vertices[v].insert(w);
    vertices[w].insert(v);

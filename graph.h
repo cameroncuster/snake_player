@@ -16,7 +16,7 @@
 class Graph
 {
    std::map<int, std::set<int>> vertices;
-   int numVertices, numEdges;
+   int numVertices, numEdges, columns;
 public:
    Graph(std::vector<std::vector<int>> &);
   
@@ -24,6 +24,7 @@ public:
    std::set<int> adj(int);
    int V() const;
    int E() const;
+   int Columns() const;
 private:
    void addEdge(int, int);
 };

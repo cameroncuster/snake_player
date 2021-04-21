@@ -3,13 +3,13 @@
 
 using namespace std;
 
-AStar::AStar( Graph *, int, int ) : start( s ), finish( f )
+AStar::AStar( Graph *G, int s, int f ) : start( s ), finish( f ), columns( G->Columns( ) )
 {
     for( int v : G->Vertices( ) )
         dist[v] = numeric_limits<int>::max( );
 
     dist[start] = 0.0;
-    heap.push( Node( start, straightLineDistance( start, finish, G->Columns( ) ) ) );
+    heap.push( Node( start, straightLineDistance( start ) ) );
     while( !heap.empty( ) )
     {
         Node node = heap.top( );
@@ -37,12 +37,21 @@ list<int> AStar::pathTo( int v )
     return path;
 }
 
-void AStar::relax( int, int, Graph * )
+void AStar::relax( int v, int w, Graph *G )
 {
     if( dist[w] > dist[v] + 1 )
     {
         dist[w] = dist[v] + 1;
         prev[w] = v;
-        heap.push( Node( w, straightLineDistance( w, finish, G->Columns( ) ) ) );
+        heap.push( Node( w, straightLineDistance( w ) ) );
     }
+}
+
+int AStar::straightLineDistance( int w ) const
+{
+    int x = w % columns;
+    int y = w / columns;
+    int finishX = finish % columns;
+    int finishY = finish / columns;
+    return abs( finishY - y ) + abs( finishX - x );
 }
