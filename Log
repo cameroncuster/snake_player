@@ -61,3 +61,20 @@ April 20:
       but is blazingly fast, might be able to leverage this
     * Idea to remove nodes from the graph as I visit them until all nodes are 
       removed then reconstruct graph
+
+April 21:
+
+ * * * * * * * * * * * * * * * * * * * *
+ * Average Scores using AStar with     *
+ *     modified heuristic              *
+ *                                     *
+ * Size: 20 x 20                       *
+ * Number Items : 100                  *
+ * Average Score: 62.24                *
+ * Maximum Score: 100                  *
+ * Average Time : 0.0015239223         *
+ *                                     *
+ * * * * * * * * * * * * * * * * * * * *
+
+	* the modified heuristic has performed much better than current
+	  implementation of the genetic algorithm or the dfs search as shown above
