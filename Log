@@ -39,6 +39,7 @@ April 18:
       previous player
     * Working to expand the GA for multiple generations, current success with one
       generation has been minimal
+<<<<<<< HEAD
     * GA tracks score, but the length of the snake is not approximated correctly
       because the apples in the simulated games spawn in different locations than
       in actual gameplay so the snake thinks it is shorter than it is
@@ -50,3 +51,12 @@ April 20:
     * rough pseudo implementation written on astar branch
     * master cleaned and branching implemented for clean code base and proper
       coding standard
+=======
+    * Working A* player with no heuristic, going to modify the heurisitc to
+      follow the tail for as long as possible (e.a. nodes adjacent to the tail
+      are weighted very heavily in heuristic)
+    * modified heuristic for A* to follow the tail of the snake, has not been as
+      effective as desired
+    * potentially weight the heuristic by the amount of grid reachable based on
+      given decision
+>>>>>>> astar
