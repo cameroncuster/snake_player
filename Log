@@ -76,5 +76,16 @@ April 21:
  *                                     *
  * * * * * * * * * * * * * * * * * * * *
 
+ * * * * * * * * * * * * * * * * * * * *
+ * Average Scores using DFS SSSP       *
+ *                                     *
+ * Size: 20 x 20                       *
+ * Number Items : 100                  *
+ * Average Score: 43.34                *
+ * Maximum Score: 54                   *
+ * Average Time : 1.11068321e-05       *
+ *                                     *
+ * * * * * * * * * * * * * * * * * * * *
+
 	* the modified heuristic has performed much better than current
 	  implementation of the genetic algorithm or the dfs search as shown above
