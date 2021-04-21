@@ -59,3 +59,5 @@ April 20:
       given decision
     * Implemented DFS search with minimal success, the search traps itself often,
       but is blazingly fast, might be able to leverage this
+    * Idea to remove nodes from the graph as I visit them until all nodes are 
+      removed then reconstruct graph
