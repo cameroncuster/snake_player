@@ -42,3 +42,5 @@ April 18:
     * Working A* player with no heuristic, going to modify the heurisitc to
       follow the tail for as long as possible (e.a. nodes adjacent to the tail
       are weighted very heavily in heuristic)
+    * modified heuristic for A* to follow the tail of the snake, has not been as
+      effective as desired

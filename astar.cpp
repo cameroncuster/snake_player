@@ -6,13 +6,17 @@
 
 using namespace std;
 
-AStar::AStar( Graph *G, int s, int f ) : start( s ), finish( f ), columns( G->Columns( ) )
+// heuristic must be instantiated for all nodes |V| or straightLineDistance will
+    // be nullified
+AStar::AStar( Graph *G, int s, int f, map<int, double> h ) : start( s ),
+    finish( f ), columns( G->Columns( ) )
 {
+    heuristic = h;
     for( int v : G->Vertices( ) )
         dist[v] = numeric_limits<int>::max( );
 
     dist[start] = 0.0;
-    heap.push( Node( start, straightLineDistance( start ) ) );
+    heap.push( Node( start, straightLineDistance( start ) * heuristic[start] ) );
     while( !heap.empty( ) )
     {
         Node node = heap.top( );
@@ -46,7 +50,7 @@ void AStar::relax( int v, int w, Graph *G )
     {
         dist[w] = dist[v] + 1;
         prev[w] = v;
-        heap.push( Node( w, straightLineDistance( w ) ) );
+        heap.push( Node( w, straightLineDistance( w ) * heuristic[w] ) );
     }
 }
 
