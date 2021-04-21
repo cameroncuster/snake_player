@@ -89,3 +89,7 @@ April 21:
 
 	* the modified heuristic has performed much better than current
 	  implementation of the genetic algorithm or the dfs search as shown above
+    * added GitLab runner provided by Devon Schneider with attribution
+    * Runner tests successful compilation on master when pushing to repo -
+      ensures proper development practices are being upheld (e.a. not inducing
+      crashing/hanging on the runner scripts)
