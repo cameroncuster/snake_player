@@ -39,3 +39,6 @@ April 18:
       previous player
     * Working to expand the GA for multiple generations, current success with one
       generation has been minimal
+    * Working A* player with no heuristic, going to modify the heurisitc to
+      follow the tail for as long as possible (e.a. nodes adjacent to the tail
+      are weighted very heavily in heuristic)
