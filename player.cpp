@@ -51,10 +51,28 @@ ValidMove Player::makeMove(const Playfield *pf)
         }
     }
 
+    // AStar with modified heuristic
     AStar astar( G, headNode, foodNode, heuristic );
 
-    while( !astar.hasPath( foodNode ) )
-        break; // start scanning
+    // check if a path exists - scan otherwise
+    if( !astar.hasPath( foodNode ) )
+    {
+        if( inBounds( w, h, head.first - 1, head.second ) )
+            if( !grid[head.first - 1][head.second] )
+                return UP;
+
+        if( inBounds( w, h, head.first, head.second + 1 ) )
+            if( !grid[head.first][head.second + 1] )
+                return RIGHT;
+
+        if( inBounds( w, h, head.first + 1, head.second ) )
+            if( !grid[head.first + 1][head.second] )
+                return DOWN;
+
+        if( inBounds( w, h, head.first, head.second - 1 ) )
+            if( !grid[head.first][head.second - 1] )
+                return LEFT;
+    }
 
     // find the optimal move w/o caching
     list<int> path = astar.pathTo( foodNode );

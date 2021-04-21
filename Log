@@ -44,3 +44,5 @@ April 18:
       are weighted very heavily in heuristic)
     * modified heuristic for A* to follow the tail of the snake, has not been as
       effective as desired
+    * potentially weight the heuristic by the amount of grid reachable based on
+      given decision
