@@ -1,10 +1,6 @@
 LIBNAME = libPlayer.so
 
-<<<<<<< HEAD
-PLAYER_SOURCE = player.cpp
-=======
 PLAYER_SOURCE = player.cpp graph.cpp astar.cpp
->>>>>>> astar
 
 COMMON_SOURCE = playfield.cpp snakeGraph.cpp biconnected.cpp cc.cpp game.cpp
 
