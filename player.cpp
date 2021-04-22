@@ -5,6 +5,8 @@
 #include "player.h"
 #include "astar.h"
 
+#include <iostream>
+
 using namespace std;
 
 Player::Player() { }
@@ -65,8 +67,6 @@ ValidMove Player::makeMove( const Playfield *pf )
 	// AStar food to tail
 	AStar foodtotail( G, foodNode, headNode, heuristic ); // maybe newTailNode/oldHead location
 
-	// ***** handle path not existing *****
-
 	/// Establish master path
 
 	// path to tail
@@ -77,6 +77,16 @@ ValidMove Player::makeMove( const Playfield *pf )
 
 	// path to newtail
 	pushPath( foodtotail.pathTo( headNode ) );
+
+	// DEBUG
+	for( int n : path )
+		cout << n << ' ';
+	cout << endl;
+
+	if( path.empty( ) )
+	{
+		// handle path not existing
+	}
 
 	delete G; // memory clean-up
 
