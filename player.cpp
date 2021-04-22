@@ -39,7 +39,7 @@ ValidMove Player::makeMove( const Playfield *pf )
 	int h = grid.size( );
 	pair<int, int> head = pf->headPosition();
 	pair<int, int> food = pf->foodPosition();
-	pair<int, int> tail = pf->getTail().front(); // what if there is no tail
+	pair<int, int> tail = pf->getTail().front();
 	int headNode = head.first * w + head.second;
 	int foodNode = food.first * w + food.second;
 	int tailNode = tail.first * w + tail.second;
@@ -51,6 +51,11 @@ ValidMove Player::makeMove( const Playfield *pf )
 		return nextMove( w, headNode, next );
 	}
 
+	cout << "head " << headNode << endl;
+	cout << "food " << foodNode << endl;
+	cout << "tail " << tailNode << endl;
+	cout << endl << endl;
+
 	Graph *G = new Graph( grid );
 
 	// build the heuristic
@@ -58,11 +63,17 @@ ValidMove Player::makeMove( const Playfield *pf )
 	for( int v : G->Vertices( ) )
 		heuristic[v] = 1;
 
+	// body is on the graph e.a. handled by the search
+
 	// AStar head to tail
 	AStar headtotail( G, headNode, tailNode, heuristic );
 
+	// place the body on the graph before search
+
 	// AStar tail to food
 	AStar tailtofood( G, tailNode, foodNode, heuristic );
+
+	// place the body on the graph before search
 
 	// AStar food to tail
 	AStar foodtotail( G, foodNode, headNode, heuristic ); // maybe newTailNode/oldHead location
