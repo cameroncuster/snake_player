@@ -39,7 +39,7 @@ ValidMove Player::makeMove( const Playfield *pf )
 	int h = grid.size( );
 	pair<int, int> head = pf->headPosition();
 	pair<int, int> food = pf->foodPosition();
-	pair<int, int> tail = pf->getTail().front();
+	pair<int, int> tail = pf->getTail().front(); // what if there is no tail
 	int headNode = head.first * w + head.second;
 	int foodNode = food.first * w + food.second;
 	int tailNode = tail.first * w + tail.second;
