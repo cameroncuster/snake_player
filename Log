@@ -93,3 +93,6 @@ April 21:
     * Runner tests successful compilation on master when pushing to repo -
       ensures proper development practices are being upheld (e.a. not inducing
       crashing/hanging on the runner scripts)
+
+April 22:
+    * idea for path from head to tail, tail to food, food to tail in execution
