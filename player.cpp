@@ -9,7 +9,11 @@
 
 using namespace std;
 
-Player::Player() { }
+Player::Player( )
+{
+	headtail = 0;
+	headfood = 1;
+}
 
 bool inBounds( const int w, const int h, const int i, const int j )
 {
@@ -42,7 +46,9 @@ ValidMove Player::makeMove( const Playfield *pf )
 	pair<int, int> tail = pf->getTail().front();
 	int headNode = head.first * w + head.second;
 	int foodNode = food.first * w + food.second;
-	int tailNode = tail.first * w + tail.second;
+	int tailNode = tail.first * w + tail.second; // trying to search for node that is not in the graph
+
+	grid[tail.first][tail.second] = CLEAR_VALUE; // handle snake of size 2
 
 	if( !path.empty( ) )
 	{
@@ -63,31 +69,13 @@ ValidMove Player::makeMove( const Playfield *pf )
 	for( int v : G->Vertices( ) )
 		heuristic[v] = 1;
 
-	// body is on the graph e.a. handled by the search
-
-	// AStar head to tail
 	AStar headtotail( G, headNode, tailNode, heuristic );
+	AStar headtofood( G, headNode, foodNode, heuristic );
 
-	// place the body on the graph before search
-
-	// AStar tail to food
-	AStar tailtofood( G, tailNode, foodNode, heuristic );
-
-	// place the body on the graph before search
-
-	// AStar food to tail
-	AStar foodtotail( G, foodNode, headNode, heuristic ); // maybe newTailNode/oldHead location
-
-	/// Establish master path
-
-	// path to tail
-	pushPath( headtotail.pathTo( tailNode ) );
-
-	// path to food
-	pushPath( tailtofood.pathTo( foodNode ) );
-
-	// path to newtail
-	pushPath( foodtotail.pathTo( headNode ) );
+	if( headtail ) // AStar head to tail
+		pushPath( headtotail.pathTo( tailNode ) );
+	else if( headfood ) // AStar head to food
+		pushPath( headtofood.pathTo( foodNode ) );
 
 	// DEBUG
 	for( int n : path )
@@ -97,6 +85,13 @@ ValidMove Player::makeMove( const Playfield *pf )
 	if( path.empty( ) )
 	{
 		// handle path not existing
+	}
+
+	// flags
+	if( pf->getTail( ).size( ) > 3 )
+	{
+		headtail = !headtail;
+		headfood = !headfood;
 	}
 
 	delete G; // memory clean-up

@@ -9,8 +9,10 @@
 class Player
 {
    std::list<int> path;
+   bool headtail;
+   bool headfood;
 public:
-   Player ();
+   Player();
    ValidMove makeMove(const Playfield *);
 private:
    void pushPath(std::list<int>);
