@@ -84,7 +84,21 @@ ValidMove Player::makeMove( const Playfield *pf )
 
 	if( path.empty( ) )
 	{
-		// handle path not existing
+		if( inBounds( w, h, head.first - 1, head.second ) )
+			if( !grid[head.first - 1][head.second] )
+				return UP;
+
+		if( inBounds( w, h, head.first, head.second + 1 ) )
+			if( !grid[head.first][head.second + 1] )
+				return RIGHT;
+
+		if( inBounds( w, h, head.first + 1, head.second ) )
+			if( !grid[head.first + 1][head.second] )
+				return DOWN;
+
+		if( inBounds( w, h, head.first, head.second - 1 ) )
+			if( !grid[head.first][head.second - 1] )
+				return LEFT;
 	}
 
 	// flags
