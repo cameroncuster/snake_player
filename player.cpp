@@ -24,6 +24,10 @@ ValidMove Player::makeMove(const Playfield *pf)
     int headNode = head.first * w + head.second;
     int foodNode = food.first * w + food.second;
 
+	if( !path.empty( ) )
+	{
+	}
+
     Graph *G = new Graph( grid );
 
     // build the heuristic
@@ -31,28 +35,14 @@ ValidMove Player::makeMove(const Playfield *pf)
     for( int v : G->Vertices( ) )
         heuristic[v] = 1;
 
-    for( unsigned i = 0; i < grid.size( ); i++ )
-    {
-        for( unsigned j = 0; j < grid[0].size( ); j++ )
-        {
-            if( grid[i][j] == TAIL_VALUE )
-            {
-                for( int k = -1; k <= 1; k++ )
-                    for( int l = -1; l <= 1; l++ )
-                    {
-                        if( !k && !l ) continue;
-                        if( inBounds( w, h, i + k, j + l ) )
-                        {
-                            int node = ( i + k ) * w + ( j + l );
-                            heuristic[node] = 2;
-                        }
-                    }
-            }
-        }
-    }
+    // AStar head to tail
+    AStar headtotail( G, headNode, tailNode, heuristic );
 
-    // AStar with modified heuristic
-    AStar astar( G, headNode, foodNode, heuristic );
+	// AStar tail to food
+    AStar tailtofood( G, tailNode, foodNode, heuristic );
+
+	// AStar food to tail
+    AStar foodtotail( G, foodNode, newtailNode, heuristic );
 
     // check if a path exists - scan otherwise
     if( !astar.hasPath( foodNode ) )
