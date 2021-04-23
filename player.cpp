@@ -31,9 +31,13 @@ ValidMove Player::makeMove( const Playfield *pf )
 	{
 		Cycle c( pf );
 		path = c.cycle( );
+        for( int x : path )
+            cout << x << ' ';
+        cout << endl;
 	}
+    int n = path.front( );
+    path.pop_front( );
 	return nextMove( pf->getGrid( )[0].size( ),
 			pf->headPosition( ).first * pf->getGrid( )[0].size( ) +
-			pf->headPosition( ).second,
-			path.front( ) );
+			pf->headPosition( ).second, n );
 }
