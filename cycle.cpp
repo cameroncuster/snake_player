@@ -1,6 +1,7 @@
 #include "cycle.h"
 #include "graph.h"
 #include "astar.h"
+#include "heuristic.h"
 
 // DEBUG
 #include <iostream>
@@ -53,14 +54,11 @@ Cycle::Cycle( const Playfield *pf )
 
     Graph *G = new Graph( grid );
 
-    // ***** SUBROUTINE build the heuristic
-    map<int, double> heuristic;
-    for( int v : G->Vertices( ) )
-        heuristic[v] = 1;
+    Heuristic heuristic( G->Vertices( ) );
 
-    if( pf->getTail( ).size( ) <= 3 )
+    if( pf->getTail( ).size( ) <= 20 )
     {
-        AStar findFood( G, headNode, foodNode, heuristic );
+        AStar findFood( G, headNode, foodNode, heuristic.get( ) );
         path = findFood.pathTo( foodNode );
         cout << "head " << headNode << " food " << foodNode << endl;
         return;
@@ -72,7 +70,7 @@ Cycle::Cycle( const Playfield *pf )
     grid[tailpt.first][tailpt.second] = CLEAR_VALUE; // handle snake of size < 3
 
     // search
-    AStar headtotail( G, headNode, tailNode, heuristic );
+    AStar headtotail( G, headNode, tailNode, heuristic.get( ) );
 
     // EMP
     list<int> p = headtotail.pathTo( tailNode );
@@ -83,11 +81,8 @@ Cycle::Cycle( const Playfield *pf )
     updateGrid( grid, pathtoPoint( w, p ), tail, head );
     G = new Graph( grid );
 
-    tailpt = tail.front( );
-    tailNode = tailpt.first * w + tailpt.second; // trying to search for node that is not in the graph
-
     // search
-    AStar tailtofood( G, tailNode, foodNode, heuristic );
+    AStar tailtofood( G, tailNode, foodNode, heuristic.get( ) );
 
     // EMP
     p = tailtofood.pathTo( foodNode );
@@ -101,7 +96,7 @@ Cycle::Cycle( const Playfield *pf )
     headNode = head.first * w + head.second;
 
     // search
-    AStar foodtohead( G, foodNode, headNode, heuristic );
+    AStar foodtohead( G, foodNode, headNode, heuristic.get( ) );
 
     // EMP
     pushPath( foodtohead.pathTo( headNode ) );
