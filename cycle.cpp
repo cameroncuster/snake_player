@@ -7,17 +7,49 @@
 
 using namespace std;
 
+list<pair<int, int>> pathtoPoint( int w, list<int> path )
+{
+	list<pair<int, int>> pointlist;
+
+	for( int n : path )
+		pointlist.push_back( { n / w, n % w } );
+
+	return pointlist;
+}
+
+void updateGrid( vector<vector<int>> &grid, list<pair<int, int>> path,
+		queue<pair<int, int>> &tail, pair<int, int> &head )
+{
+	// need to check if apple is encountered
+	while( !path.empty( ) )
+	{
+		// move head
+		grid[head.first][head.second] = TAIL_VALUE;
+		head = path.front( );
+		grid[head.first][head.second] = HEAD_VALUE;
+
+		// move tail
+		grid[ tail.front( ).first ][ tail.front( ).second ] = CLEAR_VALUE;
+		tail.push( head );
+		tail.pop( );
+
+		// continue path
+		path.pop_front( );
+	}
+}
+
 Cycle::Cycle( const Playfield *pf )
 {
-	vector<std::vector<int>> grid = pf->getGrid();
+	vector<vector<int>> grid = pf->getGrid();
 	int w = grid[0].size( );
 	int h = grid.size( );
+	queue<pair<int, int>> tail = pf->getTail();
 	pair<int, int> head = pf->headPosition();
 	pair<int, int> food = pf->foodPosition();
-	pair<int, int> tail = pf->getTail().front();
+	pair<int, int> tailpt = tail.front();
 	int headNode = head.first * w + head.second;
 	int foodNode = food.first * w + food.second;
-	int tailNode = tail.first * w + tail.second; // trying to search for node that is not in the graph
+	int tailNode = tailpt.first * w + tailpt.second; // trying to search for node that is not in the graph
 
 	Graph *G = new Graph( grid );
 
@@ -34,28 +66,39 @@ Cycle::Cycle( const Playfield *pf )
 
 
 	// ***** SUBROUTINE Establish Master Cycle ( EMC )
-
-	grid[tail.first][tail.second] = CLEAR_VALUE; // handle snake of size < 3
-	AStar headtotail( G, headNode, tailNode, heuristic );
-
-	// update the graph for path taken to tail and pop off the tail nodes ( tail management )
-	//delete G;
-	//Graph *G = new Graph( grid );
-	AStar tailtofood( G, tailNode, foodNode, heuristic );
-
-	// update the graph for path taken to the food and pop off the tail nodes ( tail mangement )
-	//delete G;
-	//Graph *G = new Graph( grid );
-	AStar foodtohead( G, foodNode, headNode, heuristic );
-
-	delete G; // Memory Management
-
-
 	// ***** SUBROUTINE Establish Master Path ( EMP )
 
+	grid[tailpt.first][tailpt.second] = CLEAR_VALUE; // handle snake of size < 3
+
+	// search
+	AStar headtotail( G, headNode, tailNode, heuristic );
+
+	// EMP
 	pushPath( headtotail.pathTo( tailNode ) );
+
+	// Update Grid
+	delete G;
+	updateGrid( grid, pathtoPoint( w, path ), tail, head );
+	G = new Graph( grid );
+
+	// search
+	AStar tailtofood( G, tailNode, foodNode, heuristic );
+
+	// EMP
 	pushPath( tailtofood.pathTo( foodNode ) );
+
+	// Update Grid
+	delete G;
+	updateGrid( grid, pathtoPoint( w, path ), tail, head );
+	G = new Graph( grid );
+
+	// search
+	AStar foodtohead( G, foodNode, headNode, heuristic );
+
+	// EMP
 	pushPath( foodtohead.pathTo( headNode ) );
+
+	delete G; // Memory Management
 
 
 	// DEBUG
