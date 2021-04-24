@@ -98,6 +98,8 @@ April 22:
     * idea for path from head to tail, tail to food, food to tail in execution
 
 April 24:
-	* implemented the idea from April 22, succes has been the same as the AStar
+	* implemented the idea from April 22, success has been the same as the AStar
 	  with modified heuristic thus far, even with path compression which did not
 	  appear to improve anything
+	* success was minimal with the continual search approach because the graph
+	  split itself multiple times
