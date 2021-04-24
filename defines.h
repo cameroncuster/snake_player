@@ -1,5 +1,6 @@
 #ifndef DEFINES_H
 #define DEFINES_H
+#include <vector>
 #include <utility>
 
 // Some helpful macros, enums, and constants

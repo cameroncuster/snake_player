@@ -1,10 +1,18 @@
+#include <iostream>
 #include "defines.h"
 #include "heuristic.h"
 
 using namespace std;
 
+bool inBounds( const int w, const int h, const int i, const int j )
+{
+    return i >= 0 && i < h && j >= 0 && j < w;
+}
+
 Heuristic::Heuristic( vector<vector<int>> grid, set<int> V )
 {
+	int w = grid[0].size( );
+	int h = grid.size( );
     for( int v : V )
         heuristic[v] = 1;
 

@@ -24,7 +24,7 @@ Cycle::Cycle( const Playfield *pf )
 	if( pf->getTail( ).size( ) <= 3 )
 	{
 		Graph *G = new Graph( grid );
-		Heuristic heuristic( G->Vertices( ) );
+		Heuristic heuristic( pf->getGrid( ), G->Vertices( ) );
 		AStar findFood( G, headNode, foodNode, heuristic.get( ) );
 		path = findFood.pathTo( foodNode );
 		delete G;
@@ -35,9 +35,11 @@ Cycle::Cycle( const Playfield *pf )
 
 	Graph *G = new Graph( grid );
 
-	Heuristic heuristic( G->Vertices( ) );
+	Heuristic *heuristic = new Heuristic( pf->getGrid( ), G->Vertices( ) );
 
-	AStar findFood( G, headNode, foodNode, heuristic.get( ) );
+	AStar findFood( G, headNode, foodNode, heuristic->get( ) );
+	delete G;
+	delete heuristic;
 
 	// push the path to food
 	pushPath( findFood.pathTo( foodNode ) );
@@ -65,16 +67,18 @@ Cycle::Cycle( const Playfield *pf )
 	// set the graph to have a clear value at the tail
 	grid[tailpt.first][tailpt.second] = CLEAR_VALUE;
 
-	delete G;
 	G = new Graph( grid );
 
+	heuristic = new Heuristic( pf->getGrid( ), G->Vertices( ) );
+
 	// search to tail
-	AStar findTail( G, headNode, tailNode, heuristic.get( ) );
+	AStar findTail( G, headNode, tailNode, heuristic->get( ) );
 
 	// push the path to the tail
 	pushPath( findTail.pathTo( tailNode ) );
 
 	delete G;
+	delete heuristic;
 }
 
 list<int> Cycle::cycle( ) const { return path; }
