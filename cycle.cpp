@@ -72,46 +72,28 @@ Cycle::Cycle( const Playfield *pf )
 
 	Heuristic heuristic( G->Vertices( ) );
 
-	// search to tail
-	AStar headtotail( G, headNode, tailNode, heuristic.get( ) );
-
-	// push the path to tail
-	list<int> p = headtotail.pathTo( tailNode );
-	pushPath( p );
-
-	// Update Grid
-	delete G;
-	updateGrid( grid, pathtoPoint( w, p ), tail, head );
-	G = new Graph( grid );
-
-	headNode = head.first * w + head.second;
-
-	// search to food
-	AStar tailtofood( G, headNode, foodNode, heuristic.get( ) );
+	AStar findFood( G, headNode, foodNode, heuristic.get( ) );
 
 	// push the path to food
-	p = tailtofood.pathTo( foodNode );
-	pushPath( p );
+	pushPath( findFood.pathTo( foodNode ) );
 
-	// Update Grid
-	delete G;
-	updateGrid( grid, pathtoPoint( w, p ), tail, head );
+	// move head to food
+	updateGrid( grid, pathtoPoint( w, findFood.pathTo( foodNode ) ), tail, head );
+
+	// set the headNode/tailNode
 	tailpt = tail.front( );
 	tailNode = tailpt.first * w + tailpt.second;
 	headNode = head.first * w + head.second;
-	grid[tailNode / w][tailNode % w] = CLEAR_VALUE;
-	G = new Graph( grid );
 
-	// search to original location
-	AStar foodtohead( G, headNode, tailNode, heuristic.get( ) );
+	// search to tail
+	AStar findTail( G, headNode, tailNode, heuristic.get( ) );
 
-	// push the path to the head
-	p = foodtohead.pathTo( tailNode );
-	pushPath( p );
+	// push the path to the tail
+	pushPath( findTail.pathTo( tailNode ) );
 
 	/// DBEUG
 	// Update Grid
-	updateGrid( grid, pathtoPoint( w, p ), tail, head );
+	updateGrid( grid, pathtoPoint( w, findTail.pathTo( tailNode ) ), tail, head );
 
 	// DEBUG
 	for( vector<int> v : grid )
