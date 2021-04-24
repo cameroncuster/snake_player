@@ -1,8 +1,8 @@
 /********************************************************************//**
  * @file
  ***********************************************************************/
-#ifndef PLAYFIELD_H
-#define PLAYFIELD_H
+#ifndef SIMULATEFIELD_H
+#define SIMULATEFIELD_H
 #include <iostream>
 #include <utility>
 #include <queue>
@@ -10,14 +10,17 @@
 #include "defines.h"
 #include "biconnected.h"
 #include "cc.h"
+#include "playfield.h"
+
+#include "cycle.h"
 
 /********************************************************************//**
- * @class Playfield
- * 
- * Manage the playfield
+ * @class Simulatefield
+ *
+ * Manage the playfield simulation
  **********************************************************************/
 
-class Playfield
+class Simulatefield
 {
    // Private member data to implement Playfield object
    std::pair<int, int> head;
@@ -28,9 +31,9 @@ class Playfield
    unsigned tailLength;
    std::vector<std::vector<int>> grid;
 public:
-   Playfield(int, int, bool placeObst = false);
-   Playfield(const Playfield *);
-   ~Playfield();
+   Simulatefield( const Playfield * );
+   Simulatefield( const Simulatefield *pf );
+   ~Simulatefield();
 
    /// The current state of the playfield 2-d grid[y][x] y+ is down on screen
    std::vector<std::vector<int>> getGrid() const;
@@ -42,11 +45,8 @@ public:
    std::pair<int, int> headPosition() const;
    /// Current location of food on the grid
    std::pair<int, int> foodPosition() const;
-   /// Playfield has obstacles or not
-   bool obstacles() const;
 
-   // Private member functions used by Playfield and Game objects
-   friend class Game;
+   friend Cycle;
 private:
    void placeObstacles();
    void clearGrid();

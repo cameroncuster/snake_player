@@ -2,46 +2,11 @@
 #include "graph.h"
 #include "astar.h"
 #include "heuristic.h"
-
-// DEBUG
-#include <iostream>
+#include "simulatefield.h"
 
 using namespace std;
 
-list<pair<int, int>> pathtoPoint( int w, list<int> path )
-{
-	list<pair<int, int>> pointlist;
-
-	for( int n : path )
-		pointlist.push_back( { n / w, n % w } );
-
-	return pointlist;
-}
-
-void updateGrid( vector<vector<int>> &grid, list<pair<int, int>> path,
-		queue<pair<int, int>> &tail, pair<int, int> &head )
-{
-	// need to check if apple is encountered
-	while( !path.empty( ) )
-	{
-		// move head
-		grid[head.first][head.second] = TAIL_VALUE;
-		head = path.front( );
-
-		if( grid[head.first][head.second] != FOOD_VALUE )
-		{
-			// move tail
-			grid[ tail.front( ).first ][ tail.front( ).second ] = CLEAR_VALUE;
-			tail.pop( );
-		}
-
-		grid[head.first][head.second] = HEAD_VALUE;
-
-		tail.push( head );
-		// continue path
-		path.pop_front( );
-	}
-}
+extern ValidMove nextMove( int, int, int );
 
 Cycle::Cycle( const Playfield *pf )
 {
@@ -66,8 +31,8 @@ Cycle::Cycle( const Playfield *pf )
 		return;
 	}
 
-	// set the graph to have a clear value here
-	grid[tailpt.first][tailpt.second] = CLEAR_VALUE;
+	Simulatefield sim( pf );
+
 	Graph *G = new Graph( grid );
 
 	Heuristic heuristic( G->Vertices( ) );
@@ -77,13 +42,31 @@ Cycle::Cycle( const Playfield *pf )
 	// push the path to food
 	pushPath( findFood.pathTo( foodNode ) );
 
-	// move head to food
-	updateGrid( grid, pathtoPoint( w, findFood.pathTo( foodNode ) ), tail, head );
+	// EXECUTE THE PATH TO THE FOOD ON THE SIMULATION
+	list<int> cpy = path;
+	while( !cpy.empty( ) )
+	{
+		int n = cpy.front( );
+		cpy.pop_front( );
+		sim.moveHead( nextMove( w, headNode, n ) );
+		headNode = n;
+	}
 
-	// set the headNode/tailNode
-	tailpt = tail.front( );
-	tailNode = tailpt.first * w + tailpt.second;
+	// reset locals
+	grid = sim.getGrid();
+	tail = sim.getTail();
+	head = sim.headPosition();
+	food = sim.foodPosition();
+	tailpt = tail.front();
 	headNode = head.first * w + head.second;
+	foodNode = food.first * w + food.second;
+	tailNode = tailpt.first * w + tailpt.second;
+
+	// set the graph to have a clear value at the tail
+	grid[tailpt.first][tailpt.second] = CLEAR_VALUE;
+
+	delete G;
+	G = new Graph( grid );
 
 	// search to tail
 	AStar findTail( G, headNode, tailNode, heuristic.get( ) );
@@ -91,21 +74,7 @@ Cycle::Cycle( const Playfield *pf )
 	// push the path to the tail
 	pushPath( findTail.pathTo( tailNode ) );
 
-	/// DBEUG
-	// Update Grid
-	updateGrid( grid, pathtoPoint( w, findTail.pathTo( tailNode ) ), tail, head );
-
-	// DEBUG
-	for( vector<int> v : grid )
-	{
-		for( int x : v )
-			cout << x << ' ';
-		cout << endl;
-	}
-	cout << endl << endl;
-
-
-	delete G; // Memory Management
+	delete G;
 }
 
 list<int> Cycle::cycle( ) const { return path; }

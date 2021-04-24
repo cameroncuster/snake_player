@@ -75,6 +75,7 @@ std::queue<std::pair<int, int>> Playfield::getTail() const
    return tail.empty() ? first : tail;
 }
 int Playfield::getScore() const { return tailLength + 1; }
+bool Playfield::obstacles() const { return hasObstacles; }
 
 // Helper function: Clear the grid initially
 void Playfield::clearGrid()
