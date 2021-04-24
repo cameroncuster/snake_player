@@ -10,125 +10,120 @@ using namespace std;
 
 list<pair<int, int>> pathtoPoint( int w, list<int> path )
 {
-    list<pair<int, int>> pointlist;
+	list<pair<int, int>> pointlist;
 
-    for( int n : path )
-        pointlist.push_back( { n / w, n % w } );
+	for( int n : path )
+		pointlist.push_back( { n / w, n % w } );
 
-    return pointlist;
+	return pointlist;
 }
 
 void updateGrid( vector<vector<int>> &grid, list<pair<int, int>> path,
-        queue<pair<int, int>> &tail, pair<int, int> &head )
+		queue<pair<int, int>> &tail, pair<int, int> &head )
 {
-    // need to check if apple is encountered
-    while( !path.empty( ) )
-    {
-        // move head
-        grid[head.first][head.second] = TAIL_VALUE;
-        head = path.front( );
-        grid[head.first][head.second] = HEAD_VALUE;
+	// need to check if apple is encountered
+	while( !path.empty( ) )
+	{
+		// move head
+		grid[head.first][head.second] = TAIL_VALUE;
+		head = path.front( );
 
-        // move tail
-        grid[ tail.front( ).first ][ tail.front( ).second ] = CLEAR_VALUE;
-        tail.push( head );
-        tail.pop( );
+		if( grid[head.first][head.second] != FOOD_VALUE )
+		{
+			// move tail
+			grid[ tail.front( ).first ][ tail.front( ).second ] = CLEAR_VALUE;
+			tail.pop( );
+		}
 
-        // continue path
-        path.pop_front( );
-    }
+		grid[head.first][head.second] = HEAD_VALUE;
+
+		tail.push( head );
+		// continue path
+		path.pop_front( );
+	}
 }
 
 Cycle::Cycle( const Playfield *pf )
 {
-    vector<vector<int>> grid = pf->getGrid();
-    int w = grid[0].size( );
-    int h = grid.size( );
-    queue<pair<int, int>> tail = pf->getTail();
-    pair<int, int> head = pf->headPosition();
-    pair<int, int> food = pf->foodPosition();
-    pair<int, int> tailpt = tail.front();
-    int headNode = head.first * w + head.second;
-    int origHead = headNode;
-    int foodNode = food.first * w + food.second;
-    int tailNode = tailpt.first * w + tailpt.second;
+	vector<vector<int>> grid = pf->getGrid();
+	int w = grid[0].size( );
+	int h = grid.size( );
+	queue<pair<int, int>> tail = pf->getTail();
+	pair<int, int> head = pf->headPosition();
+	pair<int, int> food = pf->foodPosition();
+	pair<int, int> tailpt = tail.front();
+	int headNode = head.first * w + head.second;
+	int foodNode = food.first * w + food.second;
+	int tailNode = tailpt.first * w + tailpt.second;
 
-    if( pf->getTail( ).size( ) <= 3 )
-    {
-        Graph *G = new Graph( grid );
-        Heuristic heuristic( G->Vertices( ) );
-        AStar findFood( G, headNode, foodNode, heuristic.get( ) );
-        path = findFood.pathTo( foodNode );
-        cout << "head " << headNode << " food " << foodNode << endl;
-        delete G;
-        return;
-    }
+	if( pf->getTail( ).size( ) <= 3 )
+	{
+		Graph *G = new Graph( grid );
+		Heuristic heuristic( G->Vertices( ) );
+		AStar findFood( G, headNode, foodNode, heuristic.get( ) );
+		path = findFood.pathTo( foodNode );
+		delete G;
+		return;
+	}
 
-    // set the graph to have a clear value here
-    grid[tailpt.first][tailpt.second] = CLEAR_VALUE;
-    Graph *G = new Graph( grid );
+	// set the graph to have a clear value here
+	grid[tailpt.first][tailpt.second] = CLEAR_VALUE;
+	Graph *G = new Graph( grid );
 
-    Heuristic heuristic( G->Vertices( ) );
+	Heuristic heuristic( G->Vertices( ) );
 
-    // search to tail
-    AStar headtotail( G, headNode, tailNode, heuristic.get( ) );
+	// search to tail
+	AStar headtotail( G, headNode, tailNode, heuristic.get( ) );
 
-    // push the path to tail
-    list<int> p = headtotail.pathTo( tailNode );
-    pushPath( p );
+	// push the path to tail
+	list<int> p = headtotail.pathTo( tailNode );
+	pushPath( p );
 
-    cout << "Head to tail" << endl;
-    for( int x : p )
-        cout << x << ' ';
-    cout << endl;
+	// Update Grid
+	delete G;
+	updateGrid( grid, pathtoPoint( w, p ), tail, head );
+	G = new Graph( grid );
 
-    // Update Grid
-    delete G;
-    updateGrid( grid, pathtoPoint( w, p ), tail, head );
-    G = new Graph( grid );
+	headNode = head.first * w + head.second;
 
-    headNode = head.first * w + head.second;
+	// search to food
+	AStar tailtofood( G, headNode, foodNode, heuristic.get( ) );
 
-    // search to food
-    AStar tailtofood( G, tailNode, foodNode, heuristic.get( ) );
+	// push the path to food
+	p = tailtofood.pathTo( foodNode );
+	pushPath( p );
 
-    // push the path to food
-    p = tailtofood.pathTo( foodNode );
-    pushPath( p );
+	// Update Grid
+	delete G;
+	updateGrid( grid, pathtoPoint( w, p ), tail, head );
+	tailpt = tail.front( );
+	tailNode = tailpt.first * w + tailpt.second;
+	headNode = head.first * w + head.second;
+	grid[tailNode / w][tailNode % w] = CLEAR_VALUE;
+	G = new Graph( grid );
 
-    cout << "tail to food" << endl;
-    for( int x : p )
-        cout << x << ' ';
-    cout << endl;
+	// search to original location
+	AStar foodtohead( G, headNode, tailNode, heuristic.get( ) );
 
-    // Update Grid
-    delete G;
-    updateGrid( grid, pathtoPoint( w, p ), tail, head );
-    grid[origHead / w][origHead % w] = CLEAR_VALUE;
-    G = new Graph( grid );
+	// push the path to the head
+	p = foodtohead.pathTo( tailNode );
+	pushPath( p );
 
-    // search to original location
-    AStar foodtohead( G, headNode, origHead, heuristic.get( ) );
+	/// DBEUG
+	// Update Grid
+	updateGrid( grid, pathtoPoint( w, p ), tail, head );
 
-    // push the path to the head
-    pushPath( foodtohead.pathTo( headNode ) );
+	// DEBUG
+	for( vector<int> v : grid )
+	{
+		for( int x : v )
+			cout << x << ' ';
+		cout << endl;
+	}
+	cout << endl << endl;
 
-    cout << endl << endl;
-    cout << "foodNode " << headNode << ' ' << grid[foodNode / w][foodNode % w] << endl;
-    cout << "headNode " << origHead << ' ' << grid[headNode / w][headNode % w] << endl;
-    cout << "food to head" << endl;
-    for( int x : foodtohead.pathTo( headNode ) )
-        cout << x << ' ';
-    cout << endl << endl;
-    for( vector<int> v : grid )
-    {
-        for( int x : v )
-            cout << x << ' ';
-        cout << endl;
-    }
-    cout << endl << endl;
 
-    delete G; // Memory Management
+	delete G; // Memory Management
 }
 
 list<int> Cycle::cycle( ) const { return path; }
