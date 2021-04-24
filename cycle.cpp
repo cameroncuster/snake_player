@@ -49,44 +49,38 @@ Cycle::Cycle( const Playfield *pf )
     pair<int, int> food = pf->foodPosition();
     pair<int, int> tailpt = tail.front();
     int headNode = head.first * w + head.second;
+    int origHead = headNode;
     int foodNode = food.first * w + food.second;
-    int tailNode = tailpt.first * w + tailpt.second; // trying to search for node that is not in the graph
+    int tailNode = tailpt.first * w + tailpt.second;
 
+    if( pf->getTail( ).size( ) <= 3 )
+    {
+        Graph *G = new Graph( grid );
+        Heuristic heuristic( G->Vertices( ) );
+        AStar findFood( G, headNode, foodNode, heuristic.get( ) );
+        path = findFood.pathTo( foodNode );
+        cout << "head " << headNode << " food " << foodNode << endl;
+        delete G;
+        return;
+    }
+
+    // set the graph to have a clear value here
+    grid[tailpt.first][tailpt.second] = CLEAR_VALUE;
     Graph *G = new Graph( grid );
 
     Heuristic heuristic( G->Vertices( ) );
 
-    if( pf->getTail( ).size( ) <= 20 )
-    {
-        AStar findFood( G, headNode, foodNode, heuristic.get( ) );
-        path = findFood.pathTo( foodNode );
-        cout << "head " << headNode << " food " << foodNode << endl;
-        return;
-    }
-
-    // ***** SUBROUTINE Establish Master Cycle ( EMC )
-    // ***** SUBROUTINE Establish Master Path ( EMP )
-
-    grid[tailpt.first][tailpt.second] = CLEAR_VALUE; // handle snake of size < 3
-
-    // search
+    // search to tail
     AStar headtotail( G, headNode, tailNode, heuristic.get( ) );
 
-    // EMP
+    // push the path to tail
     list<int> p = headtotail.pathTo( tailNode );
     pushPath( p );
 
-    // Update Grid
-    delete G;
-    updateGrid( grid, pathtoPoint( w, p ), tail, head );
-    G = new Graph( grid );
-
-    // search
-    AStar tailtofood( G, tailNode, foodNode, heuristic.get( ) );
-
-    // EMP
-    p = tailtofood.pathTo( foodNode );
-    pushPath( p );
+    cout << "Head to tail" << endl;
+    for( int x : p )
+        cout << x << ' ';
+    cout << endl;
 
     // Update Grid
     delete G;
@@ -95,11 +89,44 @@ Cycle::Cycle( const Playfield *pf )
 
     headNode = head.first * w + head.second;
 
-    // search
-    AStar foodtohead( G, foodNode, headNode, heuristic.get( ) );
+    // search to food
+    AStar tailtofood( G, tailNode, foodNode, heuristic.get( ) );
 
-    // EMP
+    // push the path to food
+    p = tailtofood.pathTo( foodNode );
+    pushPath( p );
+
+    cout << "tail to food" << endl;
+    for( int x : p )
+        cout << x << ' ';
+    cout << endl;
+
+    // Update Grid
+    delete G;
+    updateGrid( grid, pathtoPoint( w, p ), tail, head );
+    grid[origHead / w][origHead % w] = CLEAR_VALUE;
+    G = new Graph( grid );
+
+    // search to original location
+    AStar foodtohead( G, headNode, origHead, heuristic.get( ) );
+
+    // push the path to the head
     pushPath( foodtohead.pathTo( headNode ) );
+
+    cout << endl << endl;
+    cout << "foodNode " << headNode << ' ' << grid[foodNode / w][foodNode % w] << endl;
+    cout << "headNode " << origHead << ' ' << grid[headNode / w][headNode % w] << endl;
+    cout << "food to head" << endl;
+    for( int x : foodtohead.pathTo( headNode ) )
+        cout << x << ' ';
+    cout << endl << endl;
+    for( vector<int> v : grid )
+    {
+        for( int x : v )
+            cout << x << ' ';
+        cout << endl;
+    }
+    cout << endl << endl;
 
     delete G; // Memory Management
 }
