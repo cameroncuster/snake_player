@@ -54,6 +54,7 @@ Cycle::Cycle( const Playfield *pf )
 		int n = cpy.front( );
 		cpy.pop_front( );
 		sim.moveHead( nextMove( w, headNode, n ) );
+		sim.updatePlayfield( );
 		headNode = n;
 	}
 
@@ -67,8 +68,15 @@ Cycle::Cycle( const Playfield *pf )
 	foodNode = food.first * w + food.second;
 	tailNode = tailpt.first * w + tailpt.second;
 
+	for( int k : { -w, 1, w, -1 } )
+	{
+		int tailS = tailNode + k;
+		if( tailS >= 0 && tailS < G->V( ) )
+			if( grid[tailS / w][tailS % w] == CLEAR_VALUE )
+				tailNode = tailS;
+	}
 	// set the graph to have a clear value at the tail
-	grid[tailpt.first][tailpt.second] = CLEAR_VALUE;
+	grid[tailNode / w][tailNode % w] = CLEAR_VALUE;
 
 	G = new Graph( grid );
 
@@ -96,8 +104,15 @@ Cycle::Cycle( const Playfield *pf )
 		foodNode = food.first * w + food.second;
 		tailNode = tailpt.first * w + tailpt.second;
 
+		for( int k : { -w, 1, w, -1 } )
+		{
+			int tailS = tailNode + k;
+			if( tailS >= 0 && tailS < G->V( ) )
+				if( grid[tailS / w][tailS % w] == CLEAR_VALUE )
+					tailNode = tailS;
+		}
 		// set the graph to have a clear value at the tail
-		grid[tailpt.first][tailpt.second] = CLEAR_VALUE;
+		grid[tailNode / w][tailNode % w] = CLEAR_VALUE;
 
 		G = new Graph( grid );
 

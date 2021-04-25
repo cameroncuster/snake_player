@@ -108,7 +108,7 @@ void Playfield::placeObstacles()
 // clean up after the tail once it has passed
 void Playfield::updatePlayfield()
 {
-   while (tailLength < tail.size())
+   while (tailLength - 2 < tail.size())
    {
       std::pair<int, int> segment = tail.front() ; tail.pop();
       grid[segment.first][segment.second] = CLEAR_VALUE;
