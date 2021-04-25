@@ -29,27 +29,6 @@ ValidMove Player::makeMove( const Playfield *pf )
 	{
 		Cycle c( pf );
 		path = c.cycle( );
-		// check if a path exists - scan otherwise
-		if( path.empty( ) ) // search to tail
-		{
-			cout << "NO PATH TO TAIL" << endl;
-			if( inBounds( w, h, head.first - 1, head.second ) )
-				if( !grid[head.first - 1][head.second] )
-					return UP;
-
-			if( inBounds( w, h, head.first, head.second + 1 ) )
-				if( !grid[head.first][head.second + 1] )
-					return RIGHT;
-
-			if( inBounds( w, h, head.first + 1, head.second ) )
-				if( !grid[head.first + 1][head.second] )
-					return DOWN;
-
-			if( inBounds( w, h, head.first, head.second - 1 ) )
-				if( !grid[head.first][head.second - 1] )
-					return LEFT;
-		}
-
 	}
 	int n = path.front( );
 	path.pop_front( );

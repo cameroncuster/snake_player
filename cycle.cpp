@@ -6,7 +6,10 @@
 
 using namespace std;
 
+extern bool inBounds( const int w, const int h, const int i, const int j );
 extern ValidMove nextMove( int, int, int );
+
+static const vector<vector<int>> delta = { { 0, -1 }, { 1, 0 }, { 0, 1 }, { -1, 0 } };
 
 Cycle::Cycle( const Playfield *pf )
 {
@@ -68,29 +71,36 @@ Cycle::Cycle( const Playfield *pf )
 	foodNode = food.first * w + food.second;
 	tailNode = tailpt.first * w + tailpt.second;
 
-	for( int k : { -w, 1, w, -1 } )
+	list<int> prevpath = path;
+
+	for( int i = 0; i < 4; i++ )
 	{
-		int tailS = tailNode + k;
-		if( tailS >= 0 && tailS < G->V( ) )
-			if( grid[tailS / w][tailS % w] == CLEAR_VALUE )
-				tailNode = tailS;
+		pair<int, int> tailS = { tailpt.first + delta[i][0], tailpt.second + delta[i][1] };
+		if( inBounds( w, h, tailS.first, tailS.second ) )
+			if( grid[tailS.first][tailS.second] == CLEAR_VALUE )
+			{
+				tailNode = tailS.first * w + tailS.second;
+
+				G = new Graph( grid );
+
+				heuristic = new Heuristic( sim.getGrid( ), G->Vertices( ) );
+
+				// search to tail
+				AStar findTail( G, headNode, tailNode, heuristic->get( ) );
+				delete G;
+				delete heuristic;
+
+				if( findTail.hasPath( tailNode ) )
+				{
+					pushPath( findTail.pathTo( tailNode ) );
+					break;
+				}
+			}
 	}
-	// set the graph to have a clear value at the tail
-	grid[tailNode / w][tailNode % w] = CLEAR_VALUE;
-
-	G = new Graph( grid );
-
-	heuristic = new Heuristic( sim.getGrid( ), G->Vertices( ) );
-
-	// search to tail
-	AStar findTail( G, headNode, tailNode, heuristic->get( ) );
-	delete G;
-	delete heuristic;
 
 	// check push the path to the tail
-	if( !findTail.hasPath( tailNode ) )
+	if( path == prevpath )
 		trap = 1;
-	pushPath( findTail.pathTo( tailNode ) );
 
 	if( trap )
 	{
@@ -104,25 +114,30 @@ Cycle::Cycle( const Playfield *pf )
 		foodNode = food.first * w + food.second;
 		tailNode = tailpt.first * w + tailpt.second;
 
-		for( int k : { -w, 1, w, -1 } )
+		for( int i = 0; i < 4; i++ )
 		{
-			int tailS = tailNode + k;
-			if( tailS >= 0 && tailS < G->V( ) )
-				if( grid[tailS / w][tailS % w] == CLEAR_VALUE )
-					tailNode = tailS;
+			pair<int, int> tailS = { tailpt.first + delta[i][0], tailpt.second + delta[i][1] };
+			if( inBounds( w, h, tailS.first, tailS.second ) )
+				if( grid[tailS.first][tailS.second] == CLEAR_VALUE )
+				{
+					tailNode = tailS.first * w + tailS.second;
+
+					G = new Graph( grid );
+
+					heuristic = new Heuristic( pf->getGrid( ), G->Vertices( ) );
+
+					AStar follow( G, headNode, tailNode, heuristic->get( ) );
+
+					delete G;
+					delete heuristic;
+
+					if( follow.hasPath( tailNode ) )
+					{
+						path = follow.pathTo( tailNode ); // reassign
+						break;
+					}
+				}
 		}
-		// set the graph to have a clear value at the tail
-		grid[tailNode / w][tailNode % w] = CLEAR_VALUE;
-
-		G = new Graph( grid );
-
-		heuristic = new Heuristic( pf->getGrid( ), G->Vertices( ) );
-
-		AStar follow( G, headNode, tailNode, heuristic->get( ) );
-		path = follow.pathTo( tailNode ); // reassign
-
-		delete G;
-		delete heuristic;
 	}
 }
 
