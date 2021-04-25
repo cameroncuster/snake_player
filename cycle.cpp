@@ -20,6 +20,7 @@ Cycle::Cycle( const Playfield *pf )
 	int headNode = head.first * w + head.second;
 	int foodNode = food.first * w + food.second;
 	int tailNode = tailpt.first * w + tailpt.second;
+	bool trap = 0;
 
 	if( pf->getTail( ).size( ) <= 3 )
 	{
@@ -35,14 +36,16 @@ Cycle::Cycle( const Playfield *pf )
 
 	Graph *G = new Graph( grid );
 
-	Heuristic *heuristic = new Heuristic( pf->getGrid( ), G->Vertices( ) );
+	Heuristic *heuristic = new Heuristic( sim.getGrid( ), G->Vertices( ) );
 
 	AStar findFood( G, headNode, foodNode, heuristic->get( ) );
 	delete G;
 	delete heuristic;
 
-	// push the path to food
-	pushPath( findFood.pathTo( foodNode ) );
+	// check and push the path to food
+	if( !findFood.hasPath( foodNode ) )
+		trap = 1;
+	path = findFood.pathTo( foodNode );
 
 	// EXECUTE THE PATH TO THE FOOD ON THE SIMULATION
 	list<int> cpy = path;
@@ -69,16 +72,43 @@ Cycle::Cycle( const Playfield *pf )
 
 	G = new Graph( grid );
 
-	heuristic = new Heuristic( pf->getGrid( ), G->Vertices( ) );
+	heuristic = new Heuristic( sim.getGrid( ), G->Vertices( ) );
 
 	// search to tail
 	AStar findTail( G, headNode, tailNode, heuristic->get( ) );
-
-	// push the path to the tail
-	pushPath( findTail.pathTo( tailNode ) );
-
 	delete G;
 	delete heuristic;
+
+	// check push the path to the tail
+	if( !findTail.hasPath( tailNode ) )
+		trap = 1;
+	pushPath( findTail.pathTo( tailNode ) );
+
+	if( trap )
+	{
+		// reset locals & search to tail
+		grid = pf->getGrid();
+		tail = pf->getTail();
+		head = pf->headPosition();
+		food = pf->foodPosition();
+		tailpt = tail.front();
+		headNode = head.first * w + head.second;
+		foodNode = food.first * w + food.second;
+		tailNode = tailpt.first * w + tailpt.second;
+
+		// set the graph to have a clear value at the tail
+		grid[tailpt.first][tailpt.second] = CLEAR_VALUE;
+
+		G = new Graph( grid );
+
+		heuristic = new Heuristic( sim.getGrid( ), G->Vertices( ) );
+
+		AStar follow( G, headNode, tailNode, heuristic->get( ) );
+		path = follow.pathTo( tailNode ); // reassign
+
+		delete G;
+		delete heuristic;
+	}
 }
 
 list<int> Cycle::cycle( ) const { return path; }

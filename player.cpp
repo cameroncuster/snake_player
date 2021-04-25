@@ -30,8 +30,9 @@ ValidMove Player::makeMove( const Playfield *pf )
 		Cycle c( pf );
 		path = c.cycle( );
 		// check if a path exists - scan otherwise
-		if( path.empty( ) )
+		if( path.empty( ) ) // search to tail
 		{
+			cout << "NO PATH TO TAIL" << endl;
 			if( inBounds( w, h, head.first - 1, head.second ) )
 				if( !grid[head.first - 1][head.second] )
 					return UP;

@@ -26,7 +26,7 @@ Heuristic::Heuristic( vector<vector<int>> grid, set<int> V )
                         if( inBounds( w, h, i + k, j + l ) )
                         {
                             int node = ( i + k ) * w + ( j + l );
-                            heuristic[node] = 2;
+                            heuristic[node] = 1;
                         }
                     }
             }
