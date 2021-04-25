@@ -8,8 +8,9 @@
 
 class Player
 {
+   std::list<int> path;
 public:
-   Player ();
+   Player();
    ValidMove makeMove(const Playfield *);
 private:
 };

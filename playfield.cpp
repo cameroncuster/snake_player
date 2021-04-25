@@ -40,7 +40,7 @@ Playfield::Playfield(int w, int h, bool ob) : width(w), height(h), hasObstacles(
 
    if (hasObstacles)
    {
-      std::cout << "Placing obstacles " << " and verifying solvability" 
+      std::cout << "Placing obstacles " << " and verifying solvability"
                 << std::endl;
       std::cout << "this may take a few seconds." << std::endl;
    }
@@ -67,8 +67,15 @@ Playfield::Playfield(int w, int h, bool ob) : width(w), height(h), hasObstacles(
 // Getter functions
 std::pair<int, int> Playfield::headPosition() const { return head; }
 std::pair<int, int> Playfield::foodPosition() const { return food; }
-std::vector<std::vector<int>> Playfield::getGrid() const { return grid ; }
+std::vector<std::vector<int>> Playfield::getGrid() const { return grid; }
+std::queue<std::pair<int, int>> Playfield::getTail() const
+{
+   std::queue<std::pair<int,int>> first;
+   first.push( head );
+   return tail.empty() ? first : tail;
+}
 int Playfield::getScore() const { return tailLength + 1; }
+bool Playfield::obstacles() const { return hasObstacles; }
 
 // Helper function: Clear the grid initially
 void Playfield::clearGrid()
@@ -101,7 +108,7 @@ void Playfield::placeObstacles()
 // clean up after the tail once it has passed
 void Playfield::updatePlayfield()
 {
-   while (tailLength < tail.size())
+   while (tailLength - 2 < tail.size())
    {
       std::pair<int, int> segment = tail.front() ; tail.pop();
       grid[segment.first][segment.second] = CLEAR_VALUE;
@@ -122,10 +129,10 @@ std::pair<int, int> Playfield::placeNewFood()
    std::vector<std::pair<int, int>> spots;
    for (int row = 0 ; row < height ; row++)
       for (int col = 0 ; col < width ; col++)
-         if (grid[row][col] == CLEAR_VALUE) 
+         if (grid[row][col] == CLEAR_VALUE)
             spots.push_back(std::make_pair(row,col));
 
-   if (spots.size() > 0) 
+   if (spots.size() > 0)
    {
       std::pair<int, int> choice = spots[rand() % spots.size()];
       grid[choice.first][choice.second] = FOOD_VALUE;
@@ -161,9 +168,9 @@ bool Playfield::moveHead(ValidMove move)
       grid[newHeadPosition.first][newHeadPosition.second] = COLLISION_VALUE;
       return false;
    }
-  
+
    // If the destination cell is the food, grow the tail and
-   // place a new food. 
+   // place a new food.
    if (newHeadPosition == food)
    {
       tailLength++;

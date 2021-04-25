@@ -1,6 +1,6 @@
 LIBNAME = libPlayer.so
 
-PLAYER_SOURCE = player.cpp graph.cpp astar.cpp
+PLAYER_SOURCE = util.cpp player.cpp simulatefield.cpp graph.cpp cycle.cpp astar.cpp heuristic.cpp util.cpp
 
 COMMON_SOURCE = playfield.cpp snakeGraph.cpp biconnected.cpp cc.cpp game.cpp
 

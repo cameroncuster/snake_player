@@ -40,7 +40,7 @@ list<int> AStar::pathTo( int v )
     for( int x = v; x != start; x = prev[x] )
         path.push_front( x );
 
-    path.push_front( start );
+    //path.push_front( start );
     return path;
 }
 
