@@ -109,3 +109,6 @@ April 24:
 	  to have imporved the score a bit
 	* idea to take longest path to tail if either the path to the food or the tail
 	  is unavailable
+
+April 25:
+	* finally GOT IT TO WORK, MY IDEA WAS CORRECT, IT DEVELOPS A CYCLE!!!
