@@ -8,6 +8,7 @@
 using namespace std;
 
 extern ValidMove nextMove( int, int, int );
+extern bool inBounds( const int w, const int h, const int i, const int j );
 
 Player::Player( ) { }
 

@@ -4,10 +4,7 @@
 
 using namespace std;
 
-bool inBounds( const int w, const int h, const int i, const int j )
-{
-    return i >= 0 && i < h && j >= 0 && j < w;
-}
+extern bool inBounds( const int w, const int h, const int i, const int j );
 
 Heuristic::Heuristic( vector<vector<int>> grid, set<int> V )
 {
