@@ -101,7 +101,7 @@ Cycle::Cycle( const Playfield *pf )
 
 		G = new Graph( grid );
 
-		heuristic = new Heuristic( sim.getGrid( ), G->Vertices( ) );
+		heuristic = new Heuristic( pf->getGrid( ), G->Vertices( ) );
 
 		AStar follow( G, headNode, tailNode, heuristic->get( ) );
 		path = follow.pathTo( tailNode ); // reassign
