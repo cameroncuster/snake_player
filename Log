@@ -32,7 +32,7 @@ April 17:
       hours
     * going to implement GA with A* algorithm, A* builds length and GA build
       survival, with the focus of both algorithms the player must be successful
-	* Working to implement the GA and have been unsuccessful thus far
+    * Working to implement the GA and have been unsuccessful thus far
 
 April 18:
     * Some success with the genetic player as a minimal improvement from the
@@ -87,8 +87,8 @@ April 21:
  *                                     *
  * * * * * * * * * * * * * * * * * * * *
 
-	* the modified heuristic has performed much better than current
-	  implementation of the genetic algorithm or the dfs search as shown above
+    * the modified heuristic has performed much better than current
+      implementation of the genetic algorithm or the dfs search as shown above
     * added GitLab runner provided by Devon Schneider with attribution
     * Runner tests successful compilation on master when pushing to repo -
       ensures proper development practices are being upheld (e.a. not inducing
@@ -98,28 +98,47 @@ April 22:
     * idea for path from head to tail, tail to food, food to tail in execution
 
 April 23:
-	* implemented the idea from April 22, success has been the same as the AStar
-	  with modified heuristic thus far, even with path compression which did not
-	  appear to improve anything
-	* success was minimal with the continual search approach because the graph
-	  split itself multiple times
+    * implemented the idea from April 22, success has been the same as the AStar
+      with modified heuristic thus far, even with path compression which did not
+      appear to improve anything
+    * success was minimal with the continual search approach because the graph
+      split itself multiple times
 
 April 24:
-	* Updated for random searching in AStar cycle path if no node is found, looks
-	  to have imporved the score a bit
-	* idea to take longest path to tail if either the path to the food or the tail
-	  is unavailable
+    * Updated for random searching in AStar cycle path if no node is found, looks
+      to have imporved the score a bit
+    * idea to take longest path to tail if either the path to the food or the tail
+      is unavailable
 
 April 25:
-	* finally GOT IT TO WORK, MY IDEA WAS CORRECT, IT DEVELOPS A CYCLE!!!
+    * finally GOT IT TO WORK, MY IDEA WAS CORRECT, IT DEVELOPS A CYCLE!!!
 
 April 26:
-	* after my success yesterday the player has performed incredible. Sometimes
-	  the player spends a long time between runs, to reform itself, and runs can
-	  even become infinite if no path to the food is ever found that doesn't
-	  allow a path back to the tail. I think if I searched to every empty space
-	  at that point to increase distance between tail and head the player would
-	  win everytime on the playfield with no obstacles - e.a. perfect score is
+    * after my success yesterday the player has performed incredible. Sometimes
+      the player spends a long time between runs, to reform itself, and runs can
+      even become infinite if no path to the food is ever found that doesn't
+      allow a path back to the tail. I think if I searched to every empty space
+      at that point to increase distance between tail and head the player would
+      win everytime on the playfield with no obstacles - e.a. perfect score is
       always acheivable
-	* need to track own tail + speed up the algorithm + document
+    * need to track own tail + speed up the algorithm + document
     * updated to not use a modified interface, and game.cpp kills infinite games
+
+ * * * * * * * * * * * * * * * * * * * *
+ * Average Scores using AStar Cycle    *
+ *                                     *
+ * Size: 20 x 20                       *
+ * Number Items : 360.47               *
+ * Average Score: 397                  *
+ * Maximum Score: 54                   *
+ * Average Time : 0.00033194409        *
+ *                                     *
+ * * * * * * * * * * * * * * * * * * * *
+
+    * evidently the cycle AStar performs substantially better than any of my
+      other players include in the genetic
+      Data Structures: Graph, Queue, Linked List, Array
+      Testing: 100 run script, GitLab Runner, visually tested unique board sizes
+      like 3x50
+    * going to wrtie a script to test unique board sizes (3x50)
+    * performs very well on all variations of board sizes + with or w/o obstacles
