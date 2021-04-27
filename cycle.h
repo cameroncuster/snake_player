@@ -10,7 +10,7 @@ class Cycle
 {
 	list<int> path;
 public:
-	Cycle( const Playfield * );
+	Cycle( const Playfield *, queue<pair<int, int>> );
 	list<int> cycle( ) const;
 private:
 	void pushPath( const list<int> );

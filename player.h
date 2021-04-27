@@ -9,6 +9,7 @@
 class Player
 {
    std::list<int> path;
+   std::queue<std::pair<int, int>> tail;
 public:
    Player();
    ValidMove makeMove(const Playfield *);

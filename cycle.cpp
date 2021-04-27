@@ -11,12 +11,12 @@ extern ValidMove nextMove( int, int, int );
 
 static const vector<vector<int>> delta = { { 0, -1 }, { 1, 0 }, { 0, 1 }, { -1, 0 } };
 
-Cycle::Cycle( const Playfield *pf )
+Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
 {
 	vector<vector<int>> grid = pf->getGrid();
 	int w = grid[0].size( );
 	int h = grid.size( );
-	queue<pair<int, int>> tail = pf->getTail();
+	//tail = pf->getTail();
 	pair<int, int> head = pf->headPosition();
 	pair<int, int> food = pf->foodPosition();
 	pair<int, int> tailpt = tail.front();
