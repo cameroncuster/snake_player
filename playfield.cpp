@@ -67,7 +67,7 @@ Playfield::Playfield(int w, int h, bool ob) : width(w), height(h), hasObstacles(
 // Getter functions
 std::pair<int, int> Playfield::headPosition() const { return head; }
 std::pair<int, int> Playfield::foodPosition() const { return food; }
-std::vector<std::vector<int>> Playfield::getGrid() const { return grid; }
+std::vector<std::vector<int>> Playfield::getGrid() const { return grid ; }
 int Playfield::getScore() const { return tailLength + 1; }
 
 // Helper function: Clear the grid initially
