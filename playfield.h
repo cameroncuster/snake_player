@@ -42,8 +42,6 @@ public:
    std::pair<int, int> headPosition() const;
    /// Current location of food on the grid
    std::pair<int, int> foodPosition() const;
-   /// Playfield has obstacles or not
-   bool obstacles() const;
 
    // Private member functions used by Playfield and Game objects
    friend class Game;

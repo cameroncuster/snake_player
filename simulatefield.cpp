@@ -11,8 +11,12 @@ Simulatefield::Simulatefield( const Playfield *pf )
         grid = pf->getGrid( );
         width = grid[0].size( );
         height = grid.size( );
-        hasObstacles = pf->obstacles( );
+        hasObstacles = 0;
         tailLength = pf->getScore( ) - 1;
+        for( vector<int> v : grid )
+            for( int x : v )
+                if( x == OBSTACLE_VALUE )
+                    hasObstacles = 1;
 }
 
 Simulatefield::Simulatefield( const Simulatefield *pf )

@@ -6,7 +6,7 @@
 
 using namespace std;
 
-extern bool inBounds( const int w, const int h, const int i, const int j );
+extern bool inBounds( const int, const int, const int, const int );
 extern ValidMove nextMove( int, int, int );
 
 static const vector<vector<int>> delta = { { 0, -1 }, { 1, 0 }, { 0, 1 }, { -1, 0 } };
