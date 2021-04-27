@@ -119,6 +119,7 @@ April 26:
 	  even become infinite if no path to the food is ever found that doesn't
 	  allow a path back to the tail. I think if I searched to every empty space
 	  at that point to increase distance between tail and head the player would
-	  win everytime on the playfield with no obstacles
+	  win everytime on the playfield with no obstacles - e.a. perfect score is
+      always acheivable
 	* need to track own tail + speed up the algorithm + document
     * updated to not use a modified interface, and game.cpp kills infinite games
