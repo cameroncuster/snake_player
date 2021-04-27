@@ -16,7 +16,7 @@ AStar::AStar( Graph *G, int s, int f, map<int, double> h ) : start( s ),
         dist[v] = numeric_limits<int>::max( );
 
     dist[start] = 0.0;
-    heap.push( Node( start, straightLineDistance( start ) * heuristic[start] ) );
+    heap.push( Node( start, straightLineDistance( start ) + heuristic[start] ) );
     while( !heap.empty( ) )
     {
         Node node = heap.top( );
@@ -31,6 +31,7 @@ bool AStar::hasPath( int v )
     return dist[v] != numeric_limits<int>::max( );
 }
 
+// path does not include start node
 list<int> AStar::pathTo( int v )
 {
     list<int> path;
@@ -40,7 +41,6 @@ list<int> AStar::pathTo( int v )
     for( int x = v; x != start; x = prev[x] )
         path.push_front( x );
 
-    //path.push_front( start );
     return path;
 }
 
@@ -50,10 +50,12 @@ void AStar::relax( int v, int w, Graph *G )
     {
         dist[w] = dist[v] + 1;
         prev[w] = v;
-        heap.push( Node( w, straightLineDistance( w ) * heuristic[w] ) );
+        heap.push( Node( w, straightLineDistance( w ) + heuristic[w] ) );
     }
 }
 
+// manhattan distance with respect to what the grid represents (euclidian
+// distance would not make sense)
 int AStar::straightLineDistance( int w ) const
 {
     int x = w % columns;

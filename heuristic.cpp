@@ -11,7 +11,7 @@ Heuristic::Heuristic( vector<vector<int>> grid, set<int> V )
 	int w = grid[0].size( );
 	int h = grid.size( );
     for( int v : V )
-        heuristic[v] = 1;
+        heuristic[v] = 0;
 
     for( unsigned i = 0; i < grid.size( ); i++ )
     {
@@ -22,11 +22,11 @@ Heuristic::Heuristic( vector<vector<int>> grid, set<int> V )
                 for( int k = -1; k <= 1; k++ )
                     for( int l = -1; l <= 1; l++ )
                     {
-                        if( i == j || !k && !l ) continue;
+                        if( i == j ) continue;
                         if( inBounds( w, h, i + k, j + l ) )
                         {
                             int node = ( i + k ) * w + ( j + l );
-                            heuristic[node] = 1;
+                            heuristic[node] = 0;
                         }
                     }
             }
