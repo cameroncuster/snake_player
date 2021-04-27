@@ -121,3 +121,4 @@ April 26:
 	  at that point to increase distance between tail and head the player would
 	  win everytime on the playfield with no obstacles
 	* need to track own tail + speed up the algorithm + document
+    * updated to not use a modified interface, and game.cpp kills infinite games
