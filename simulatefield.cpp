@@ -3,11 +3,10 @@
  ***********************************************************************/
 #include "simulatefield.h"
 
-Simulatefield::Simulatefield( const Playfield *pf )
+Simulatefield::Simulatefield( const Playfield *pf, std::queue<std::pair<int, int>> t ) : tail( t )
 {
         head = pf->headPosition( );
         food = pf->foodPosition( );
-        tail = pf->getTail( );
         grid = pf->getGrid( );
         width = grid[0].size( );
         height = grid.size( );

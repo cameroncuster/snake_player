@@ -13,10 +13,10 @@ static const vector<vector<int>> delta = { { 0, -1 }, { 1, 0 }, { 0, 1 }, { -1, 
 
 Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
 {
+    queue<pair<int, int>> tcpy = tail;
 	vector<vector<int>> grid = pf->getGrid();
 	int w = grid[0].size( );
 	int h = grid.size( );
-	//tail = pf->getTail();
 	pair<int, int> head = pf->headPosition();
 	pair<int, int> food = pf->foodPosition();
 	pair<int, int> tailpt = tail.front();
@@ -25,7 +25,7 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
 	int tailNode = tailpt.first * w + tailpt.second;
 	bool trap = 0;
 
-	if( pf->getTail( ).size( ) <= 3 )
+	if( tail.size( ) <= 3 )
 	{
 		Graph *G = new Graph( grid );
 		Heuristic heuristic( pf->getGrid( ), G->Vertices( ) );
@@ -35,7 +35,7 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
 		return;
 	}
 
-	Simulatefield sim( pf );
+	Simulatefield sim( pf, tail );
 
 	Graph *G = new Graph( grid );
 
@@ -106,7 +106,7 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
 	{
 		// reset locals & search to tail
 		grid = pf->getGrid();
-		tail = pf->getTail();
+		tail = tcpy;
 		head = pf->headPosition();
 		food = pf->foodPosition();
 		tailpt = tail.front();

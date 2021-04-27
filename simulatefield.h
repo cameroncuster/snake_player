@@ -31,8 +31,8 @@ class Simulatefield
    unsigned tailLength;
    std::vector<std::vector<int>> grid;
 public:
-   Simulatefield( const Playfield * );
-   Simulatefield( const Simulatefield *pf );
+   Simulatefield( const Playfield *, std::queue<std::pair<int, int>> );
+   Simulatefield( const Simulatefield * );
    ~Simulatefield();
 
    /// The current state of the playfield 2-d grid[y][x] y+ is down on screen

@@ -27,11 +27,6 @@ ValidMove Player::makeMove( const Playfield *pf )
     int foodNode = food.first * w + food.second;
     int tailNode = tailpt.first * w + tailpt.second;
 
-    queue<pair<int, int>> q;
-    q.push( head );
-    q = tail.empty( ) ? q : tail;
-    assert( q == pf->getTail( ) );
-
     if( path.empty( ) )
     {
         Cycle c( pf, tail );
