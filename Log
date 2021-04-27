@@ -112,3 +112,12 @@ April 24:
 
 April 25:
 	* finally GOT IT TO WORK, MY IDEA WAS CORRECT, IT DEVELOPS A CYCLE!!!
+
+April 26:
+	* after my success yesterday the player has performed incredible. Sometimes
+	  the player spends a long time between runs, to reform itself, and runs can
+	  even become infinite if no path to the food is ever found that doesn't
+	  allow a path back to the tail. I think if I searched to every empty space
+	  at that point to increase distance between tail and head the player would
+	  win everytime on the playfield with no obstacles
+	* need to track own tail + speed up the algorithm + document

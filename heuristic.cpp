@@ -22,7 +22,7 @@ Heuristic::Heuristic( vector<vector<int>> grid, set<int> V )
                 for( int k = -1; k <= 1; k++ )
                     for( int l = -1; l <= 1; l++ )
                     {
-                        if( !k && !l ) continue;
+                        if( i == j || !k && !l ) continue;
                         if( inBounds( w, h, i + k, j + l ) )
                         {
                             int node = ( i + k ) * w + ( j + l );
