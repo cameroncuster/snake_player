@@ -3,35 +3,40 @@
  ***********************************************************************/
 #include "game.h"
 
-// Very simple wrapper class to play the game
-
 Game::Game(Player *p, Playfield *pf) : player(p), playfield(pf), gameOver(false), score(0) {}
 
-// Clean up
 Game::~Game()
 {
    delete player;
    delete playfield;
 }
 
-// 1. Send the playfield to the player
-// 2. Execute the move on the playfield
-// 3. Check that the game hasn't ended
-// 4. Update the playfield
 bool Game::makeMove()
 {
+   static int lastScore = 0;
+   static int ticksSinceLastScore = 0;
+   static int tooManyTurns = (playfield->getGrid())[0].size() * playfield->getGrid().size() * 10;
+
    bool retVal = false;
-   
+
    ValidMove playerMove = player->makeMove(playfield);
    retVal = playfield->moveHead(playerMove);
 
-   if (!retVal) gameIsOver();
+   if (!retVal || tooManyTurns < ticksSinceLastScore) gameIsOver();
+
+   if (lastScore == playfield->getScore())
+      ticksSinceLastScore++;
+   else
+   {
+      ticksSinceLastScore = 0;
+      lastScore = playfield->getScore();
+   }
 
    playfield->updatePlayfield();
    return !isGameOver();
 }
 
-void Game::gameIsOver() { std::cout << "Game is over!\n" ; gameOver = true; }
+void Game::gameIsOver() { gameOver = true; }
 
 bool Game::isGameOver() const { return gameOver; }
 
