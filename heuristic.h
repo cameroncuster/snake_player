@@ -1,11 +1,19 @@
+/********************************************************************//**
+ * @file
+ ***********************************************************************/
 #ifndef HEURISTIC_H
 #define HEURISITC_H
 #include <vector>
 #include <set>
 #include <map>
 
-using namespace std;
-
+/********************************************************************//**
+ * @class Heuristic
+ *
+ * Models a heuristic for an AStar search given the grid and a set of
+ * vertices
+ * object interface allows retreival of the heuristic
+ **********************************************************************/
 class Heuristic
 {
     std::map<int, double> heuristic;
