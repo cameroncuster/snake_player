@@ -142,3 +142,6 @@ April 26:
       like 3x50
     * going to wrtie a script to test unique board sizes (3x50)
     * performs very well on all variations of board sizes + with or w/o obstacles
+
+April 28:
+    * documented code and focussed on modularity
