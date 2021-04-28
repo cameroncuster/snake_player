@@ -7,15 +7,22 @@
 #include <queue>
 #include "playfield.h"
 
-using namespace std;
-
+/********************************************************************//**
+ * @class Cycle
+ *
+ * Develops a cycle for the snake to follow:
+ * 1. Head to Food
+ * 2. Food to Tail
+ * 3. If 1 or 2 is not possible then Head to Tail
+ * Traversals (SSSP) use A* with modified heuristic for performance
+ **********************************************************************/
 class Cycle
 {
-	list<int> path;
+    std::list<int> path;
 public:
-	Cycle( const Playfield *, queue<pair<int, int>> );
-	list<int> cycle( ) const;
+    Cycle( const Playfield *, std::queue<std::pair<int, int>> );
+    std::list<int> cycle( ) const;
 private:
-	void pushPath( const list<int> );
+    void pushPath( const std::list<int> );
 };
 #endif

@@ -12,7 +12,7 @@ Simulatefield::Simulatefield( const Playfield *pf, std::queue<std::pair<int, int
         height = grid.size( );
         hasObstacles = 0;
         tailLength = pf->getScore( ) - 1;
-        for( vector<int> v : grid )
+        for( std::vector<int> v : grid )
             for( int x : v )
                 if( x == OBSTACLE_VALUE )
                     hasObstacles = 1;

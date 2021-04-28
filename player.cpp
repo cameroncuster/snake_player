@@ -5,8 +5,6 @@
 #include "player.h"
 #include "cycle.h"
 
-using namespace std;
-
 extern ValidMove nextMove( int, int, int );
 extern bool inBounds( const int, const int, const int, const int );
 
