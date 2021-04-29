@@ -15,9 +15,6 @@ Overall the algorithm gave outstanding performance, frequency acheiving a perfec
 score, and nearing a perfect score almost every run. The player also handles non-
 traditional size grids well (with or without obstacles).
 
-## Algorithm Development ##
-[CHANGELOG](Log)
-
 ## Algorithm Performace ##
 * Performance 100 Trials 03x50
 
@@ -45,6 +42,9 @@ Steps in the Pathfinding Algorithm
 4. If either the path to the food or the path to the tail does not exist then
     follow the tail.
 ---
+
+#### Algorithm Development ####
+[CHANGELOG](Log)
 
 ### Action Shots ###
 ADD GIF OF SNAKE PLAYING for each board size
