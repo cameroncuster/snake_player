@@ -23,6 +23,6 @@ public:
     Cycle( const Playfield *, std::queue<std::pair<int, int>> );
     std::list<int> cycle( ) const;
 private:
-    void pushPath( const std::list<int> );
+    bool pushPath( const std::list<int> );
 };
 #endif

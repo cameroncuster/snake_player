@@ -18,7 +18,7 @@ class Graph
     std::map<int, std::set<int>> vertices;
     int numVertices, numEdges, columns;
     public:
-    Graph(std::vector<std::vector<int>> &);
+    Graph(std::vector<std::vector<int>>);
 
     std::set<int> Vertices() const;
     std::set<int> adj(int);

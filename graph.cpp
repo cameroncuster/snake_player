@@ -4,7 +4,7 @@
 #include "graph.h"
 
 // Construct a graph from a vector<vector<int>> grid
-Graph::Graph(std::vector<std::vector<int>> &grid) : columns(grid.size())
+Graph::Graph(std::vector<std::vector<int>> grid) : columns(grid.size())
 {
     int height = grid.size();
     int width  = grid[0].size();
