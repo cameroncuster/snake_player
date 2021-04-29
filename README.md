@@ -43,7 +43,7 @@ Steps in the Pathfinding Algorithm
     follow the tail.
 ---
 
-#### Algorithm Development ####
+### Algorithm Development ###
 [CHANGELOG](Log)
 
 ### Action Shots ###
