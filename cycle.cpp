@@ -28,8 +28,7 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
     if( tail.size( ) <= 3 )
     {
         Graph *G = new Graph( pf->getGrid( ) );
-        Heuristic heuristic( pf->getGrid( ), G->Vertices( ) );
-        AStar findFood( G, headNode, foodNode, heuristic.get( ) );
+        AStar findFood( G, headNode, foodNode );
         path = findFood.pathTo( foodNode );
         delete G;
         return;

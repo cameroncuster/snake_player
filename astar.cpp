@@ -11,6 +11,9 @@ using namespace std;
 AStar::AStar( Graph *G, int s, int f ) : start( s ), finish( f ),
     columns( G->Columns( ) )
 {
+    for( int v : G->Vertices( ) )
+        dist[v] = numeric_limits<int>::max( );
+
     dist[start] = 0.0;
     heap.push( Node( start, straightLineDistance( start ) + heuristic[start] ) );
     while( !heap.empty( ) )
