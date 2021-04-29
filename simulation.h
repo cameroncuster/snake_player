@@ -8,7 +8,7 @@
 /********************************************************************//**
  * @class Simulation
  *
- * simulate execution of the path on the given playfield
+ * Simulate execution of the path on the given playfield.
  **********************************************************************/
 class Simulation
 {

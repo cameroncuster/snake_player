@@ -9,16 +9,17 @@ extern ValidMove nextMove( int, int, int );
 // uses pointer so acutal moves were excuted on the same field passed as param
 Simulation::Simulation( Simulatefield *simulation, std::list<int> path )
 {
-    int headNode = simulation->headPosition( ).first *
-        simulation->getGrid( )[0].size( ) +
+    int width = simulation->getGrid( )[0].size( );
+    int headNode = simulation->headPosition( ).first * width +
         simulation->headPosition( ).second;
 
+    // execute all moves in the path
     while( !path.empty( ) )
     {
-        int n = path.front( );
+        int next = path.front( );
         path.pop_front( );
-        simulation->moveHead( nextMove( simulation->getGrid( )[0].size( ), headNode, n ) );
+        simulation->moveHead( nextMove( width, headNode, next ) );
         simulation->updatePlayfield( );
-        headNode = n;
+        headNode = next;
     }
 }

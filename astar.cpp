@@ -4,8 +4,8 @@
 #include <limits>
 #include "astar.h"
 
-// construct default with no heuristic (e.a. heuristic function is not instantiated
-// and defaults to zero
+// construct default with no heuristic (e.a. heuristic function is not
+// instantiated and defaults to zero
 AStar::AStar( Graph *G, int s, int f ) : start( s ), finish( f ),
     columns( G->Columns( ) )
 {
@@ -13,7 +13,8 @@ AStar::AStar( Graph *G, int s, int f ) : start( s ), finish( f ),
         dist[v] = std::numeric_limits<int>::max( );
 
     dist[start] = 0.0;
-    heap.push( Node( start, straightLineDistance( start ) + heuristic[start] ) );
+    heap.push( Node( start, straightLineDistance( start ) +
+                heuristic[start] ) );
     while( !heap.empty( ) )
     {
         Node node = heap.top( );
@@ -33,7 +34,8 @@ AStar::AStar( Graph *G, int s, int f, std::map<int, double> h ) : start( s ),
         dist[v] = std::numeric_limits<int>::max( );
 
     dist[start] = 0.0;
-    heap.push( Node( start, straightLineDistance( start ) + heuristic[start] ) );
+    heap.push( Node( start, straightLineDistance( start ) +
+                heuristic[start] ) );
     while( !heap.empty( ) )
     {
         Node node = heap.top( );
@@ -73,10 +75,10 @@ void AStar::relax( int v, int w, Graph *G )
 
 // manhattan distance with respect to what the grid represents (euclidian
 // distance would not make sense)
-int AStar::straightLineDistance( int w ) const
+int AStar::straightLineDistance( int width ) const
 {
-    int x = w % columns;
-    int y = w / columns;
+    int x = width % columns;
+    int y = width / columns;
     int finishX = finish % columns;
     int finishY = finish / columns;
     return std::abs( finishY - y ) + std::abs( finishX - x );

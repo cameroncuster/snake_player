@@ -22,12 +22,14 @@ ValidMove Player::makeMove( const Playfield *pf )
     int next = path.front( );
     path.pop_front( );
 
+    // readability
+    int width = pf->getGrid( )[0].size( );
+
     // track my own tail
     tail.push( pf->headPosition( ) );
-    if( pf->getGrid( )[next / pf->getGrid( )[0].size( )][next % pf->getGrid( )[0].size( )] != FOOD_VALUE ) tail.pop( );
+    if( pf->getGrid( )[ next / width ][ next % width ] != FOOD_VALUE ) tail.pop( );
 
     // translate the next point to a move to be executed
-    return nextMove( pf->getGrid( )[0].size( ),
-            pf->headPosition( ).first * pf->getGrid( )[0].size( ) +
+    return nextMove( width, pf->headPosition( ).first * width +
             pf->headPosition( ).second, next );
 }

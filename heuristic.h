@@ -11,8 +11,8 @@
  * @class Heuristic
  *
  * Models a heuristic for an AStar search given the grid and a set of
- * vertices
- * object interface allows retreival of the heuristic
+ * vertices.
+ * Object interface allows retreival of the heuristic.
  **********************************************************************/
 class Heuristic
 {

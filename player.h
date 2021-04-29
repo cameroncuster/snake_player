@@ -9,13 +9,18 @@
 #include <limits>
 #include "playfield.h"
 
+/********************************************************************//**
+ * @class Player
+ *
+ * Given a playfield the player determines a valid move.
+ **********************************************************************/
 class Player
 {
     std::list<int> path;
     std::queue<std::pair<int, int>> tail;
     public:
-    Player();
-    ValidMove makeMove(const Playfield *);
+    Player( );
+    ValidMove makeMove( const Playfield * );
     private:
 };
 #endif

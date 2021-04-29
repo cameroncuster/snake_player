@@ -16,7 +16,7 @@
 /********************************************************************//**
  * @class Simulatefield
  *
- * Manage the playfield simulation
+ * Manage the playfield simulation.
  **********************************************************************/
 class Simulatefield
 {

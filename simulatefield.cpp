@@ -19,6 +19,7 @@ Simulatefield::Simulatefield( const Playfield *pf, std::queue<std::pair<int, int
                 hasObstacles = 1;
 }
 
+// vanilla copy-constructor
 Simulatefield::Simulatefield( const Simulatefield *sim )
 {
     head = sim->head;
