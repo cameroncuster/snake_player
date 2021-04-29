@@ -18,6 +18,7 @@ traditional size grids well (with or without obstacles).
 ## Algorithm Development ##
 [CHANGELOG](Log)
 
+## Algorithm Performace ##
 * Performance 100 Trials 03x50
 
 * Performance 100 Trials 03x40
@@ -45,4 +46,5 @@ Steps in the Pathfinding Algorithm
     follow the tail.
 ---
 
-ADD GIF OF SNAKE PLAYING for each alg...
+### Action Shots ###
+ADD GIF OF SNAKE PLAYING for each board size
