@@ -17,7 +17,7 @@
 class Heuristic
 {
     std::map<int, double> heuristic;
-public:
+    public:
     Heuristic( std::vector<std::vector<int>>, std::set<int> );
 
     std::map<int, double> get( ) const;

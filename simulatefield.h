@@ -11,7 +11,6 @@
 #include "biconnected.h"
 #include "cc.h"
 #include "playfield.h"
-
 #include "cycle.h"
 
 /********************************************************************//**
@@ -45,10 +44,9 @@ class Simulatefield
     /// Current location of food on the grid
     std::pair<int, int> foodPosition() const;
 
-    friend class Cycle;
-
     // allows the Simulation to simulate game play with private members
     friend class Simulation;
+
     private:
     void placeObstacles();
     void clearGrid();

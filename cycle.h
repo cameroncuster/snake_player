@@ -19,10 +19,10 @@
 class Cycle
 {
     std::list<int> path;
-public:
+    public:
     Cycle( const Playfield *, std::queue<std::pair<int, int>> );
     std::list<int> cycle( ) const;
-private:
+    private:
     bool pushPath( const std::list<int> );
     bool pathAround( std::vector<std::vector<int>>, std::pair<int, int>, std::pair<int, int> );
 };

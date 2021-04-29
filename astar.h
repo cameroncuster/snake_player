@@ -7,8 +7,6 @@
 #include <queue>
 #include "graph.h"
 
-using namespace std;
-
 /********************************************************************//**
  * @struct Node
  * 
@@ -42,18 +40,18 @@ class nodeCompare
  **********************************************************************/
 class AStar
 {
-    map<int, bool> marked;
-    map<int, int> prev;
-    map<int, int> dist;
-    map<int, double> heuristic;
-    priority_queue<Node, vector<Node>, nodeCompare> heap;
+    std::map<int, bool> marked;
+    std::map<int, int> prev;
+    std::map<int, int> dist;
+    std::map<int, double> heuristic;
+    std::priority_queue<Node, std::vector<Node>, nodeCompare> heap;
     int start, finish, columns;
     public:
     AStar( Graph *, int, int );
-    AStar( Graph *, int, int, map<int, double> );
+    AStar( Graph *, int, int, std::map<int, double> );
 
     bool hasPath( int );
-    list<int> pathTo( int );
+    std::list<int> pathTo( int );
     private:
     void relax( int, int, Graph * );
     int straightLineDistance( int ) const;

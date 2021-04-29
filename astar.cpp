@@ -7,7 +7,7 @@
 using namespace std;
 
 // construct default with no heuristic (e.a. heuristic function is not instantiated
-    // and defaults to zero
+// and defaults to zero
 AStar::AStar( Graph *G, int s, int f ) : start( s ), finish( f ),
     columns( G->Columns( ) )
 {
@@ -26,7 +26,7 @@ AStar::AStar( Graph *G, int s, int f ) : start( s ), finish( f ),
 }
 
 // heuristic must be instantiated for all nodes |V| or straightLineDistance will
-    // be nullified
+// be nullified
 AStar::AStar( Graph *G, int s, int f, map<int, double> h ) : start( s ),
     finish( f ), columns( G->Columns( ) )
 {

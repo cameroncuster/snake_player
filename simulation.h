@@ -12,7 +12,7 @@
  **********************************************************************/
 class Simulation
 {
-public:
-    Simulation( Simulatefield *, std::list<int> );
+    public:
+        Simulation( Simulatefield *, std::list<int> );
 };
 #endif
