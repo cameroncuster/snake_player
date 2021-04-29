@@ -38,46 +38,32 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
 		return;
 	}
 
-	Simulatefield sim( pf, tail );
+	Simulatefield *sim = new Simulatefield( pf, tail );
 
 	Graph *G = new Graph( grid );
 
-	Heuristic *heuristic = new Heuristic( sim.getGrid( ), G->Vertices( ) );
+	Heuristic *heuristic = new Heuristic( sim->getGrid( ), G->Vertices( ) );
 
 	AStar findFood( G, headNode, foodNode, heuristic->get( ) );
 	delete G;
 	delete heuristic;
 
 	// check and push the path to food
-	if( !findFood.hasPath( foodNode ) )
-		trap = 1;
+	if( !findFood.hasPath( foodNode ) ) trap = 1;
 	path = findFood.pathTo( foodNode );
 
 	// EXECUTE THE PATH TO THE FOOD ON THE SIMULATION
-    Simulatefield *sf = new Simulatefield( sim );
-    Simulation simulateMoves( sf, path );
-    /*
-	list<int> cpy = path;
-	while( !cpy.empty( ) )
-	{
-		int n = cpy.front( );
-		cpy.pop_front( );
-		sim.moveHead( nextMove( w, headNode, n ) );
-		sim.updatePlayfield( );
-		headNode = n;
-	}
-    */
+    Simulation simulateMoves( sim, path );
 
 	// reset locals
-	grid = sf->getGrid();
-	tail = sf->getTail();
-	head = sf->headPosition();
-	food = sf->foodPosition();
+	grid = sim->getGrid();
+	tail = sim->getTail();
+	head = sim->headPosition();
+	food = sim->foodPosition();
 	tailpt = tail.front();
 	headNode = head.first * w + head.second;
 	foodNode = food.first * w + food.second;
 	tailNode = tailpt.first * w + tailpt.second;
-    delete sf;
 
 	list<int> prevpath = path;
 
@@ -91,7 +77,7 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
 
 				G = new Graph( grid );
 
-				heuristic = new Heuristic( sim.getGrid( ), G->Vertices( ) );
+				heuristic = new Heuristic( sim->getGrid( ), G->Vertices( ) );
 
 				// search to tail
 				AStar findTail( G, headNode, tailNode, heuristic->get( ) );
@@ -106,9 +92,10 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
 			}
 	}
 
+    delete sim;
+
 	// check push the path to the tail
-	if( path == prevpath )
-		trap = 1;
+	if( path == prevpath ) trap = 1;
 
 	if( trap )
 	{
