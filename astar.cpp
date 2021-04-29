@@ -4,15 +4,13 @@
 #include <limits>
 #include "astar.h"
 
-using namespace std;
-
 // construct default with no heuristic (e.a. heuristic function is not instantiated
 // and defaults to zero
 AStar::AStar( Graph *G, int s, int f ) : start( s ), finish( f ),
     columns( G->Columns( ) )
 {
     for( int v : G->Vertices( ) )
-        dist[v] = numeric_limits<int>::max( );
+        dist[v] = std::numeric_limits<int>::max( );
 
     dist[start] = 0.0;
     heap.push( Node( start, straightLineDistance( start ) + heuristic[start] ) );
@@ -27,12 +25,12 @@ AStar::AStar( Graph *G, int s, int f ) : start( s ), finish( f ),
 
 // heuristic must be instantiated for all nodes |V| or straightLineDistance will
 // be nullified
-AStar::AStar( Graph *G, int s, int f, map<int, double> h ) : start( s ),
+AStar::AStar( Graph *G, int s, int f, std::map<int, double> h ) : start( s ),
     finish( f ), columns( G->Columns( ) )
 {
     heuristic = h;
     for( int v : G->Vertices( ) )
-        dist[v] = numeric_limits<int>::max( );
+        dist[v] = std::numeric_limits<int>::max( );
 
     dist[start] = 0.0;
     heap.push( Node( start, straightLineDistance( start ) + heuristic[start] ) );
@@ -47,13 +45,13 @@ AStar::AStar( Graph *G, int s, int f, map<int, double> h ) : start( s ),
 
 bool AStar::hasPath( int v )
 {
-    return dist[v] != numeric_limits<int>::max( );
+    return dist[v] != std::numeric_limits<int>::max( );
 }
 
 // path does not include start node for snake application
-list<int> AStar::pathTo( int v )
+std::list<int> AStar::pathTo( int v )
 {
-    list<int> path;
+    std::list<int> path;
     if( !hasPath( v ) )
         return path;
 
@@ -81,5 +79,5 @@ int AStar::straightLineDistance( int w ) const
     int y = w / columns;
     int finishX = finish % columns;
     int finishY = finish / columns;
-    return abs( finishY - y ) + abs( finishX - x );
+    return std::abs( finishY - y ) + std::abs( finishX - x );
 }
