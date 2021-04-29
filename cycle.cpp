@@ -20,10 +20,9 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
     int h = pf->getGrid( ).size( );
     pair<int, int> head = pf->headPosition();
     pair<int, int> food = pf->foodPosition();
-    pair<int, int> tailpt = tail.front();
     int headNode = head.first * w + head.second;
     int foodNode = food.first * w + food.second;
-    int tailNode = tailpt.first * w + tailpt.second;
+    int tailNode = tail.front( ).first * w + tail.front( ).second;
 
     if( tail.size( ) <= 3 )
     {
@@ -74,11 +73,11 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
 
     for( int i = 0; i < 4; i++ )
     {
-        pair<int, int> tailS = { tailpt.first + delta[i][0], tailpt.second + delta[i][1] };
-        if( inBounds( w, h, tailS.first, tailS.second ) )
-            if( pf->getGrid( )[tailS.first][tailS.second] == CLEAR_VALUE )
+        pair<int, int> tailExtend = { tail.front( ).first + delta[i][0], tail.front( ).second + delta[i][1] };
+        if( inBounds( w, h, tailExtend.first, tailExtend.second ) )
+            if( pf->getGrid( )[tailExtend.first][tailExtend.second] == CLEAR_VALUE )
             {
-                tailNode = tailS.first * w + tailS.second;
+                tailNode = tailExtend.first * w + tailExtend.second;
 
                 G = new Graph( pf->getGrid( ) );
                 AStar follow( G, headNode, tailNode );
