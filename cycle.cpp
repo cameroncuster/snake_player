@@ -17,12 +17,10 @@ static const vector<vector<int>> delta = { { 0, -1 }, { 1, 0 }, { 0, 1 }, { -1, 
 Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
 {
     int w = pf->getGrid( )[0].size( );
-    int h = pf->getGrid( ).size( );
     pair<int, int> head = pf->headPosition();
     pair<int, int> food = pf->foodPosition();
     int headNode = head.first * w + head.second;
     int foodNode = food.first * w + food.second;
-    int tailNode = tail.front( ).first * w + tail.front( ).second;
 
     if( tail.size( ) <= 3 )
     {
@@ -32,7 +30,6 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
         delete G;
         return;
     }
-
 
     // path to food
     Graph *G = new Graph( pf->getGrid( ) );
@@ -46,7 +43,7 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
     Simulatefield *sim = new Simulatefield( pf, tail );
     Simulation simulateMoves( sim, path );
 
-    if( pathAroundFromFood( sim->getGrid( ), sim->headPosition( ), sim->getTail( ).front( ) ) )
+    if( pathAround( sim->getGrid( ), sim->headPosition( ), sim->getTail( ).front( ) ) )
     {
         delete sim;
         return;
@@ -56,8 +53,7 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
     delete sim;
 
     path.clear( );
-    //pathAround( pf->getGrid( ), headNode, tail.front( ).first * w + tail.front( ).second );
-    pathAroundFromFood( pf->getGrid( ), pf->headPosition( ), tail.front( ) );
+    pathAround( pf->getGrid( ), pf->headPosition( ), tail.front( ) );
 }
 
 list<int> Cycle::cycle( ) const { return path; }
@@ -69,53 +65,28 @@ bool Cycle::pushPath( const list<int> p )
     return 1;
 }
 
-bool Cycle::pathAround( vector<vector<int>> grid, int source, int dest )
+// Locate a path to node adjacent to the tail, append the path to the tail and return success
+bool Cycle::pathAround( vector<vector<int>> grid, pair<int, int> source, pair<int, int> dest )
 {
     bool free = 0;
     int w = grid[0].size( );
     int h = grid.size( );
-    const vector<int> deltaN = { -w, 1, w, -1 };
     for( int i = 0; i < 4 && !free; i++ )
     {
-        int aroundDest = dest + deltaN[i];
-        pair<int, int> extend = { aroundDest / w, aroundDest % w };
+        pair<int, int> extend = { dest.first + delta[i][0], dest.second + delta[i][1] };
         if( inBounds( w, h, extend.first, extend.second ) )
             if( grid[extend.first][extend.second] == CLEAR_VALUE )
             {
+                int extendNode = extend.first * w + extend.second;
+
                 // search to tail
                 Graph *G = new Graph( grid );
-                AStar follow( G, source, aroundDest );
+                AStar findTail( G, source.first * w + source.second, extendNode );
 
                 // clean up
                 delete G;
 
-                free = pushPath( follow.pathTo( aroundDest ) );
-            }
-    }
-    return free;
-}
-
-bool Cycle::pathAroundFromFood( vector<vector<int>> grid, pair<int, int> source, pair<int, int> dest )
-{
-    bool free = 0;
-    int w = grid[0].size( );
-    int h = grid.size( );
-    for( int i = 0; i < 4 && !free; i++ )
-    {
-        pair<int, int> tailExtend = { dest.first + delta[i][0], dest.second + delta[i][1] };
-        if( inBounds( w, h, tailExtend.first, tailExtend.second ) )
-            if( grid[tailExtend.first][tailExtend.second] == CLEAR_VALUE )
-            {
-                int tailNode = tailExtend.first * w + tailExtend.second;
-
-                // search to tail
-                Graph *G = new Graph( grid );
-                AStar findTail( G, source.first * w + source.second, tailNode );
-
-                // clean up
-                delete G;
-
-                free = pushPath( findTail.pathTo( tailNode ) );
+                free = pushPath( findTail.pathTo( extendNode ) );
             }
     }
     return free;
