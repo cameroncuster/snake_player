@@ -46,30 +46,14 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
     Simulatefield *sim = new Simulatefield( pf, tail );
     Simulation simulateMoves( sim, path );
 
-    bool free = 0;
-    for( int i = 0; i < 4 && !free; i++ )
+    if( pathAroundFromFood( sim->getGrid( ), sim->headPosition( ), sim->getTail( ).front( ) ) )
     {
-        pair<int, int> tailExtend = { sim->getTail( ).front( ).first + delta[i][0], sim->getTail( ).front( ).second + delta[i][1] };
-        if( inBounds( w, h, tailExtend.first, tailExtend.second ) )
-            if( sim->getGrid( )[tailExtend.first][tailExtend.second] == CLEAR_VALUE )
-            {
-                tailNode = tailExtend.first * w + tailExtend.second;
-
-                // search to tail
-                G = new Graph( sim->getGrid( ) );
-                AStar findTail( G, sim->headPosition( ).first * w + sim->headPosition( ).second, tailNode );
-
-                // clean up
-                delete G;
-
-                free = pushPath( findTail.pathTo( tailNode ) );
-            }
+        delete sim;
+        return;
     }
 
     // clean up
     delete sim;
-
-    if( free ) return;
 
     path.clear( );
     pathAround( pf->getGrid( ), headNode, tail.front( ).first * w + tail.front( ).second );
@@ -105,6 +89,32 @@ bool Cycle::pathAround( vector<vector<int>> grid, int source, int dest )
                 delete G;
 
                 free = pushPath( follow.pathTo( aroundDest ) );
+            }
+    }
+    return free;
+}
+
+bool Cycle::pathAroundFromFood( vector<vector<int>> grid, pair<int, int> source, pair<int, int> dest )
+{
+    bool free = 0;
+    int w = grid[0].size( );
+    int h = grid.size( );
+    for( int i = 0; i < 4 && !free; i++ )
+    {
+        pair<int, int> tailExtend = { dest.first + delta[i][0], dest.second + delta[i][1] };
+        if( inBounds( w, h, tailExtend.first, tailExtend.second ) )
+            if( grid[tailExtend.first][tailExtend.second] == CLEAR_VALUE )
+            {
+                int tailNode = tailExtend.first * w + tailExtend.second;
+
+                // search to tail
+                Graph *G = new Graph( grid );
+                AStar findTail( G, source.first * w + source.second, tailNode );
+
+                // clean up
+                delete G;
+
+                free = pushPath( findTail.pathTo( tailNode ) );
             }
     }
     return free;
