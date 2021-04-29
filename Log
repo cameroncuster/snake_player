@@ -145,3 +145,6 @@ April 26:
 
 April 28:
     * documented code and focussed on modularity
+    * code is cleaned, modularized, Object Oriented, and decoupled
+    * code is well documented and tested
+    * write README
