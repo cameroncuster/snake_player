@@ -83,7 +83,7 @@ bool Cycle::pathAround( std::vector<std::vector<int>> grid,
         std::pair<int, int> extend = { dest.first + delta[i][0],
             dest.second + delta[i][1] };
         if( inBounds( width, height, extend.first, extend.second ) )
-            if( grid[extend.first][extend.second] == CLEAR_VALUE )
+            if( grid[ extend.first ][ extend.second ] == CLEAR_VALUE )
             {
                 int extendNode = extend.first * width + extend.second;
 
