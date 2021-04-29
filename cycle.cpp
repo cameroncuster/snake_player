@@ -71,27 +71,7 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
 
     if( free ) return;
 
-    for( int i = 0; i < 4; i++ )
-    {
-        pair<int, int> tailExtend = { tail.front( ).first + delta[i][0], tail.front( ).second + delta[i][1] };
-        if( inBounds( w, h, tailExtend.first, tailExtend.second ) )
-            if( pf->getGrid( )[tailExtend.first][tailExtend.second] == CLEAR_VALUE )
-            {
-                tailNode = tailExtend.first * w + tailExtend.second;
-
-                G = new Graph( pf->getGrid( ) );
-                AStar follow( G, headNode, tailNode );
-
-                delete G;
-
-                if( follow.hasPath( tailNode ) )
-                {
-                    path = follow.pathTo( tailNode ); // reassign
-                    break;
-                }
-            }
-    }
-    /*
+    path.clear( );
     for( int i = 0; i < 4 && !free; i++ )
     {
         pair<int, int> tailExtend = { tail.front( ).first + delta[i][0], tail.front( ).second + delta[i][1] };
@@ -110,7 +90,6 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
                 free = pushPath( follow.pathTo( tailNode ) );
             }
     }
-    */
 }
 
 list<int> Cycle::cycle( ) const { return path; }
