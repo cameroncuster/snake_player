@@ -81,6 +81,7 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
     if( !free )
     {
         // reset locals & search to tail
+        /*
         grid = pf->getGrid();
         head = pf->headPosition();
         food = pf->foodPosition();
@@ -88,10 +89,11 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
         headNode = head.first * w + head.second;
         foodNode = food.first * w + food.second;
         tailNode = tailpt.first * w + tailpt.second;
+        */
 
         for( int i = 0; i < 4; i++ )
         {
-            pair<int, int> tailExtend = { tailpt.first + delta[i][0], tailpt.second + delta[i][1] };
+            pair<int, int> tailExtend = { tail.front( ).first + delta[i][0], tail.front( ).second + delta[i][1] };
             if( inBounds( w, h, tailExtend.first, tailExtend.second ) )
                 if( grid[tailExtend.first][tailExtend.second] == CLEAR_VALUE )
                 {
