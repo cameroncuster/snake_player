@@ -34,22 +34,21 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
         return;
     }
 
-    Simulatefield *sim = new Simulatefield( pf, tail );
 
+    // path to food
     Graph *G = new Graph( pf->getGrid( ) );
-
-    Heuristic *heuristic = new Heuristic( sim->getGrid( ), G->Vertices( ) );
-
-    AStar findFood( G, headNode, foodNode, heuristic->get( ) );
-    delete G;
-    delete heuristic;
-
+    AStar findFood( G, headNode, foodNode );
     path = findFood.pathTo( foodNode );
 
+    // clean up
+    delete G;
+
+    // simulate moves
+    Simulatefield *sim = new Simulatefield( pf, tail );
     Simulation simulateMoves( sim, path );
 
     bool free = 0;
-    for( int i = 0; i < 4; i++ )
+    for( int i = 0; i < 4 && !free; i++ )
     {
         pair<int, int> tailExtend = { sim->getTail( ).front( ).first + delta[i][0], sim->getTail( ).front( ).second + delta[i][1] };
         if( inBounds( w, h, tailExtend.first, tailExtend.second ) )
@@ -57,52 +56,62 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
             {
                 tailNode = tailExtend.first * w + tailExtend.second;
 
-                G = new Graph( sim->getGrid( ) );
-
-                heuristic = new Heuristic( sim->getGrid( ), G->Vertices( ) );
-
                 // search to tail
-                AStar findTail( G, sim->headPosition( ).first * w + sim->headPosition( ).second, tailNode, heuristic->get( ) );
-                delete G;
-                delete heuristic;
+                G = new Graph( sim->getGrid( ) );
+                AStar findTail( G, sim->headPosition( ).first * w + sim->headPosition( ).second, tailNode );
 
-                if( findTail.hasPath( tailNode ) )
+                // clean up
+                delete G;
+
+                free = pushPath( findTail.pathTo( tailNode ) );
+            }
+    }
+
+    // clean up
+    delete sim;
+
+    if( free ) return;
+
+    for( int i = 0; i < 4; i++ )
+    {
+        pair<int, int> tailS = { tailpt.first + delta[i][0], tailpt.second + delta[i][1] };
+        if( inBounds( w, h, tailS.first, tailS.second ) )
+            if( pf->getGrid( )[tailS.first][tailS.second] == CLEAR_VALUE )
+            {
+                tailNode = tailS.first * w + tailS.second;
+
+                G = new Graph( pf->getGrid( ) );
+                AStar follow( G, headNode, tailNode );
+
+                delete G;
+
+                if( follow.hasPath( tailNode ) )
                 {
-                    free = pushPath( findTail.pathTo( tailNode ) );
+                    path = follow.pathTo( tailNode ); // reassign
                     break;
                 }
             }
     }
-
-    delete sim;
-
-    if( !free )
+    /*
+    for( int i = 0; i < 4 && !free; i++ )
     {
-        for( int i = 0; i < 4; i++ )
-        {
-            pair<int, int> tailExtend = { tail.front( ).first + delta[i][0], tail.front( ).second + delta[i][1] };
-            if( inBounds( w, h, tailExtend.first, tailExtend.second ) )
-                if( pf->getGrid( )[tailExtend.first][tailExtend.second] == CLEAR_VALUE )
-                {
-                    tailNode = tailExtend.first * w + tailExtend.second;
+        pair<int, int> tailExtend = { tail.front( ).first + delta[i][0], tail.front( ).second + delta[i][1] };
+        if( inBounds( w, h, tailExtend.first, tailExtend.second ) )
+            if( pf->getGrid( )[tailExtend.first][tailExtend.second] == CLEAR_VALUE )
+            {
+                tailNode = tailExtend.first * w + tailExtend.second;
 
-                    G = new Graph( pf->getGrid( ) );
+                // search to tail
+                G = new Graph( pf->getGrid( ) );
+                AStar follow( G, headNode, tailNode );
 
-                    heuristic = new Heuristic( pf->getGrid( ), G->Vertices( ) );
+                // clean up
+                delete G;
 
-                    AStar follow( G, headNode, tailNode, heuristic->get( ) );
-
-                    delete G;
-                    delete heuristic;
-
-                    if( follow.hasPath( tailNode ) )
-                    {
-                        path = follow.pathTo( tailNode ); // reassign
-                        break;
-                    }
-                }
-        }
+                free = pushPath( follow.pathTo( tailNode ) );
+            }
     }
+    */
 }
 
 list<int> Cycle::cycle( ) const { return path; }
