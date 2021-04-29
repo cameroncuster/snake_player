@@ -16,7 +16,6 @@ static const vector<vector<int>> delta = { { 0, -1 }, { 1, 0 }, { 0, 1 }, { -1, 
 
 Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
 {
-    queue<pair<int, int>> tcpy = tail;
 	vector<vector<int>> grid = pf->getGrid();
 	int w = grid[0].size( );
 	int h = grid.size( );
@@ -26,7 +25,6 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
 	int headNode = head.first * w + head.second;
 	int foodNode = food.first * w + food.second;
 	int tailNode = tailpt.first * w + tailpt.second;
-	bool trap = 0;
 
 	if( tail.size( ) <= 3 )
 	{
@@ -49,6 +47,7 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
 	delete heuristic;
 
 	// check and push the path to food
+	bool trap = 0;
 	if( !findFood.hasPath( foodNode ) ) trap = 1;
 	path = findFood.pathTo( foodNode );
 
@@ -57,10 +56,9 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
 
 	// reset locals
 	grid = sim->getGrid();
-	tail = sim->getTail();
 	head = sim->headPosition();
 	food = sim->foodPosition();
-	tailpt = tail.front();
+	tailpt = sim->getTail().front();
 	headNode = head.first * w + head.second;
 	foodNode = food.first * w + food.second;
 	tailNode = tailpt.first * w + tailpt.second;
@@ -101,7 +99,6 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
 	{
 		// reset locals & search to tail
 		grid = pf->getGrid();
-		tail = tcpy;
 		head = pf->headPosition();
 		food = pf->foodPosition();
 		tailpt = tail.front();

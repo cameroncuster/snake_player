@@ -31,7 +31,7 @@ bool AStar::hasPath( int v )
     return dist[v] != numeric_limits<int>::max( );
 }
 
-// path does not include start node
+// path does not include start node for snake application
 list<int> AStar::pathTo( int v )
 {
     list<int> path;

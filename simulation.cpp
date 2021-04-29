@@ -6,6 +6,7 @@
 extern ValidMove nextMove( int, int, int );
 
 // execute the path to the food on the simulation
+// uses pointer so acutal moves were excuted on the same field passed as param
 Simulation::Simulation( Simulatefield *simulation, std::list<int> path )
 {
     int headNode = simulation->headPosition( ).first *
