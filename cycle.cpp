@@ -7,18 +7,16 @@
 #include "heuristic.h"
 #include "simulation.h"
 
-using namespace std;
-
 extern bool inBounds( const int, const int, const int, const int );
 extern ValidMove nextMove( int, int, int );
 
-static const vector<vector<int>> delta = { { 0, -1 }, { 1, 0 }, { 0, 1 }, { -1, 0 } };
+static const std::vector<std::vector<int>> delta = { { 0, -1 }, { 1, 0 }, { 0, 1 }, { -1, 0 } };
 
-Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
+Cycle::Cycle( const Playfield *pf, std::queue<std::pair<int, int>> tail )
 {
     int w = pf->getGrid( )[0].size( );
-    pair<int, int> head = pf->headPosition();
-    pair<int, int> food = pf->foodPosition();
+    std::pair<int, int> head = pf->headPosition();
+    std::pair<int, int> food = pf->foodPosition();
     int headNode = head.first * w + head.second;
     int foodNode = food.first * w + food.second;
 
@@ -56,9 +54,9 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
     pathAround( pf->getGrid( ), pf->headPosition( ), tail.front( ) );
 }
 
-list<int> Cycle::cycle( ) const { return path; }
+std::list<int> Cycle::cycle( ) const { return path; }
 
-bool Cycle::pushPath( const list<int> p )
+bool Cycle::pushPath( const std::list<int> p )
 {
     if( p.empty( ) ) return 0;
     for( int n : p ) path.push_back( n );
@@ -66,14 +64,14 @@ bool Cycle::pushPath( const list<int> p )
 }
 
 // Locate a path to node adjacent to the tail, append the path to the tail and return success
-bool Cycle::pathAround( vector<vector<int>> grid, pair<int, int> source, pair<int, int> dest )
+bool Cycle::pathAround( std::vector<std::vector<int>> grid, std::pair<int, int> source, std::pair<int, int> dest )
 {
     bool free = 0;
     int w = grid[0].size( );
     int h = grid.size( );
     for( int i = 0; i < 4 && !free; i++ )
     {
-        pair<int, int> extend = { dest.first + delta[i][0], dest.second + delta[i][1] };
+        std::pair<int, int> extend = { dest.first + delta[i][0], dest.second + delta[i][1] };
         if( inBounds( w, h, extend.first, extend.second ) )
             if( grid[extend.first][extend.second] == CLEAR_VALUE )
             {
