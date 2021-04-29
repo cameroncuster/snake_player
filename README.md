@@ -1,5 +1,3 @@
-/gitlab/pipeline/:101061877/:csc315_spr2021_snake/:master
-
 # Snake Player - Cameron Custer #
 Well-written implementation in C++ of generic snake player for the classic "Snake
 Game." Player is dictated only by SSSP graph traversal algorithms. The player was
