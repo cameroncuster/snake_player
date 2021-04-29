@@ -48,33 +48,23 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
 
     path = findFood.pathTo( foodNode );
 
-    // EXECUTE THE PATH TO THE FOOD ON THE SIMULATION
     Simulation simulateMoves( sim, path );
-
-    // reset locals
-    grid = sim->getGrid();
-    head = sim->headPosition();
-    food = sim->foodPosition();
-    tailpt = sim->getTail().front();
-    headNode = head.first * w + head.second;
-    foodNode = food.first * w + food.second;
-    tailNode = tailpt.first * w + tailpt.second;
 
     bool free = 0;
     for( int i = 0; i < 4; i++ )
     {
-        pair<int, int> tailExtend = { tailpt.first + delta[i][0], tailpt.second + delta[i][1] };
+        pair<int, int> tailExtend = { sim->getTail( ).front( ).first + delta[i][0], sim->getTail( ).front( ).second + delta[i][1] };
         if( inBounds( w, h, tailExtend.first, tailExtend.second ) )
-            if( grid[tailExtend.first][tailExtend.second] == CLEAR_VALUE )
+            if( sim->getGrid( )[tailExtend.first][tailExtend.second] == CLEAR_VALUE )
             {
                 tailNode = tailExtend.first * w + tailExtend.second;
 
-                G = new Graph( grid );
+                G = new Graph( sim->getGrid( ) );
 
                 heuristic = new Heuristic( sim->getGrid( ), G->Vertices( ) );
 
                 // search to tail
-                AStar findTail( G, headNode, tailNode, heuristic->get( ) );
+                AStar findTail( G, sim->headPosition( ).first * w + sim->headPosition( ).second, tailNode, heuristic->get( ) );
                 delete G;
                 delete heuristic;
 
