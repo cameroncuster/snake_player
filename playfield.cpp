@@ -3,6 +3,7 @@
  ***********************************************************************/
 #include "playfield.h"
 
+// Copy constructor for running alternate games (GA players)
 // Create a playfield from a const Playfield pointer
 Playfield::Playfield(const Playfield *pf)
 {
@@ -39,7 +40,7 @@ Playfield::Playfield(int w, int h, bool ob) : width(w), height(h), hasObstacles(
 
    if (hasObstacles)
    {
-      std::cout << "Placing obstacles " << " and verifying solvability"
+      std::cout << "Placing obstacles " << " and verifying solvability" 
                 << std::endl;
       std::cout << "this may take a few seconds." << std::endl;
    }
@@ -121,10 +122,10 @@ std::pair<int, int> Playfield::placeNewFood()
    std::vector<std::pair<int, int>> spots;
    for (int row = 0 ; row < height ; row++)
       for (int col = 0 ; col < width ; col++)
-         if (grid[row][col] == CLEAR_VALUE)
+         if (grid[row][col] == CLEAR_VALUE) 
             spots.push_back(std::make_pair(row,col));
 
-   if (spots.size() > 0)
+   if (spots.size() > 0) 
    {
       std::pair<int, int> choice = spots[rand() % spots.size()];
       grid[choice.first][choice.second] = FOOD_VALUE;
@@ -160,9 +161,9 @@ bool Playfield::moveHead(ValidMove move)
       grid[newHeadPosition.first][newHeadPosition.second] = COLLISION_VALUE;
       return false;
    }
-
+  
    // If the destination cell is the food, grow the tail and
-   // place a new food.
+   // place a new food. 
    if (newHeadPosition == food)
    {
       tailLength++;
