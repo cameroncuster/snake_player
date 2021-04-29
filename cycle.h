@@ -24,5 +24,6 @@ public:
     std::list<int> cycle( ) const;
 private:
     bool pushPath( const std::list<int> );
+    bool pathAround( std::vector<std::vector<int>> grid, int source, int dest );
 };
 #endif

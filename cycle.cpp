@@ -72,24 +72,7 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
     if( free ) return;
 
     path.clear( );
-    for( int i = 0; i < 4 && !free; i++ )
-    {
-        pair<int, int> tailExtend = { tail.front( ).first + delta[i][0], tail.front( ).second + delta[i][1] };
-        if( inBounds( w, h, tailExtend.first, tailExtend.second ) )
-            if( pf->getGrid( )[tailExtend.first][tailExtend.second] == CLEAR_VALUE )
-            {
-                tailNode = tailExtend.first * w + tailExtend.second;
-
-                // search to tail
-                G = new Graph( pf->getGrid( ) );
-                AStar follow( G, headNode, tailNode );
-
-                // clean up
-                delete G;
-
-                free = pushPath( follow.pathTo( tailNode ) );
-            }
-    }
+    pathAround( pf->getGrid( ), headNode, tail.front( ).first * w + tail.front( ).second );
 }
 
 list<int> Cycle::cycle( ) const { return path; }
@@ -99,4 +82,30 @@ bool Cycle::pushPath( const list<int> p )
     if( p.empty( ) ) return 0;
     for( int n : p ) path.push_back( n );
     return 1;
+}
+
+bool Cycle::pathAround( vector<vector<int>> grid, int source, int dest )
+{
+    bool free = 0;
+    int w = grid[0].size( );
+    int h = grid.size( );
+    const vector<int> deltaN = { -w, 1, w, -1 };
+    for( int i = 0; i < 4 && !free; i++ )
+    {
+        int aroundDest = dest + deltaN[i];
+        pair<int, int> extend = { aroundDest / w, aroundDest % w };
+        if( inBounds( w, h, extend.first, extend.second ) )
+            if( grid[extend.first][extend.second] == CLEAR_VALUE )
+            {
+                // search to tail
+                Graph *G = new Graph( grid );
+                AStar follow( G, source, aroundDest );
+
+                // clean up
+                delete G;
+
+                free = pushPath( follow.pathTo( aroundDest ) );
+            }
+    }
+    return free;
 }
