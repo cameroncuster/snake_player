@@ -56,7 +56,8 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
     delete sim;
 
     path.clear( );
-    pathAround( pf->getGrid( ), headNode, tail.front( ).first * w + tail.front( ).second );
+    //pathAround( pf->getGrid( ), headNode, tail.front( ).first * w + tail.front( ).second );
+    pathAroundFromFood( pf->getGrid( ), pf->headPosition( ), tail.front( ) );
 }
 
 list<int> Cycle::cycle( ) const { return path; }
