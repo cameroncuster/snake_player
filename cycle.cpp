@@ -16,9 +16,8 @@ static const vector<vector<int>> delta = { { 0, -1 }, { 1, 0 }, { 0, 1 }, { -1, 
 
 Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
 {
-    vector<vector<int>> grid = pf->getGrid();
-    int w = grid[0].size( );
-    int h = grid.size( );
+    int w = pf->getGrid( )[0].size( );
+    int h = pf->getGrid( ).size( );
     pair<int, int> head = pf->headPosition();
     pair<int, int> food = pf->foodPosition();
     pair<int, int> tailpt = tail.front();
@@ -28,7 +27,7 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
 
     if( tail.size( ) <= 3 )
     {
-        Graph *G = new Graph( grid );
+        Graph *G = new Graph( pf->getGrid( ) );
         Heuristic heuristic( pf->getGrid( ), G->Vertices( ) );
         AStar findFood( G, headNode, foodNode, heuristic.get( ) );
         path = findFood.pathTo( foodNode );
@@ -38,7 +37,7 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
 
     Simulatefield *sim = new Simulatefield( pf, tail );
 
-    Graph *G = new Graph( grid );
+    Graph *G = new Graph( pf->getGrid( ) );
 
     Heuristic *heuristic = new Heuristic( sim->getGrid( ), G->Vertices( ) );
 
@@ -80,26 +79,15 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
 
     if( !free )
     {
-        // reset locals & search to tail
-        /*
-        grid = pf->getGrid();
-        head = pf->headPosition();
-        food = pf->foodPosition();
-        tailpt = tail.front();
-        headNode = head.first * w + head.second;
-        foodNode = food.first * w + food.second;
-        tailNode = tailpt.first * w + tailpt.second;
-        */
-
         for( int i = 0; i < 4; i++ )
         {
             pair<int, int> tailExtend = { tail.front( ).first + delta[i][0], tail.front( ).second + delta[i][1] };
             if( inBounds( w, h, tailExtend.first, tailExtend.second ) )
-                if( grid[tailExtend.first][tailExtend.second] == CLEAR_VALUE )
+                if( pf->getGrid( )[tailExtend.first][tailExtend.second] == CLEAR_VALUE )
                 {
                     tailNode = tailExtend.first * w + tailExtend.second;
 
-                    G = new Graph( grid );
+                    G = new Graph( pf->getGrid( ) );
 
                     heuristic = new Heuristic( pf->getGrid( ), G->Vertices( ) );
 

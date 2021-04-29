@@ -6,6 +6,22 @@
 
 using namespace std;
 
+// construct default with no heuristic (e.a. heuristic function is not instantiated
+    // and defaults to zero
+AStar::AStar( Graph *G, int s, int f ) : start( s ), finish( f ),
+    columns( G->Columns( ) )
+{
+    dist[start] = 0.0;
+    heap.push( Node( start, straightLineDistance( start ) + heuristic[start] ) );
+    while( !heap.empty( ) )
+    {
+        Node node = heap.top( );
+        heap.pop( );
+        for( int w : G->adj( node.vertex ) )
+            relax( node.vertex, w, G );
+    }
+}
+
 // heuristic must be instantiated for all nodes |V| or straightLineDistance will
     // be nullified
 AStar::AStar( Graph *G, int s, int f, map<int, double> h ) : start( s ),

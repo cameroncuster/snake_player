@@ -49,6 +49,7 @@ class AStar
     priority_queue<Node, vector<Node>, nodeCompare> heap;
     int start, finish, columns;
     public:
+    AStar( Graph *, int, int );
     AStar( Graph *, int, int, map<int, double> );
 
     bool hasPath( int );
