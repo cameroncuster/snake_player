@@ -3,8 +3,10 @@
  ***********************************************************************/
 #include "simulatefield.h"
 
-// construct a simulation of a playfield given the intial state and the tail of the snake
-Simulatefield::Simulatefield( const Playfield *pf, std::queue<std::pair<int, int>> t ) : tail( t )
+// construct a simulation of a playfield given the intial state and the tail of
+    // the snake
+Simulatefield::Simulatefield( const Playfield *pf,
+        std::queue<std::pair<int, int>> t ) : tail( t )
 {
     head = pf->headPosition( );
     food = pf->foodPosition( );

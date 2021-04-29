@@ -2,7 +2,6 @@
 #include <vector>
 #include "defines.h"
 
-
 // helper function to check bounds
 bool inBounds( const int width, const int height, const int i, const int j )
 {

@@ -27,7 +27,8 @@ ValidMove Player::makeMove( const Playfield *pf )
 
     // track my own tail
     tail.push( pf->headPosition( ) );
-    if( pf->getGrid( )[ next / width ][ next % width ] != FOOD_VALUE ) tail.pop( );
+    if( pf->getGrid( )[ next / width ][ next % width ] != FOOD_VALUE )
+        tail.pop( );
 
     // translate the next point to a move to be executed
     return nextMove( width, pf->headPosition( ).first * width +
