@@ -6,7 +6,6 @@
 #include "astar.h"
 #include "heuristic.h"
 #include "simulation.h"
-#include "simulatefield.h"
 
 using namespace std;
 

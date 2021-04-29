@@ -12,7 +12,6 @@
 #include "cc.h"
 #include "playfield.h"
 
-#include "simulation.h"
 #include "cycle.h"
 
 /********************************************************************//**
