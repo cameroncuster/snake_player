@@ -13,6 +13,6 @@
 class Simulation
 {
 public:
-    Simulation( Simulatefield *, std::queue<std::pair<int, int>>, std::list<int> );
+    Simulation( Simulatefield *, std::list<int> );
 };
 #endif

@@ -5,6 +5,7 @@
 #include "graph.h"
 #include "astar.h"
 #include "heuristic.h"
+#include "simulation.h"
 #include "simulatefield.h"
 
 using namespace std;
@@ -54,6 +55,9 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
 	path = findFood.pathTo( foodNode );
 
 	// EXECUTE THE PATH TO THE FOOD ON THE SIMULATION
+    Simulatefield *sf = new Simulatefield( sim );
+    Simulation simulateMoves( sf, path );
+    /*
 	list<int> cpy = path;
 	while( !cpy.empty( ) )
 	{
@@ -63,16 +67,18 @@ Cycle::Cycle( const Playfield *pf, queue<pair<int, int>> tail )
 		sim.updatePlayfield( );
 		headNode = n;
 	}
+    */
 
 	// reset locals
-	grid = sim.getGrid();
-	tail = sim.getTail();
-	head = sim.headPosition();
-	food = sim.foodPosition();
+	grid = sf->getGrid();
+	tail = sf->getTail();
+	head = sf->headPosition();
+	food = sf->foodPosition();
 	tailpt = tail.front();
 	headNode = head.first * w + head.second;
 	foodNode = food.first * w + food.second;
 	tailNode = tailpt.first * w + tailpt.second;
+    delete sf;
 
 	list<int> prevpath = path;
 
