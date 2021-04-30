@@ -91,20 +91,6 @@ std::pair<int, int> Simulatefield::translateHead(ValidMove move)
             head.second + translate[move].second);
 }
 
-// Once the food is consumed, place a new food randomly in an open space
-// Optimization: Only randomly select from open spaces
-std::pair<int, int> Simulatefield::placeNewFood()
-{
-    int x, y;
-    do
-    {
-        x = rand() % width;
-        y = rand() % height;
-    } while (grid[y][x] != CLEAR_VALUE);
-    grid[y][x] = FOOD_VALUE;
-    return std::pair<int, int>(y, x);
-}
-
 // Given a player move, attempt to move the head in that direction
 // Return false if the move hits the tail or other obstacle
 // otherwise return true, move the head, update the tail
@@ -126,13 +112,8 @@ bool Simulatefield::moveHead(ValidMove move)
         return false;
     }
 
-    // If the destination cell is the food, grow the tail and
-    // place a new food.
-    if (newHeadPosition == food)
-    {
-        tailLength++;
-        food = placeNewFood();
-    }
+    // If the destination cell is the food, grow the tail
+    if (newHeadPosition == food) tailLength++;
 
     // Put the head on the tail queue
     tail.push(head);

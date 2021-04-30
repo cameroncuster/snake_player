@@ -50,7 +50,6 @@ class Simulatefield
     private:
     void placeObstacles();
     void clearGrid();
-    std::pair<int, int> placeNewFood();
     std::pair<int, int> translateHead(ValidMove);
     void updatePlayfield();
     bool moveHead(ValidMove);
