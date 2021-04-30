@@ -18,6 +18,7 @@ ValidMove Player::makeMove( const Playfield *pf )
     {
         Cycle c( pf, tail );
         path = c.cycle( );
+        if( path.empty( ) ) return NONE; // exit if no path can be found
     }
     int next = path.front( );
     path.pop_front( );

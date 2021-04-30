@@ -12,6 +12,7 @@ do
     ./driver 20 20 >> results20x20.dat
     ./driver 20 30 >> results20x30.dat
     ./driver 30 30 >> results30x30.dat
+    echo "Iteration: $i"
 done
 
 # average scores
