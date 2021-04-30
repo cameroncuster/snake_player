@@ -44,8 +44,8 @@ bool checkCmdLineParams(int argc, char **argv, int &width, int &height, bool &ob
       {
          std::string obstacles(argv[3]);
          if (obstacles == "true" || obstacles == "TRUE" || obstacles == "True")
-            ob = true; 
-      } 
+            ob = true;
+      }
    }
    return true;
 }
@@ -73,11 +73,12 @@ int main(int argc, char **argv)
       turnTimes.push_back(end-start);
    }
    cout << "Final Score: " << game->getScore() << endl;
-   
+
    double sum = 0.0;
    for (duration<double> d : turnTimes)
       sum += d.count();
 
    cout << "Average turn time: " << sum / turnTimes.size() << endl;
+   delete game;
    return 0;
 }
