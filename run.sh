@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # record scores
-for ((i = 0; i < 100; i++))
+for ((i = 1; i <= 100; i++))
 do
     ./driver 3 50  >> results03x50.dat
     ./driver 3 40  >> results03x40.dat
