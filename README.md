@@ -16,68 +16,113 @@ score, and nearing a perfect score almost every run. The player also handles non
 traditional size grids well (with or without obstacles).
 
 ## Performace ##
-**Performance 100 Trials 03x50**
-- Average Score: 35.9937888198758
-- Maximum Score: 133
-- Average Time : 0.000116288707453416
+**Performance 03x40**
+- Number Items : 100
+- Average Score: 30.18
+- Maximum Score: 86
+- Average Time : 6.6939978e-05
 
-**Performance 100 Trials 03x50 Obstacles**
+**Performance 03x40 Obstacles**
+- Number Items : 100
+- Average Score: 13.6
+- Maximum Score: 45
+- Average Time : 7.65015901e-05
 
-**Performance 100 Trials 03x40**
-- Average Score: 31.2298136645963
-- Maximum Score: 111
-- Average Time : 9.10066559006211e-05
+**Performance 03x50**
+- Number Items : 100
+- Average Score: 35.57
+- Maximum Score: 77
+- Average Time : 9.6168116e-05
 
-**Performance 100 Trials 03x40 Obstacles**
+**Performance 03x50 Obstacles**
+- Number Items : 100
+- Average Score: 13.22
+- Maximum Score: 38
+- Average Time : 0.000118964425
 
-**Performance 100 Trials 05x05**
-- Average Score: 19.9873417721519
+**Performance 05x05**
+- Number Items : 100
+- Average Score: 18.89
 - Maximum Score: 24
-- Average Time : 1.2953195e-05
+- Average Time : 8.5778528e-06
 
-**Performance 100 Trials 05x05 Obstacles**
+**Performance 05x05 Obstacles**
+- Number Items : 100
+- Average Score: 18.55
+- Maximum Score: 24
+- Average Time : 8.0428159e-06
 
-**Performance 100 Trials 10x10**
-- Average Score: 87.75625
+**Performance 10x10**
+- Number Items : 100
+- Average Score: 84.4
 - Maximum Score: 100
-- Average Time : 2.42846275e-05
+- Average Time : 2.39310373e-05
 
-**Performance 100 Trials 10x10 Obstacles**
+**Performance 10x10 Obstacles**
+- Number Items : 100
+- Average Score: 73.3
+- Maximum Score: 93
+- Average Time : 2.5738813e-05
 
-**Performance 100 Trials 10x20**
-- Average Score: 163.4
-- Maximum Score: 198
-- Average Time : 6.728642125e-05
+**Performance 10x20**
+- Number Items : 100
+- Average Score: 157.39
+- Maximum Score: 200
+- Average Time : 5.8234758e-05
 
-**Performance 100 Trials 10x20 Obstacles**
+**Performance 10x20 Obstacles**
+- Number Items : 100
+- Average Score: 132.83
+- Maximum Score: 179
+- Average Time : 5.2111296e-05
 
-**Performance 100 Trials 10x30**
-- Average Score: 229.9125
-- Maximum Score: 297
-- Average Time : 0.000114892101875
+**Performance 10x30**
+- Number Items : 100
+- Average Score: 241.76
+- Maximum Score: 300
+- Average Time : 7.8603747e-05
 
-**Performance 100 Trials 10x30 Obstacles**
+**Performance 10x30 Obstacles**
+- Number Items : 100
+- Average Score: 194.38
+- Maximum Score: 271
+- Average Time : 0.000103391617
 
-**Performance 100 Trials 20x20**
-- Average Score: 351.822784810127
+**Performance 20x20**
+- Number Items : 100
+- Average Score: 351.78
 - Maximum Score: 396
-- Average Time : 8.95965981012658e-05
+- Average Time : 8.6326409e-05
 
-**Performance 100 Trials 20x20 Obstacles**
+**Performance 20x20 Obstacles**
+- Number Items : 100
+- Average Score: 297.29
+- Maximum Score: 357
+- Average Time : 8.6697314e-05
 
-**Performance 100 Trials 20x30**
-- Average Score: 507.284810126582
-- Maximum Score: 587
-- Average Time : 0.000167905132911392
+**Performance 20x30**
+- Number Items : 100
+- Average Score: 498.61
+- Maximum Score: 598
+- Average Time : 0.00012643826
 
-**Performance 100 Trials 20x30 Obstacles**
+**Performance 20x30 Obstacles**
+- Number Items : 100
+- Average Score: 378.8
+- Maximum Score: 512
+- Average Time : 0.000187150924
 
-**Performance 100 Trials 30x30**
-- Average Score: 775.891719745223
-- Maximum Score: 886
-- Average Time : 0.000236785101910828
+**Performance 30x30**
+- Number Items : 100
+- Average Score: 755.65
+- Maximum Score: 883
+- Average Time : 0.00019038416
 
-**Performance 100 Trials 30x30 Obstacles**
+**Performance 30x30 Obstacles**
+- Number Items : 100
+- Average Score: 618.47
+- Maximum Score: 759
+- Average Time : 0.00027685104
 
 Steps in the Pathfinding Algorithm
 ---
@@ -92,6 +137,13 @@ Steps in the Pathfinding Algorithm
 [CHANGELOG](Log)
 
 ### Action Shots ###
-![Gif of snake player execution on 20x20 board](snake.gif)
+![Gif of snake player execution on 20x20 board](snake20x20.gif)
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-![Gif of snake player with obstacles execution on 20x20 board](snakeObstacles.gif)
+![Gif of snake player with obstacles execution on 20x20 board](snakeObstacles20x20.gif)
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+![Gif of snake player execution on 3x50 board](snake20x20.gif)
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+![Gif of snake player with obstacles execution on 20x20 board](snakeObstacles20x20.gif)
