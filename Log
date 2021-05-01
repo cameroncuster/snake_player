@@ -5,35 +5,38 @@ April 6:
     * made first commit of startup code source with CHANGELOG
 
 April 10:
-    * attempted bfs search, could not get implementation to work smoothly with
+    * Attempted bfs search, could not get implementation to work smoothly with
       interface
     * fought debugger for extensive amount of time before deciding the bfs was
       not worth it
+      Tested: Graphically and with the debugger
+      Data Structures: Queue (for bfs), Adjacency List to store the graph
+      representation
     * brainstormed ideas extensively for more successful player
 
 April 12:
-    * thinking about new ideas every day and different graph algorithms becuase
+    * Thinking about new ideas every day and different graph algorithms becuase
       nothing else appears to be valid
     * Use A* for searching because it will perform better than bfs, dfs, etc.
     * Idea: Dijkstra's with dynamic weighting system to prevent the snake from
       taking a path into the tail
 
 April 14:
-    * thought about how anyone scored perfectly in the game using graph traversal
+    * Thought about how anyone scored perfectly in the game using graph traversal
       without using an algorithm which eventually created or approximated a
       Hamaltonian Path
 
 April 15:
-    * had idea for genetic algorithm to determine weights for Dijkstra's
+    * Idea for genetic algorithm to determine weights for Dijkstra's
       dynamically throughout the search to be marketed as a "graph algorithm"
     * Idea: to use GA through evolution of random paths and evolve the top x(10)
       snakes to populate the next generation
 
 April 17:
-    * idea to loop along self by weighting edges with A* of tail very heavily,
+    * Idea to loop along self by weighting edges with A* of tail very heavily,
       and if biconnected the then become a scanner until a path becomes available
-    * planning to implement one of the last two idea's, maybe both in the next few
-      hours
+    * planning to implement one of the last two idea's, maybe both in the next 
+      few hours
     * going to implement GA with A* search algorithm in combination, A* tail
       coiling algorithm builds length of the snake while the GA enforces
       survival. With the focus of both algorithms the player must be successful.
@@ -41,13 +44,22 @@ April 17:
       Data Structures: Arrays, Sets, and Maps
       Testing: 100 Runs to validate success of the algorithm and performance,
       (Graphical) is used to analyze game play and potential issues
+      Visual testing is for the purpose of generating a working implementation
+      before the player is tested for performance
+    * May upgrade the visual for commandline output so I can examine the moves
+      executed by the snake
 
 April 18:
     * Some success with the genetic player as a minimal improvement from the
       previous player, same data structures and algorithms (bug fixes)
+
+      Testing: Testing is still done graphically and with 100 run script to
+      evaluate the performance of the algorithm
+      Data Structures: Arrays, Sets, Maps
+
     * Working to expand the GA for multiple generations, current success with one
       generation has been minimal as a brute a single generation GA degenrates to
-      a brute force algorithm
+      a brute force algorithm - with a prune to remove invalid moves
     * GA tracks score, but the length of the snake is not approximated correctly
       because the apples in the simulated games spawn in different locations than
       in actual gameplay so the snake thinks it is shorter/longer than it
@@ -73,6 +85,11 @@ April 20:
     * Working A* player with no heuristic, going to modify the heurisitc to
       follow the tail for as long as possible (e.a. nodes adjacent to the tail
       are weighted very heavily in heuristic function)
+
+      Testing: Visual, 100 run script, Scoreboard
+      Data Structures: Priority Queue using (min_heap) for A*, Arrays (dynamic),
+      Hashes, RB Trees (e.a. sets and maps (unordered and ordered)), Graph
+
     * Modified heuristic function for A* to follow the tail of the snake, has
       not been as effective as desired
     * Idea to modify the heurisitic function for the search to weight nodes by
@@ -115,6 +132,8 @@ April 21:
     * The modified heuristic A* has performed much better than current
       implementation of the genetic algorithm or the DFS search as shown above
     * Added GitLab runner provided by Devon Schneider with attribution
+    * The GitLab runner enhances testing by ensuring all put_backs meet standard
+      and should protect the runner scripts
     * Runner tests successful compilation on master when pushing to repo -
       ensures proper software development practices are being upheld (e.a. not
       inducing crashing/hanging on the runner scripts)
@@ -137,6 +156,9 @@ April 23:
       and a path to all elements can easily be known, but how to decide when to
       turn towards the larger component... look ahead?
 
+      Testing: Various Size Boards (Visual), 100 Run Script, Scoreboard
+      Data Structures: Sets, Maps, Hashes, Heaps, RB Trees, arrays, Graphs
+
 April 24:
     * Updated for random searching in A* Cycle Algorithm if no path is found ->
       appears to have improved the scores (graphically)
@@ -152,6 +174,8 @@ April 24:
     * Implementation of the above algorithm was much less effective than
       origionally desired. I am going to go to bed as it is 4 A.M. and my
       algorithm was unsuccessful.
+
+    * Testing and Data Structures remain constant
 
 April 25:
     * Five hours of sleep later I have expanded my idea -> I need to follow the
@@ -178,6 +202,8 @@ April 25:
     * Planning to search for optomizations to the algorithm, document code, and
       test the player
 
+    * Testing and Data Structures remain constant
+
 April 26:
     * Given my success yesterday the player has performed incredible. The player
       has runs which never end (infinte) because the player will never elect to
@@ -197,7 +223,8 @@ April 26:
       Data Structures: Graph, Queue, Linked List, Array
       Testing: 100 runs script, GitLab Runner, visually tested unique board sizes
       like 3x50
-    * Wrote a script to test unique/regular board sizes (3x50), etc.
+    * Wrote a script to test unique/regular board sizes (3x50), etc. - Dramatic
+      improvement to the testing
     * Cyclic A* Seaching Algorithm performs very well on all variations of board
       sizes + with or w/o obstacles
     * Does caching the path affect the performance? No, because the location of
@@ -217,6 +244,7 @@ April 29:
     * added link to Log and development to README
     * full documentation code which is written to be self-describing and
       self-documenting like well-written prose
+    * Everything is an object with dependency injection as the design pattern
 
 April 30:
     * Idea to implement the perfect player by creating tail buffer where all open
@@ -230,3 +258,6 @@ April 30:
     * code has been tested 1000 runs at a time with the upgraded script to
       include assorted size boards to analyzing performance of a specific
       improvement at a detailed level
+
+      Testing: Test Script 1000+ runs, GitLab Runner, Scoreboard, Visual
+      Data Structures: Same
