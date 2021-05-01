@@ -15,14 +15,12 @@ Overall the algorithm gave outstanding performance, frequency acheiving a perfec
 score, and nearing a perfect score almost every run. The player also handles non-
 traditional size grids well (with or without obstacles).
 
-Steps in the Pathfinding Algorithm
----
+## Steps in the Pathfinding Algorithm ##
 1. Locate a path to the food.
 2. Simulate the path to the food.
 3. Locate a path to the tail on the simulated game.
 4. If either the path to the food or the path to the tail does not exist then
     follow the tail.
----
 
 ### Development Process ###
 [CHANGELOG](Log)
@@ -51,7 +49,7 @@ Steps in the Pathfinding Algorithm
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 ![Gif of snake player with obstacles execution on 20x20 board](snakeObstacles03x50.gif)
 
-### Conclusion ###
+## Conclusion ##
 This project was one of my favorites as it required genuine thought, this
 was not some algorithm that could just be found online "unless you wanted
 to try to implemented a nerual net or some sort of evolutionary algorithm."
