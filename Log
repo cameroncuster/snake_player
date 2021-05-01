@@ -304,15 +304,3 @@ May 1:
       success.
     * Code is tested, examined for memory leaks, run 1000's of times on assorted
       game boards, and documented - Green Light
-
-    * This project was one of my favorites as it required genuine thought, this
-      was not some algorithm that could just be found online "unless you wanted
-      to try to implemented a nerual net or some sort of evolutionary algorithm."
-      Leveraging graph traversals this way was a fantastic learning experience,
-      I did not think it was possible. I spent majority of my time thinking about
-      the solution at the beginning of the project. It took a while before I
-      finally arrived at the solution -
-      key observations: follow the tail, don't get trapped
-      I should hope this project is continued for many years to come as it was
-      some of the most excitment I have had while writing code (I get pretty
-      excited to write code so don't take that lightly)
