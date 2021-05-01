@@ -30,10 +30,8 @@ if path to apple exists:
 
     if path back to the tail exists:
         return path to apple + path back to tail
-
     else
         return path to follow tail
-
 else
     return path to follow tail
 ```
