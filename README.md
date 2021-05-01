@@ -15,7 +15,7 @@ Overall the algorithm gave outstanding performance, frequency acheiving a perfec
 score, and nearing a perfect score almost every run. The player also handles non-
 traditional size grids well (with or without obstacles).
 
-## Performace ##
+## Performance ##
 **Performance 03x40**
 - Number Items : 100
 - Average Score: 30.18
