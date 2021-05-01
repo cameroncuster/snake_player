@@ -72,6 +72,8 @@ April 18:
     * Going to continue to brainstorm approaches. The most fun problems take a
       lot of thought... not necessiarly a lot of code.
 
+********************************************************************************GA SCORE HERE
+
 April 20:
     * Began exploring idea for A* where heuristic follows tail of snake
     * As a more descriptive explaination, the A* heurisitic is weighted so that
@@ -223,34 +225,38 @@ April 26:
       Data Structures: Graph, Queue, Linked List, Array
       Testing: 100 runs script, GitLab Runner, visually tested unique board sizes
       like 3x50
-    * Wrote a script to test unique/regular board sizes (3x50), etc. - Dramatic
-      improvement to the testing
     * Cyclic A* Seaching Algorithm performs very well on all variations of board
       sizes + with or w/o obstacles
     * Does caching the path affect the performance? No, because the location of
       the snake tail is always accounted for (e.a. as long as a path to the tail
       exists you are good to go) - caching is faster
-
-April 28:
     * Documented and cleand the code while focussing on writing object oriented,
       modular code
+
+April 28:
     * Code is loosly coupled, and minimal
     * Code is well documented and tested
     * README with description of the algorithm is written
 
 April 29:
+    * Wrote a script to test unique/regular board sizes (3x50), etc. - Dramatic
+      improvement to the testing
     * added performance to README
-    * added GIFS of graphical player with and without obstacles to README
-    * added link to Log and development to README
     * full documentation code which is written to be self-describing and
-      self-documenting like well-written prose
+      self-documenting. The code reads like well-written prose.
     * Everything is an object with dependency injection as the design pattern
 
+      Objects: Heurisitic, Cycle, Graph, A*, Player, Simulation, Simulatefield
+
+    * removed heuristic ^
+
 April 30:
+    * added GIFS of graphical player with and without obstacles to README
+    * added link to Log and development to README
     * Idea to implement the perfect player by creating tail buffer where all open
       nodes are added to the buffer between the head and tail once the player
       begins to loop infintely this will ensure the food can always be eaten (in
-      most cases)
+      most cases) - better description of algorithm listed above
     * Fixed code hanging when apple is placed in the simulation where the apple
       is between the head and the path to the tail, preventing the snake from
       executing any valid move without killing itself
@@ -258,6 +264,33 @@ April 30:
     * code has been tested 1000 runs at a time with the upgraded script to
       include assorted size boards to analyzing performance of a specific
       improvement at a detailed level
+    * Used Valgrind to detect memory leaks, and found the start-up code does not
+      delete the game in the driver, added delete game, and found there were no
+      memory leaks - This was a big win for my snake (and my ability to write 
+      clean professional software)
 
       Testing: Test Script 1000+ runs, GitLab Runner, Scoreboard, Visual
-      Data Structures: Same
+      Data Structures: Same - Very Object Oriented Programming
+
+May 1:
+    * created better GIFS with more exciting runs
+    * read the code base
+    * cleaned up old branches in the repo
+    * reorganized the directory structure to ressemble a professional project
+    * attempted to write 'perfect player' which creates the buffer between the
+      head and tail when the snake stops progressing in the game, but with little
+      success.
+    * Code is tested, examined for memory leaks, run 1000's of times on assorted
+      game boards, and documented - Green Light
+
+    * This project was one of my favorites as it required genuine thought, this
+      was not some algorithm that could just be found online "unless you wanted
+      to try to implemented a nerual net or some sort of evolutionary algorithm."
+      Leveraging graph traversals this way was a fantastic learning experience,
+      I did not think it was possible. I spent majority of my time thinking about
+      the solution at the beginning of the project. It took a while before I
+      finally arrived at the solution -
+      key observations: follow the tail, don't get trapped
+      I should hope this project is continued for many years to come as it was
+      some of the most excitment I have had while writing code (I get pretty
+      excited to write code so don't take that lightly)
