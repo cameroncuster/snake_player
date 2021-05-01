@@ -292,6 +292,10 @@ April 30:
 May 1:
     * created better GIFS with more exciting runs
     * add obstacle performance to README
+    * created a performance breakdown to detail the performance of the player on
+      assorted boards
+    * upgraded the run script for detailed output direct to the performance
+      breakdown
     * read the code base
     * cleaned up old branches in the repo
     * reorganized the directory structure to ressemble a professional project

@@ -4,6 +4,7 @@
 my $sum = 0;
 my $count = 0;
 my $max = 0; 
+my $min = 0; 
 my $time = 0.0; 
 
 while ($line = <>)
@@ -14,6 +15,7 @@ while ($line = <>)
       $sum += $1;
       $count++;
       $max = ($1 > $max) ? $1 : $max
+      $min = ($1 < $min) ? $1 : $min
    }
    if ($line =~ /Average turn time:\s*(\d+\.\d+e?[-+]?\d+)/)
    {
@@ -24,4 +26,5 @@ while ($line = <>)
 print "Number Items : ", $count, "\n"; 
 print "Average Score: ", $sum/$count, "\n";
 print "Maximum Score: ", $max, "\n";
+print "Minimum Score: ", $min, "\n";
 print "Average Time : ", $time/$count, "\n";

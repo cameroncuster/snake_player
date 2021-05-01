@@ -34,6 +34,7 @@ do
 done
 
 # average scores
+echo "## Performance ##"
 echo "**Performance 03x40**"
 ./avgScores.pl < results03x40.dat
 
