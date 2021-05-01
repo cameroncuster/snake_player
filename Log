@@ -9,58 +9,83 @@ April 10:
       interface
     * fought debugger for extensive amount of time before deciding the bfs was
       not worth it
-    * brainstormed ideas for more successful player
+    * brainstormed ideas extensively for more successful player
 
 April 12:
     * thinking about new ideas every day and different graph algorithms becuase
-      nothing else appears to be valid ( A*, Dijkstras with dynamic weights, etc. )
+      nothing else appears to be valid
+    * Use A* for searching because it will perform better than bfs, dfs, etc.
+    * Idea: Dijkstra's with dynamic weighting system to prevent the snake from
+      taking a path into the tail
 
 April 14:
-    * confused about how anyone scored perfectly in the game with A* without
-      using an algorithm which eventually created or approximated a Hamaltonian
-      Path
+    * thought about how anyone scored perfectly in the game using graph traversal
+      without using an algorithm which eventually created or approximated a
+      Hamaltonian Path
 
 April 15:
-    * had idea for genetic algorithm to determine weights for A* dynamically
-      throughout the search to be marketed as a "graph algorithm"
-    * idea to use GA through evolution of random paths
+    * had idea for genetic algorithm to determine weights for Dijkstra's
+      dynamically throughout the search to be marketed as a "graph algorithm"
+    * Idea: to use GA through evolution of random paths and evolve the top x(10)
+      snakes to populate the next generation
 
 April 17:
     * idea to loop along self by weighting edges with A* of tail very heavily,
       and if biconnected the then become a scanner until a path becomes available
-    * going to implement one of the last two idea's, maybe both in the next few
+    * planning to implement one of the last two idea's, maybe both in the next few
       hours
-    * going to implement GA with A* algorithm, A* builds length and GA build
-      survival, with the focus of both algorithms the player must be successful
+    * going to implement GA with A* search algorithm in combination, A* tail
+      coiling algorithm builds length of the snake while the GA enforces
+      survival. With the focus of both algorithms the player must be successful.
     * Working to implement the GA and have been unsuccessful thus far
+      Data Structures: Arrays, Sets, and Maps
+      Testing: 100 Runs to validate success of the algorithm and performance,
+      (Graphical) is used to analyze game play and potential issues
 
 April 18:
     * Some success with the genetic player as a minimal improvement from the
-      previous player
+      previous player, same data structures and algorithms (bug fixes)
     * Working to expand the GA for multiple generations, current success with one
-      generation has been minimal
+      generation has been minimal as a brute a single generation GA degenrates to
+      a brute force algorithm
     * GA tracks score, but the length of the snake is not approximated correctly
       because the apples in the simulated games spawn in different locations than
-      in actual gameplay so the snake thinks it is shorter than it is
-    * Potential Fixes: spawn more apples in the simulation, count number of moves,
-      not score for naturally selecting the next generation
+      in actual gameplay so the snake thinks it is shorter/longer than it
+      actually is in execution
+    * Potential Fixes: spawn more apples in the simulation, and count number of
+      moves as opposed to score for populating (naturally selecting) the next
+      generation
+    * Discontinuing the GA, as it will not be the optimal approach to reasons
+      listed above.
+    * Going to continue to brainstorm approaches. The most fun problems take a
+      lot of thought... not necessiarly a lot of code.
 
 April 20:
-    * began exploring idea for astar where heuristic follows tail of snake
-    * rough pseudo implementation written on astar branch
-    * master cleaned and branching implemented for clean code base and proper
-      coding standard
+    * Began exploring idea for A* where heuristic follows tail of snake
+    * As a more descriptive explaination, the A* heurisitic is weighted so that
+      nodes adjacent to the tail are preferred. Preferring nodes adjacent to the
+      tail will prevent the snake from trapping itself inside it's own tail in
+      many situations.
+    * Pseudo implementation of the algorithm (described above) performs only
+      slightly better than a traditional A* search for the food.
+    * Master cleaned and branching implemented for foundational software
+      development practices and proper coding standard
     * Working A* player with no heuristic, going to modify the heurisitc to
       follow the tail for as long as possible (e.a. nodes adjacent to the tail
-      are weighted very heavily in heuristic)
-    * modified heuristic for A* to follow the tail of the snake, has not been as
-      effective as desired
-    * potentially weight the heuristic by the amount of grid reachable based on
-      given decision
+      are weighted very heavily in heuristic function)
+    * Modified heuristic function for A* to follow the tail of the snake, has
+      not been as effective as desired
+    * Idea to modify the heurisitic function for the search to weight nodes by
+      the number of reachable squares from that location in the graph (e.a. size
+      of graph component), ideally the graph will always be single component
+      which would eradicate the purpose of the heuristic function
     * Implemented DFS search with minimal success, the search traps itself often,
-      but is blazingly fast, might be able to leverage this
-    * Idea to remove nodes from the graph as I visit them until all nodes are 
-      removed then reconstruct graph
+      but is blazingly fast, might be able to leverage this type of search with
+      modifications to generate an approximation of a Hamaltonian Circuit
+      throughout the graph
+    * Idea to remove nodes from the graph as I visit them until all nodes are
+      removed, the order in which the nodes are removed is an approximation of a
+      Hamaltonian Circuit
 
 April 21:
 
@@ -87,64 +112,108 @@ April 21:
  *                                     *
  * * * * * * * * * * * * * * * * * * * *
 
-    * the modified heuristic has performed much better than current
-      implementation of the genetic algorithm or the dfs search as shown above
-    * added GitLab runner provided by Devon Schneider with attribution
+    * The modified heuristic A* has performed much better than current
+      implementation of the genetic algorithm or the DFS search as shown above
+    * Added GitLab runner provided by Devon Schneider with attribution
     * Runner tests successful compilation on master when pushing to repo -
-      ensures proper development practices are being upheld (e.a. not inducing
-      crashing/hanging on the runner scripts)
+      ensures proper software development practices are being upheld (e.a. not
+      inducing crashing/hanging on the runner scripts)
 
 April 22:
-    * idea for path from head to tail, tail to food, food to tail in execution
+    * Idea to genereate/locate a path from the food to the tail after locating
+      and executing a path from the head to the food
 
 April 23:
-    * implemented the idea from April 22, success has been the same as the AStar
+    * Implemented the idea from April 22, success has been the same as the A*
       with modified heuristic thus far, even with path compression which did not
       appear to improve anything
-    * success was minimal with the continual search approach because the graph
-      split itself multiple times
+    * Success was minimal with the continual search approach because the snake
+      split the graph into multiple components a number of times
+    * The snake finds paths effectively and what appears to be a cycle begins to
+      develop from the snake's head around to the snake's tail, but the snake
+      continues to trap itelf
+    * Idea to turn into larger component when pathfinding... implementation is
+      the challenge here -> size of componenet can easily be known with a bfs,
+      and a path to all elements can easily be known, but how to decide when to
+      turn towards the larger component... look ahead?
 
 April 24:
-    * Updated for random searching in AStar cycle path if no node is found, looks
-      to have imporved the score a bit
-    * idea to take longest path to tail if either the path to the food or the tail
-      is unavailable
+    * Updated for random searching in A* Cycle Algorithm if no path is found ->
+      appears to have improved the scores (graphically)
+    * scoreboard confirms my suspicion of this improvement in average/max score
+    * Testing: Track minimum score
+    * Idea to implement searching algorithm to search to the tail of the snake,
+      then execute the moves along the path and search from that location to the
+      food, then to search from the food to the head of the snake, this should
+      ensure the snake can always find a path from the head to the tail
+    * Just a few thoughts: I think the algorithm listed above will perform
+      optimally because the path to the tail is critical, and when the snake
+      loses a path to it's tail it traps itself.
+    * Implementation of the above algorithm was much less effective than
+      origionally desired. I am going to go to bed as it is 4 A.M. and my
+      algorithm was unsuccessful.
 
 April 25:
-    * finally GOT IT TO WORK, MY IDEA WAS CORRECT, IT DEVELOPS A CYCLE!!!
+    * Five hours of sleep later I have expanded my idea -> I need to follow the
+      tail when I can not get to the food or back to the tail from the food,
+      This is how I will ensure I always have a path to my tail to allow the
+      cycle to develop and prevent from trapping myself
+    * I think my idea (above) about requiring a path to the tail was correct,
+      my implementation was incorrect: finding path to the tail before and after
+      eating the food does not ensure that there path to the tail will always
+      exist because in my implementation as long as 1/3 of those paths existed
+      the snake would move as if all was swell not knowing it was walking right
+      into it's own death
+    * Tracking that all paths are found (path to food, path to tail) before
+      deciding to follow the tail is critical
+    * FINALLY I GOT IT TO WORK! MY IDEA WAS CORRECT!! IT DEVELOPS A CYCLE!!!
+    * Implementation was much easier for this one than the previous algorithms
+      besides some extra tail management
+    * Added GetTail and HasObstacles member retrieval functions to the playfield
+      class to reduce debug time
+    * Implemented the execution of moves from the head to the food in the
+      algorithm above by leveraging playfield code to create a simulation (which
+      essentailly a playfield with an identical interface but can me manipulated
+      by my objects as friends)
+    * Planning to search for optomizations to the algorithm, document code, and
+      test the player
 
 April 26:
-    * after my success yesterday the player has performed incredible. Sometimes
-      the player spends a long time between runs, to reform itself, and runs can
-      even become infinite if no path to the food is ever found that doesn't
-      allow a path back to the tail. I think if I searched to every empty space
+    * Given my success yesterday the player has performed incredible. The player
+      has runs which never end (infinte) because the player will never elect to
+      kill iteself, this also causes the code to hang at time when the snake is
+      forced to eat an apple in it's path, but does not want to grow any longer
+      so that the snake does not kill itself
+    * Idea: I think if I searched to every empty space
       at that point to increase distance between tail and head the player would
       win everytime on the playfield with no obstacles - e.a. perfect score is
-      always acheivable
-    * need to track own tail + speed up the algorithm + document
-    * updated to not use a modified interface, and game.cpp kills infinite games
-
- * * * * * * * * * * * * * * * * * * * *
- * Average Scores using AStar Cycle    *
- *                                     *
- * Size: 20 x 20                       *
- * Number Items : 360.47               *
- * Average Score: 397                  *
- * Maximum Score: 54                   *
- * Average Time : 0.00033194409        *
- *                                     *
- * * * * * * * * * * * * * * * * * * * *
-
-    * evidently the cycle AStar performs substantially better than any of my
-      other players include in the genetic
+      always acheivable (with enough moves and logic...)
+    * Must manage own tail - eradicate (Playfield::getTail())
+    * Updated to not use a modified interface, and game.cpp kills infinite games
+      when the number of moves without eating an apple exceeds the 10 * number of
+      spots in the grid
+    * Evidently the Cyclic A* Search player outperforms all of my previous
+      players by orders of magnitude and could be adapted to be optimal
       Data Structures: Graph, Queue, Linked List, Array
-      Testing: 100 run script, GitLab Runner, visually tested unique board sizes
+      Testing: 100 runs script, GitLab Runner, visually tested unique board sizes
       like 3x50
-    * going to wrtie a script to test unique board sizes (3x50)
-    * performs very well on all variations of board sizes + with or w/o obstacles
+    * Wrote a script to test unique/regular board sizes (3x50), etc.
+    * Cyclic A* Seaching Algorithm performs very well on all variations of board
+      sizes + with or w/o obstacles
+    * Does caching the path affect the performance? No, because the location of
+      the snake tail is always accounted for (e.a. as long as a path to the tail
+      exists you are good to go) - caching is faster
 
 April 28:
-    * documented code and focussed on modularity
-    * code is cleaned, modularized, Object Oriented, and decoupled
-    * code is well documented and tested
-    * write README
+    * Documented and cleand the code while focussing on writing object oriented,
+      modular code
+    * Code is loosly coupled, and minimal
+    * Code is well documented and tested
+    * README with description of the algorithm is written
+
+April 29:
+    * added performance to README
+    * added GIFS of graphical player with and without obstacles to README
+    * added link to Log and development to README
+    * full documentation code which is written to be self-describing and
+      self-documenting like well-written prose
