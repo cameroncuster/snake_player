@@ -21,6 +21,22 @@ traditional size grids well (with or without obstacles).
 3. Locate a path to the tail on the simulated game.
 4. If either the path to the food or the path to the tail does not exist then
     follow the tail.
+### Pseudocode for the Pathfinding Algorithm ###
+```
+find path to follow tail
+
+if path to apple exists:
+    execute path to the apple
+
+    if path to the tail exists:
+        return path to apple + path back to tail
+
+    else
+        return path to follow tail
+
+else
+    return path to follow tail
+```
 
 ### Development Process ###
 [CHANGELOG](Log)
