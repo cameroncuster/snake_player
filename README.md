@@ -58,7 +58,7 @@ else
 
 ### Action Shots ###
 ![Gif of snake player execution on 20x20 board](snake20x20.gif)
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 ![Gif of snake player with obstacles execution on 20x20 board](snakeObstacles20x20.gif)
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 ![Gif of snake player execution on 3x50 board](snake03x50.gif)
