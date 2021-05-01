@@ -28,7 +28,7 @@ find path to follow tail
 if path to apple exists:
     execute path to the apple
 
-    if path to the tail exists:
+    if path back to the tail exists:
         return path to apple + path back to tail
 
     else
@@ -58,7 +58,7 @@ else
 
 ### Action Shots ###
 ![Gif of snake player execution on 20x20 board](snake20x20.gif)
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 ![Gif of snake player with obstacles execution on 20x20 board](snakeObstacles20x20.gif)
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 ![Gif of snake player execution on 3x50 board](snake03x50.gif)
