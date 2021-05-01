@@ -74,4 +74,5 @@ Steps in the Pathfinding Algorithm
 [CHANGELOG](Log)
 
 ### Action Shots ###
-ADD GIF OF SNAKE PLAYING for each board size
+![Gif of snake player execution on 20x20 board](snake.gif)
+![Gif of snake player with obstacles execution on 20x20 board](snakeObstacles.gif)
