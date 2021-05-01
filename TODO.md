@@ -1,7 +1,6 @@
-TURN THE PERFORMANCE LOG INTO A SCOREBOARD LIKE GRAPH BASED ON BOARD SIZE
-DELETE THE Extra BRANCHES AFTER GATHERING ALL TESTRUNS and inserting to Log
-RESTRUCTURE FILES
-IMPLEMENT FINAL IDEA FOR MAX SCORE (PERFECT PLAYER)
-move all scores to 2d loop and use file names and perl regex
-SPEED OF GIFS
-ADD EMBEDDED ASCII ART
+* Transform the performance breakdown into a scoreboard type bar graph
+  representing the performance of the player given each board size (min, max, avg)
+* restructure the files for professional file structure
+* implement the idea for the 'perfect player'
+* use GIFS with adequate speed for viewing
+* add embedded ascii art to the documentation
