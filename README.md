@@ -28,7 +28,7 @@ traditional size grids well (with or without obstacles).
 - Maximum Score: 357
 - Average Time : 8.6697314e-05
 
-** View more specs about the [PERFORMANCE](PERFORMANCE.md)**
+**View more specs about the [PERFORMANCE](PERFORMANCE.md)**
 
 Steps in the Pathfinding Algorithm
 ---
