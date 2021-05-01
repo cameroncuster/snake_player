@@ -72,7 +72,17 @@ April 18:
     * Going to continue to brainstorm approaches. The most fun problems take a
       lot of thought... not necessiarly a lot of code.
 
-********************************************************************************GA SCORE HERE
+      * GA will not successfully run for 100 runs due to generational issues
+
+      *********************
+      * Approximate Score *
+      * Average: 10-15    *
+      * Max Score: 20     *
+      * Verified through  *
+      * Graphical Runs    *
+      * (Imprecise)       *
+      *********************
+
 
 April 20:
     * Began exploring idea for A* where heuristic follows tail of snake
@@ -105,6 +115,7 @@ April 20:
     * Idea to remove nodes from the graph as I visit them until all nodes are
       removed, the order in which the nodes are removed is an approximation of a
       Hamaltonian Circuit
+
 
 April 21:
 
@@ -147,7 +158,7 @@ April 22:
 April 23:
     * Implemented the idea from April 22, success has been the same as the A*
       with modified heuristic thus far, even with path compression which did not
-      appear to improve anything
+      appear to improve anything (with respect to the scores)
     * Success was minimal with the continual search approach because the snake
       split the graph into multiple components a number of times
     * The snake finds paths effectively and what appears to be a cycle begins to
@@ -232,6 +243,9 @@ April 26:
       exists you are good to go) - caching is faster
     * Documented and cleand the code while focussing on writing object oriented,
       modular code
+    * The new game file prevents infinite runs and allows for testing (thank you)
+
+*********************************************************************************Insert 20x20 100 run scores
 
 April 28:
     * Code is loosly coupled, and minimal
@@ -241,6 +255,9 @@ April 28:
 April 29:
     * Wrote a script to test unique/regular board sizes (3x50), etc. - Dramatic
       improvement to the testing
+
+*********************************************************************************Insert all scores here
+
     * added performance to README
     * full documentation code which is written to be self-describing and
       self-documenting. The code reads like well-written prose.
@@ -274,6 +291,7 @@ April 30:
 
 May 1:
     * created better GIFS with more exciting runs
+    * add obstacle performance to README
     * read the code base
     * cleaned up old branches in the repo
     * reorganized the directory structure to ressemble a professional project
