@@ -217,3 +217,16 @@ April 29:
     * added link to Log and development to README
     * full documentation code which is written to be self-describing and
       self-documenting like well-written prose
+
+April 30:
+    * Idea to implement the perfect player by creating tail buffer where all open
+      nodes are added to the buffer between the head and tail once the player
+      begins to loop infintely this will ensure the food can always be eaten (in
+      most cases)
+    * Fixed code hanging when apple is placed in the simulation where the apple
+      is between the head and the path to the tail, preventing the snake from
+      executing any valid move without killing itself
+    * The fix was to not place apples in the simuation in the moveHead() routine
+    * code has been tested 1000 runs at a time with the upgraded script to
+      include assorted size boards to analyzing performance of a specific
+      improvement at a detailed level
