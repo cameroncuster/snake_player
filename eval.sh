@@ -35,58 +35,58 @@ done
 
 # average scores
 echo "## Performance ##"
-echo "**Performance 03x40**"
+echo "\n**Performance 03x40**"
 ./avgScores.pl < results03x40.dat
 
-echo "**Performance 03x40 Obstacles**"
+echo "\n**Performance 03x40 Obstacles**"
 ./avgScores.pl < results03x40Ob.dat
 
-echo "**Performance 03x50**"
+echo "\n**Performance 03x50**"
 ./avgScores.pl < results03x50.dat
 
-echo "**Performance 03x50 Obstacles**"
+echo "\n**Performance 03x50 Obstacles**"
 ./avgScores.pl < results03x50Ob.dat
 
-echo "**Performance 05x05**"
+echo "\n**Performance 05x05**"
 ./avgScores.pl < results05x05.dat
 
-echo "**Performance 05x05 Obstacles**"
+echo "\n**Performance 05x05 Obstacles**"
 ./avgScores.pl < results05x05Ob.dat
 
-echo "**Performance 10x10**"
+echo "\n**Performance 10x10**"
 ./avgScores.pl < results10x10.dat
 
-echo "**Performance 10x10 Obstacles**"
+echo "\n**Performance 10x10 Obstacles**"
 ./avgScores.pl < results10x10Ob.dat
 
-echo "**Performance 10x20**"
+echo "\n**Performance 10x20**"
 ./avgScores.pl < results10x20.dat
 
-echo "**Performance 10x20 Obstacles**"
+echo "\n**Performance 10x20 Obstacles**"
 ./avgScores.pl < results10x20Ob.dat
 
-echo "**Performance 10x30**"
+echo "\n**Performance 10x30**"
 ./avgScores.pl < results10x30.dat
 
-echo "**Performance 10x30 Obstacles**"
+echo "\n**Performance 10x30 Obstacles**"
 ./avgScores.pl < results10x30Ob.dat
 
-echo "**Performance 20x20**"
+echo "\n**Performance 20x20**"
 ./avgScores.pl < results20x20.dat
 
-echo "**Performance 20x20 Obstacles**"
+echo "\n**Performance 20x20 Obstacles**"
 ./avgScores.pl < results20x20Ob.dat
 
-echo "**Performance 20x30**"
+echo "\n**Performance 20x30**"
 ./avgScores.pl < results20x30.dat
 
-echo "**Performance 20x30 Obstacles**"
+echo "\n**Performance 20x30 Obstacles**"
 ./avgScores.pl < results20x30Ob.dat
 
-echo "**Performance 30x30**"
+echo "\n**Performance 30x30**"
 ./avgScores.pl < results30x30.dat
 
-echo "**Performance 30x30 Obstacles**"
+echo "\n**Performance 30x30 Obstacles**"
 ./avgScores.pl < results30x30Ob.dat
 
 # clean-up

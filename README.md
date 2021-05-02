@@ -42,15 +42,17 @@ else
 ## Performance ##
 **Performance 20x20**
 - Number Items : 100
-- Average Score: 351.78
-- Maximum Score: 396
-- Average Time : 8.6326409e-05
+- Average Score: 348.43
+- Maximum Score: 398
+- Minimum Score: 212
+- Average Time : 6.9053826e-05
 
 **Performance 20x20 Obstacles**
 - Number Items : 100
-- Average Score: 297.29
-- Maximum Score: 357
-- Average Time : 8.6697314e-05
+- Average Score: 286.52
+- Maximum Score: 351
+- Minimum Score: 68
+- Average Time : 7.8201485e-05
 
 **View more specs about the [PERFORMANCE](PERFORMANCE.md)**
 
