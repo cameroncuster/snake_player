@@ -1,7 +1,7 @@
 /********************************************************************//**
  * @file
  ***********************************************************************/
-#include "biconnected.h"
+#include "../inc/biconnected.h"
 
 Biconnected::Biconnected(SnakeGraph *G) : Time(0)
 {

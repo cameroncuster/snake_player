@@ -1,7 +1,7 @@
 #define OLC_PGE_APPLICATION
 #include <iostream>
 #include <string>
-#include "application.h"
+#include "../inc/application.h"
 
 void usage()
 {
@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
       {
          std::string obstacles(argv[3]);
          if (obstacles == "true" || obstacles == "TRUE" || obstacles == "True")
-            ob = true; 
+            ob = true;
       }
       if (argc == 5)
       {

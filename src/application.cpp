@@ -1,4 +1,4 @@
-#include "application.h"
+#include "../inc/application.h"
 
 using namespace std;
 
@@ -45,7 +45,7 @@ void Application::redraw()
       for (int y = 0 ; y < nMapHeight ; y++)
          FillRect(x * nCellSize, y * nCellSize, nCellSize - nBorderWidth, nCellSize - nBorderWidth, colorMap[grid[y][x]]);
    }
-} 
+}
 
 // This member function is called repeatedly until the program exits.
 bool Application::OnUserUpdate(float fElapsedTime)
@@ -72,8 +72,8 @@ bool Application::OnUserUpdate(float fElapsedTime)
       stepTime = 0.0;
    }
    stepTime += fElapsedTime * 1000.0;
- 
-   // If the escape or 'q' key is pressed, exit 
+
+   // If the escape or 'q' key is pressed, exit
    return (!(GetKey(olc::Key::ESCAPE).bPressed) &&
            !(GetKey(olc::Key::Q).bPressed));
 }

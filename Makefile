@@ -1,12 +1,12 @@
 LIBNAME = libPlayer.so
 
-PLAYER_SOURCE = player.cpp simulation.cpp simulatefield.cpp graph.cpp cycle.cpp astar.cpp util.cpp
+PLAYER_SOURCE = src/player.cpp src/simulation.cpp src/simulatefield.cpp src/graph.cpp src/cycle.cpp src/astar.cpp src/util.cpp
 
-COMMON_SOURCE = playfield.cpp snakeGraph.cpp biconnected.cpp cc.cpp game.cpp
+COMMON_SOURCE = src/playfield.cpp src/snakeGraph.cpp src/biconnected.cpp src/cc.cpp src/game.cpp
 
-GRAPHICS = application.cpp main.cpp 
+GRAPHICS = src/application.cpp src/main.cpp 
 
-DRIVER_SOURCE = driver.cpp
+DRIVER_SOURCE = src/driver.cpp
 
 COMMON_OBJS = $(COMMON_SOURCE:.cpp=.o)
 

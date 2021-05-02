@@ -1,10 +1,10 @@
 /********************************************************************//**
  * @file
  ***********************************************************************/
-#include "cycle.h"
-#include "graph.h"
-#include "astar.h"
-#include "simulation.h"
+#include "../inc/cycle.h"
+#include "../inc/graph.h"
+#include "../inc/astar.h"
+#include "../inc/simulation.h"
 
 extern bool inBounds( const int, const int, const int, const int );
 extern ValidMove nextMove( int, int, int );

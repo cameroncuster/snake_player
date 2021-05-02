@@ -1,7 +1,7 @@
 #include <iostream>
 #include <chrono>
 #include <vector>
-#include "game.h"
+#include "../inc/game.h"
 
 using namespace std;
 using namespace std::chrono;

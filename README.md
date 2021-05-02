@@ -56,13 +56,13 @@ else
 **View more specs about the [PERFORMANCE](PERFORMANCE.md)**
 
 ### Action Shots ###
-![Gif of snake player execution on 20x20 board](snake20x20.gif)
+![Gif of snake player execution on 20x20 board](docs/snake20x20.gif)
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-![Gif of snake player with obstacles execution on 20x20 board](snakeObstacles20x20.gif)
+![Gif of snake player with obstacles execution on 20x20 board](docs/snakeObstacles20x20.gif)
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-![Gif of snake player execution on 3x50 board](snake03x50.gif)
+![Gif of snake player execution on 3x50 board](docs/snake03x50.gif)
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-![Gif of snake player with obstacles execution on 20x20 board](snakeObstacles03x50.gif)
+![Gif of snake player with obstacles execution on 20x20 board](docs/snakeObstacles03x50.gif)
 
 ## Review ##
 This project was one of my favorites as it required genuine thought, this

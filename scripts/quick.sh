@@ -1,9 +1,12 @@
 #!/bin/bash
 
+# extract the player (shared library)
+cp ../libPlayer.so .
+
 # record scores
 for ((i = 1; i <= 10; i++))
 do
-    ./driver 13 10 >> results.dat
+    ../driver 13 10 >> results.dat
     echo "Iteration: $i"
 done
 
@@ -11,4 +14,4 @@ done
 ./avgScores.pl < results.dat
 
 # clean-up
-rm results.dat
+rm libPlayer.so results.dat
