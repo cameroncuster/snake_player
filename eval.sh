@@ -35,58 +35,58 @@ done
 
 # average scores
 echo "## Performance ##"
-echo "\n**Performance 03x40**"
+printf "\n**Performance 03x40**\n"
 ./avgScores.pl < results03x40.dat
 
-echo "\n**Performance 03x40 Obstacles**"
+printf "\n**Performance 03x40 Obstacles**\n"
 ./avgScores.pl < results03x40Ob.dat
 
-echo "\n**Performance 03x50**"
+printf "\n**Performance 03x50**\n"
 ./avgScores.pl < results03x50.dat
 
-echo "\n**Performance 03x50 Obstacles**"
+printf "\n**Performance 03x50 Obstacles**\n"
 ./avgScores.pl < results03x50Ob.dat
 
-echo "\n**Performance 05x05**"
+printf "\n**Performance 05x05**\n"
 ./avgScores.pl < results05x05.dat
 
-echo "\n**Performance 05x05 Obstacles**"
+printf "\n**Performance 05x05 Obstacles**\n"
 ./avgScores.pl < results05x05Ob.dat
 
-echo "\n**Performance 10x10**"
+printf "\n**Performance 10x10**\n"
 ./avgScores.pl < results10x10.dat
 
-echo "\n**Performance 10x10 Obstacles**"
+printf "\n**Performance 10x10 Obstacles**\n"
 ./avgScores.pl < results10x10Ob.dat
 
-echo "\n**Performance 10x20**"
+printf "\n**Performance 10x20**\n"
 ./avgScores.pl < results10x20.dat
 
-echo "\n**Performance 10x20 Obstacles**"
+printf "\n**Performance 10x20 Obstacles**\n"
 ./avgScores.pl < results10x20Ob.dat
 
-echo "\n**Performance 10x30**"
+printf "\n**Performance 10x30**\n"
 ./avgScores.pl < results10x30.dat
 
-echo "\n**Performance 10x30 Obstacles**"
+printf "\n**Performance 10x30 Obstacles**\n"
 ./avgScores.pl < results10x30Ob.dat
 
-echo "\n**Performance 20x20**"
+printf "\n**Performance 20x20**\n"
 ./avgScores.pl < results20x20.dat
 
-echo "\n**Performance 20x20 Obstacles**"
+printf "\n**Performance 20x20 Obstacles**\n"
 ./avgScores.pl < results20x20Ob.dat
 
-echo "\n**Performance 20x30**"
+printf "\n**Performance 20x30**\n"
 ./avgScores.pl < results20x30.dat
 
-echo "\n**Performance 20x30 Obstacles**"
+printf "\n**Performance 20x30 Obstacles**\n"
 ./avgScores.pl < results20x30Ob.dat
 
-echo "\n**Performance 30x30**"
+printf "\n**Performance 30x30**\n"
 ./avgScores.pl < results30x30.dat
 
-echo "\n**Performance 30x30 Obstacles**"
+printf "\n**Performance 30x30 Obstacles**\n"
 ./avgScores.pl < results30x30Ob.dat
 
 # clean-up
