@@ -117,7 +117,6 @@ April 20:
       removed, the order in which the nodes are removed is an approximation of a
       Hamiltonian Circuit
 
-
 April 21:
     * The modified heuristic A* has performed much better than current
       implementation of the genetic algorithm or the DFS search as shown above
@@ -128,17 +127,139 @@ April 21:
       ensures proper software development practices are being upheld (e.a. not
       inducing crashing/hanging on the runner scripts)
 
- * * * * * * * * * * * * * * * * * * * *
- * Average Scores using A* SSSP with   *
- *     modified heuristic              *
- *                                     *
- * Size: 20 x 20                       *
- * Number Items : 100                  *
- * Average Score: 62.24                *
- * Maximum Score: 100                  *
- * Average Time : 0.0015239223         *
- *                                     *
- * * * * * * * * * * * * * * * * * * * *
+ █████            ██     ██     ██     ██   ██ ███████ ██    ██ ██████  ██ ███████ ████████ ██  ██████ 
+██   ██ ▄ ██ ▄    ██     ██    ██      ██   ██ ██      ██    ██ ██   ██ ██ ██         ██    ██ ██      
+███████  ████     ██  █  ██   ██       ███████ █████   ██    ██ ██████  ██ ███████    ██    ██ ██
+██   ██ ▀ ██ ▀    ██ ███ ██  ██        ██   ██ ██      ██    ██ ██   ██ ██      ██    ██    ██ ██
+██   ██            ███ ███  ██         ██   ██ ███████  ██████  ██   ██ ██ ███████    ██    ██  ██████ 
+
+        **Performance 03x40**
+        - Number Items : 100
+        - Minimum Score: 8
+        - Average Score: 26.99
+        - Maximum Score: 51
+        - Average Time : 0.00017320116
+
+        **Performance 03x40 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 6
+        - Average Score: 20.04
+        - Maximum Score: 38
+        - Average Time : 0.00016551221
+
+        **Performance 03x50**
+        - Number Items : 100
+        - Minimum Score: 8
+        - Average Score: 32.74
+        - Maximum Score: 54
+        - Average Time : 0.00024140169
+
+        **Performance 03x50 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 10
+        - Average Score: 22.26
+        - Maximum Score: 41
+        - Average Time : 0.00023482264
+
+        **Performance 05x05**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 12.23
+        - Maximum Score: 20
+        - Average Time : 5.5967966e-05
+
+        **Performance 05x05 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 11.51
+        - Maximum Score: 20
+        - Average Time : 3.2173812e-05
+
+        **Performance 10x10**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 28.54
+        - Maximum Score: 44
+        - Average Time : 0.0001981253
+
+        **Performance 10x10 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 25.19
+        - Maximum Score: 48
+        - Average Time : 0.00017662383
+
+        **Performance 10x20**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 41.94
+        - Maximum Score: 65
+        - Average Time : 0.00044716766
+
+        **Performance 10x20 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 33.28
+        - Maximum Score: 65
+        - Average Time : 0.00044996769
+
+        **Performance 10x30**
+        - Number Items : 100
+        - Minimum Score: 20
+        - Average Score: 53.59
+        - Maximum Score: 81
+        - Average Time : 0.0007309027
+
+        **Performance 10x30 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 40.16
+        - Maximum Score: 72
+        - Average Time : 0.00075200503
+
+        **Performance 20x20**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 63.05
+        - Maximum Score: 102
+        - Average Time : 0.0014349115
+
+        **Performance 20x20 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 55.12
+        - Maximum Score: 87
+        - Average Time : 0.0013110053
+
+        **Performance 20x30**
+        - Number Items : 100
+        - Minimum Score: 22
+        - Average Score: 82.2
+        - Maximum Score: 125
+        - Average Time : 0.0019453767
+
+        **Performance 20x30 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 5
+        - Average Score: 58.65
+        - Maximum Score: 106
+        - Average Time : 0.002031647
+
+        **Performance 30x30**
+        - Number Items : 100
+        - Minimum Score: 38
+        - Average Score: 98.88
+        - Maximum Score: 147
+        - Average Time : 0.0051187681
+
+        **Performance 30x30 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 14
+        - Average Score: 79.6
+        - Maximum Score: 127
+        - Average Time : 0.0047613777
+
+
 
 ██████  ███████ ███████     ███████ ███████ ███████ ██████ 
 ██   ██ ██      ██          ██      ██      ██      ██   ██ 
