@@ -39,6 +39,10 @@ else
 **View more specs about the development [CHANGELOG](Log)**
 
 ## Performance ##
+#### Plot ####
+![XY Plot of Player Performance on various sized boards](res/performancePlot.png)
+
+#### Sample Data ####
 **Performance 20x20**
 - Number Items : 100
 - Minimum Score: 1
