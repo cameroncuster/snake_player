@@ -24,9 +24,9 @@ boardSize = [
         ]
 
 # plot the players
-plt.plot( boardSize, minScores, label='min',color='red', marker='o' )
-plt.plot( boardSize, avgScores, label='Average',color='green', marker='o' )
 plt.plot( boardSize, maxScores, label='max',color='blue', marker='o' )
+plt.plot( boardSize, avgScores, label='average',color='green', marker='o' )
+plt.plot( boardSize, minScores, label='min',color='red', marker='o' )
 
 # label the plot
 plt.title( "Score Vs Board Dimensions" )
