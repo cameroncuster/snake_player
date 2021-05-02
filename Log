@@ -119,6 +119,14 @@ April 20:
 
 
 April 21:
+    * The modified heuristic A* has performed much better than current
+      implementation of the genetic algorithm or the DFS search as shown above
+    * Added GitLab runner provided by Devon Schneider with attribution
+    * The GitLab runner enhances testing by ensuring all put-backs meet standard
+      and should protect the runner scripts
+    * Runner tests successful compilation on master when pushing to repo -
+      ensures proper software development practices are being upheld (e.a. not
+      inducing crashing/hanging on the runner scripts)
 
  * * * * * * * * * * * * * * * * * * * *
  * Average Scores using A* SSSP with   *
@@ -132,25 +140,139 @@ April 21:
  *                                     *
  * * * * * * * * * * * * * * * * * * * *
 
- * * * * * * * * * * * * * * * * * * * *
- * Average Scores using DFS SSSP       *
- *                                     *
- * Size: 20 x 20                       *
- * Number Items : 100                  *
- * Average Score: 43.34                *
- * Maximum Score: 54                   *
- * Average Time : 1.11068321e-05       *
- *                                     *
- * * * * * * * * * * * * * * * * * * * *
+██████  ███████ ███████     ███████ ███████ ███████ ██████ 
+██   ██ ██      ██          ██      ██      ██      ██   ██ 
+██   ██ █████   ███████     ███████ ███████ ███████ ██████  
+██   ██ ██           ██          ██      ██      ██ ██     
+██████  ██      ███████     ███████ ███████ ███████ ██
 
-    * The modified heuristic A* has performed much better than current
-      implementation of the genetic algorithm or the DFS search as shown above
-    * Added GitLab runner provided by Devon Schneider with attribution
-    * The GitLab runner enhances testing by ensuring all put-backs meet standard
-      and should protect the runner scripts
-    * Runner tests successful compilation on master when pushing to repo -
-      ensures proper software development practices are being upheld (e.a. not
-      inducing crashing/hanging on the runner scripts)
+        **Performance 03x40**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 13.35
+        - Maximum Score: 25
+        - Average Time : 1.68908787e-05
+
+        **Performance 03x40 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 10.73
+        - Maximum Score: 19
+        - Average Time : 1.14984079e-05
+
+        **Performance 03x50**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 14.9
+        - Maximum Score: 34
+        - Average Time : 1.82293886e-05
+
+        **Performance 03x50 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 11.53
+        - Maximum Score: 24
+        - Average Time : 1.30224166e-05
+
+        **Performance 05x05**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 13.29
+        - Maximum Score: 24
+        - Average Time : 1.0126861e-05
+
+        **Performance 05x05 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 13.44
+        - Maximum Score: 24
+        - Average Time : 4.224104e-06
+
+        **Performance 10x10**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 22.01
+        - Maximum Score: 39
+        - Average Time : 8.4804526e-06
+
+        **Performance 10x10 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 18.61
+        - Maximum Score: 41
+        - Average Time : 5.3478799e-06
+
+        **Performance 10x20**
+        - Number Items : 100
+        - Minimum Score: 14
+        - Average Score: 26.09
+        - Maximum Score: 44
+        - Average Time : 6.6775643e-06
+
+        **Performance 10x20 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 6
+        - Average Score: 20.36
+        - Maximum Score: 43
+        - Average Time : 4.6899362e-06
+
+        **Performance 10x30**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 30.65
+        - Maximum Score: 60
+        - Average Time : 1.77620143e-05
+
+        **Performance 10x30 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 22.24
+        - Maximum Score: 45
+        - Average Time : 9.7855535e-06
+
+        **Performance 20x20**
+        - Number Items : 100
+        - Minimum Score: 10
+        - Average Score: 43.71
+        - Maximum Score: 72
+        - Average Time : 6.5826575e-06
+
+        **Performance 20x20 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 4
+        - Average Score: 25.33
+        - Maximum Score: 52
+        - Average Time : 4.2894406e-06
+
+        **Performance 20x30**
+        - Number Items : 100
+        - Minimum Score: 19
+        - Average Score: 46.32
+        - Maximum Score: 89
+        - Average Time : 7.9122999e-06
+
+        **Performance 20x30 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 32.64
+        - Maximum Score: 62
+        - Average Time : 1.07548368e-05
+
+        **Performance 30x30**
+        - Number Items : 100
+        - Minimum Score: 6
+        - Average Score: 62.35
+        - Maximum Score: 121
+        - Average Time : 7.8880938e-06
+
+        **Performance 30x30 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 9
+        - Average Score: 36.82
+        - Maximum Score: 72
+        - Average Time : 4.2668903e-06
+
+
 
 April 22:
     * Idea to locate a path from the food to the tail after locating and
