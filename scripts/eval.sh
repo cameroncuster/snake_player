@@ -92,5 +92,4 @@ printf "\n**Performance 30x30**\n"
 printf "\n**Performance 30x30 Obstacles**\n"
 ./avgScores.pl < results30x30Ob.dat
 
-# clean-up
-rm libPlayer.so *.dat
+./buildPlot.sh

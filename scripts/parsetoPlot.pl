@@ -22,8 +22,6 @@ while ($line = <>)
    }
 }
 
-print "- Number Items : ", $count, "\n";
-print "- Minimum Score: ", $min, "\n";
-print "- Average Score: ", $sum/$count, "\n";
-print "- Maximum Score: ", $max, "\n";
-print "- Average Time : ", $time/$count, "\n";
+print $min, "\n";
+print $sum/$count, "\n";
+print $max, "\n";
