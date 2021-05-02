@@ -2,4 +2,3 @@
   representing the performance of the player given each board size (min, max, avg)
 * restructure the files for professional file structure
 * implement the idea for the 'perfect player'
-* add embedded ascii art to the documentation
