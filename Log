@@ -491,18 +491,6 @@ April 26:
       modular code
     * The new game file prevents infinite runs and allows for testing (thank you)
 
- * * * * * * * * * * * * * * * * * * * *
- * Average Scores using Cyclic A*      *
- *                                     *
- * Size: 20 x 20                       *
- * Number Items : 100                  *
- * Minimum Score: 212                  *
- * Average Score: 348.43               *
- * Maximum Score: 398                  *
- * Average Time : 6.9053826e-05        *
- *                                     *
- * * * * * * * * * * * * * * * * * * * *
-
 April 28:
     * Code is loosely coupled, and minimal
     * Code is well documented and tested
@@ -528,131 +516,133 @@ April 29:
 ██         ██    ██      ██      ██ ██          ██   ██ ▀ ██ ▀
  ██████    ██     ██████ ███████ ██  ██████     ██   ██      
 
-    **Performance 03x40**
-    - Number Items : 100
-    - Average Score: 33.21
-    - Maximum Score: 86
-    - Minimum Score: 1
-    - Average Time : 6.8285179e-05
+        ## Performance ##
 
-    **Performance 03x40 Obstacles**
-    - Number Items : 100
-    - Average Score: 13.31
-    - Maximum Score: 47
-    - Minimum Score: 1
-    - Average Time : 7.7886806e-05
+        **Performance 03x40**
+        - Number Items : 100
+        - Minimum Score: 4
+        - Average Score: 32.42
+        - Maximum Score: 64
+        - Average Time : 5.5410929e-05
 
-    **Performance 03x50**
-    - Number Items : 100
-    - Average Score: 35.55
-    - Maximum Score: 77
-    - Minimum Score: 1
-    - Average Time : 9.3002864e-05
+        **Performance 03x40 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 3
+        - Average Score: 12.77
+        - Maximum Score: 29
+        - Average Time : 7.84886016e-05
 
-    **Performance 03x50 Obstacles**
-    - Number Items : 100
-    - Average Score: 13.43
-    - Maximum Score: 32
-    - Minimum Score: 1
-    - Average Time : 0.000119346774
+        **Performance 03x50**
+        - Number Items : 100
+        - Minimum Score: 4
+        - Average Score: 35.58
+        - Maximum Score: 80
+        - Average Time : 8.582948e-05
 
-    **Performance 05x05**
-    - Number Items : 100
-    - Average Score: 19.4
-    - Maximum Score: 24
-    - Minimum Score: 1
-    - Average Time : 9.17020170000001e-06
+        **Performance 03x50 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 3
+        - Average Score: 14.54
+        - Maximum Score: 47
+        - Average Time : 0.000111160798
 
-    **Performance 05x05 Obstacles**
-    - Number Items : 100
-    - Average Score: 18.39
-    - Maximum Score: 24
-    - Minimum Score: 1
-    - Average Time : 8.8895727e-06
+        **Performance 05x05**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 19.99
+        - Maximum Score: 24
+        - Average Time : 7.2996362e-06
 
-    **Performance 10x10**
-    - Number Items : 100
-    - Average Score: 85.66
-    - Maximum Score: 100
-    - Minimum Score: 1
-    - Average Time : 2.1249909e-05
+        **Performance 05x05 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 18.85
+        - Maximum Score: 24
+        - Average Time : 7.0007004e-06
 
-    **Performance 10x10 Obstacles**
-    - Number Items : 100
-    - Average Score: 73.32
-    - Maximum Score: 91
-    - Minimum Score: 1
-    - Average Time : 2.0726639e-05
+        **Performance 10x10**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 86.28
+        - Maximum Score: 100
+        - Average Time : 2.0939241e-05
 
-    **Performance 10x20**
-    - Number Items : 100
-    - Average Score: 159.51
-    - Maximum Score: 200
-    - Minimum Score: 1
-    - Average Time : 5.313465e-05
+        **Performance 10x10 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 75.74
+        - Maximum Score: 93
+        - Average Time : 2.0225072e-05
 
-    **Performance 10x20 Obstacles**
-    - Number Items : 100
-    - Average Score: 124.29
-    - Maximum Score: 183
-    - Minimum Score: 1
-    - Average Time : 6.5495215e-05
+        **Performance 10x20**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 159.45
+        - Maximum Score: 200
+        - Average Time : 5.2728318e-05
 
-    **Performance 10x30**
-    - Number Items : 100
-    - Average Score: 225.44
-    - Maximum Score: 298
-    - Minimum Score: 1
-    - Average Time : 0.000101334994
+        **Performance 10x20 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 129.64
+        - Maximum Score: 184
+        - Average Time : 6.7121673e-05
 
-    **Performance 10x30 Obstacles**
-    - Number Items : 100
-    - Average Score: 179.3
-    - Maximum Score: 269
-    - Minimum Score: 1
-    - Average Time : 9.8775557e-05
+        **Performance 10x30**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 228.13
+        - Maximum Score: 297
+        - Average Time : 0.00010578534
 
-    **Performance 20x20**
-    - Number Items : 100
-    - Average Score: 348.43
-    - Maximum Score: 398
-    - Minimum Score: 212
-    - Average Time : 6.9053826e-05
+        **Performance 10x30 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 177.09
+        - Maximum Score: 277
+        - Average Time : 0.000108913163
 
-    **Performance 20x20 Obstacles**
-    - Number Items : 100
-    - Average Score: 286.52
-    - Maximum Score: 351
-    - Minimum Score: 68
-    - Average Time : 7.8201485e-05
+        **Performance 20x20**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 339.94
+        - Maximum Score: 400
+        - Average Time : 0.000112074759
 
-    **Performance 20x30**
-    - Number Items : 100
-    - Average Score: 512.58
-    - Maximum Score: 598
-    - Minimum Score: 1
-    - Average Time : 0.000142211521
+        **Performance 20x20 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 287.44
+        - Maximum Score: 362
+        - Average Time : 0.000108581484
 
-    **Performance 20x30 Obstacles**
-    - Number Items : 100
-    - Average Score: 363.03
-    - Maximum Score: 521
-    - Minimum Score: 1
-    - Average Time : 0.000225935166
+        **Performance 20x30**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 496.71
+        - Maximum Score: 587
+        - Average Time : 0.000206559617
 
-    **Performance 30x30**
-    - Number Items : 100
-    - Average Score: 779.71
-    - Maximum Score: 895
-    - Minimum Score: 308
-    - Average Time : 0.00018292572
+        **Performance 20x30 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 362.2
+        - Maximum Score: 509
+        - Average Time : 0.000269087519
 
-    **Performance 30x30 Obstacles**
-    - Number Items : 100
-    - Average Score: 640.1
-    - Maximum Score: 775
-    - Minimum Score: 358
-    - Average Time : 0.00017874943
+        **Performance 30x30**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 763.22
+        - Maximum Score: 886
+        - Average Time : 0.00030139953
+
+        **Performance 30x30 Obstacles**
+        - Number Items : 100
+        - Minimum Score: 1
+        - Average Score: 601.45
+        - Maximum Score: 775
+        - Average Time : 0.0003057783
 
 
 
