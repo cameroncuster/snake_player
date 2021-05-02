@@ -65,7 +65,7 @@ else
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 ![Gif of snake player with obstacles execution on 20x20 board](snakeObstacles03x50.gif)
 
-## Conclusion ##
+## Review ##
 This project was one of my favorites as it required genuine thought, this
 was not some algorithm that could just be found online "unless you wanted
 to try to implemented a nerual net or some sort of evolutionary algorithm."
@@ -77,3 +77,21 @@ key observations: follow the tail, don't get trapped
 I should hope this project is continued for many years to come as it was
 some of the most excitment I have had while writing code (I get pretty
 excited to write code so don't take that lightly)
+
+## Improvements ##
+I theorized a perfect game was always possible without obstacles because the
+snake can always resturcure it's body given enough moves to eat the food assuming
+at least one square is available. The theory is challenging to implement and to
+my understanding could only be done with a neural network which perfectly
+approximated the board in it's calculations; otherwise, S-Road is always an
+effective approach if time is not a factor.
+
+The 'perfect game' theory does not hold for boards with obstacles because the
+location of the food relative to the obstacles can result in an impossible game.
+If the game protected against impossible games, the 'perfect game' theory would
+be proven, but implementation of such an algorithm is beyond my scope of
+knowledge.
+
+My current player performs well enough to satisfy my goals for the purpose of
+this project, and anyone seeking to continue the project should begin by
+consulting my idea's above.
