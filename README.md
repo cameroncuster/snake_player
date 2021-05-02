@@ -36,8 +36,7 @@ else
     return path to follow tail
 ```
 
-### Development Process ###
-[CHANGELOG](Log)
+**View more specs about the development [CHANGELOG](Log)**
 
 ## Performance ##
 **Performance 20x20**

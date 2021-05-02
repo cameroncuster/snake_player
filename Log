@@ -64,6 +64,8 @@ April 18:
       because the apples in the simulated games spawn in different locations than
       in actual gameplay so the snake thinks it is shorter/longer than it
       actually is in execution
+    * GA is also incredibly slow and is likely to time limit given multiple
+      generations
     * Potential Fixes: spawn more apples in the simulation, and count number of
       moves as opposed to score for populating (naturally selecting) the next
       generation
