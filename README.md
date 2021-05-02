@@ -1,17 +1,17 @@
 # Snake Player - Cameron Custer #
 Well-written implementation in C++ of generic snake player for the classic "Snake
 Game." Player is dictated only by SSSP graph traversal algorithms. The player was
-developed through a series of trail and error. Initally I intended to develop a
+developed through a series of trail and error. Initially I intended to develop a
 Genetic Algorithm for the game of Snake, but this was unsuccessful as you can
 read from my log. I also attempted using DFS and BFS (SSSP) algorithms for
-pathfinding, but AStar yeilded the best performance and allowed me to integrate
+pathfinding, but AStar yielded the best performance and allowed me to integrate
 my own heuristic function. While the integration of the heuristic was
 unsuccessful, the pathfinding algorithm has performed better than expected.
 Behaviors evolved from the player which had not been accounted for in the code.
 For example, upon watching the snake graphically I noticed if the food is
 surrounded by the snakes tail the snake will position more space between the
 food of the snake and the snakes tail to allow the snake to eat the food.
-Overall the algorithm gave outstanding performance, frequency acheiving a perfect
+Overall the algorithm gave outstanding performance, frequency achieving a perfect
 score, and nearing a perfect score almost every run. The player also handles non-
 traditional size grids well (with or without obstacles).
 
@@ -67,19 +67,19 @@ else
 ## Review ##
 This project was one of my favorites as it required genuine thought, this
 was not some algorithm that could just be found online "unless you wanted
-to try to implemented a nerual net or some sort of evolutionary algorithm."
+to try to implement a neural net or some sort of evolutionary algorithm."
 Leveraging graph traversals this way was a fantastic learning experience,
 I did not think it was possible. I spent majority of my time thinking about
 the solution at the beginning of the project. It took a while before I
 finally arrived at the solution -
 key observations: follow the tail, don't get trapped
 I should hope this project is continued for many years to come as it was
-some of the most excitment I have had while writing code (I get pretty
+some of the most excitement I have had while writing code (I get pretty
 excited to write code so don't take that lightly)
 
 ## Improvements ##
 I theorized a perfect game was always possible without obstacles because the
-snake can always resturcure it's body given enough moves to eat the food assuming
+snake can always restructure it's body given enough moves to eat the food assuming
 at least one square is available. The theory is challenging to implement and to
 my understanding could only be done with a neural network which perfectly
 approximated the board in it's calculations; otherwise, S-Road is always an
