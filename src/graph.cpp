@@ -1,7 +1,7 @@
 /********************************************************************//**
  * @file
  ***********************************************************************/
-#include "../inc/graph.h"
+#include "inc/graph.h"
 
 // Construct a graph from a vector<vector<int>> grid
 Graph::Graph(std::vector<std::vector<int>> grid) : columns(grid.size())

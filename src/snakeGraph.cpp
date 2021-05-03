@@ -1,7 +1,7 @@
 /********************************************************************//**
  * @file
  ***********************************************************************/
-#include "../inc/snakeGraph.h"
+#include "inc/snakeGraph.h"
 
 // Construct a graph from a vector<vector<int>> grid
 SnakeGraph::SnakeGraph(std::vector<std::vector<int>> &grid)

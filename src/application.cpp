@@ -1,4 +1,4 @@
-#include "../inc/application.h"
+#include "inc/application.h"
 
 using namespace std;
 

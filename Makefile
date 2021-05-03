@@ -23,7 +23,7 @@ GCC = g++
 LINK = g++
 
 # Compiler flags
-CFLAGS = -Wall -O3 -fPIC -shared
+CFLAGS = -Wall -O3 -fPIC -shared -I.
 CXXFLAGS = $(CFLAGS)
 
 # Fill in special libraries needed here
@@ -47,11 +47,11 @@ libPlayer.so: $(PLAYER_OBJS)
 clean:
 	rm -rf src/*.o *.d core snake driver libPlayer.so
 
-debug: CXXFLAGS = -DDEBUG -Wall -g -fPIC -shared
+debug: CXXFLAGS = -DDEBUG -Wall -g -fPIC -shared -I.
 debug: LIBS = -L. -lX11 -lGL -lpng -lpthread -lstdc++fs -ldl
 debug: snake
 
-debug_driver: CXXFLAGS = -DDEBUG -Wall -g -fPIC -shared
+debug_driver: CXXFLAGS = -DDEBUG -Wall -g -fPIC -shared -I.
 debug_driver: LIBS = -L. -ldl
 debug_driver: driver
 

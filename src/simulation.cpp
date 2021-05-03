@@ -1,7 +1,7 @@
 /********************************************************************//**
  * @file
  ***********************************************************************/
-#include "../inc/simulation.h"
+#include "inc/simulation.h"
 
 extern ValidMove nextMove( int, int, int );
 
