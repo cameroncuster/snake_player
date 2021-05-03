@@ -45,7 +45,7 @@ libPlayer.so: $(PLAYER_OBJS)
 	$(LINK) -o $@ $^ $(CXXFLAGS)
 
 clean:
-	rm -rf src/*.o *.d core snake driver libPlayer.so
+	rm -rf src/*.o src/*.d core snake driver libPlayer.so
 
 debug: CXXFLAGS = -DDEBUG -Wall -g -fPIC -shared -I.
 debug: LIBS = -L. -lX11 -lGL -lpng -lpthread -lstdc++fs -ldl
