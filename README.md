@@ -36,7 +36,7 @@ else
     return path to follow tail
 ```
 
-**View more specs about the development [CHANGELOG](Log)**
+**View more specs about the development [CHANGELOG](CHANGELOG.md)**
 
 ## Performance ##
 #### Plot ####
