@@ -1,7 +1,7 @@
 /********************************************************************//**
  * @file
  ***********************************************************************/
-#include "inc/simulatefield.h"
+#include "simulatefield.h"
 
 // construct a simulation of a playfield given the intial state and the tail of
     // the snake

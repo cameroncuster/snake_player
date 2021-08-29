@@ -1,7 +1,7 @@
 /********************************************************************//**
  * @file
  ***********************************************************************/
-#include "inc/playfield.h"
+#include "playfield.h"
 
 // Copy constructor for running alternate games (GA players)
 // Create a playfield from a const Playfield pointer

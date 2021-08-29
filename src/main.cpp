@@ -1,7 +1,7 @@
 #define OLC_PGE_APPLICATION
 #include <iostream>
 #include <string>
-#include "inc/application.h"
+#include "application.h"
 
 void usage()
 {

@@ -1,7 +1,7 @@
 /********************************************************************//**
  * @file
  ***********************************************************************/
-#include "inc/game.h"
+#include "game.h"
 
 Game::Game(Player *p, Playfield *pf) : player(p), playfield(pf), gameOver(false), score(0) {}
 

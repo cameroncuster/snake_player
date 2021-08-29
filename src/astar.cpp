@@ -2,7 +2,7 @@
  * @file
  ***********************************************************************/
 #include <limits>
-#include "inc/astar.h"
+#include "astar.h"
 
 // construct default with no heuristic (e.a. heuristic function is not
 // instantiated and defaults to zero

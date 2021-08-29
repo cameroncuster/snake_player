@@ -4,7 +4,7 @@ PLAYER_SOURCE = src/player.cpp src/simulation.cpp src/simulatefield.cpp src/grap
 
 COMMON_SOURCE = src/playfield.cpp src/snakeGraph.cpp src/biconnected.cpp src/cc.cpp src/game.cpp
 
-GRAPHICS = src/application.cpp src/main.cpp 
+GRAPHICS = src/application.cpp src/main.cpp
 
 DRIVER_SOURCE = src/driver.cpp
 
@@ -23,7 +23,7 @@ GCC = g++
 LINK = g++
 
 # Compiler flags
-CFLAGS = -Wall -O3 -fPIC -shared -I.
+CFLAGS = -Wall -O3 -fPIC -shared -I inc
 CXXFLAGS = $(CFLAGS)
 
 # Fill in special libraries needed here

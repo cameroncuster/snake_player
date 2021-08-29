@@ -2,8 +2,8 @@
  * @file
  ***********************************************************************/
 #include <utility>
-#include "inc/player.h"
-#include "inc/cycle.h"
+#include "player.h"
+#include "cycle.h"
 
 extern ValidMove nextMove( int, int, int );
 extern bool inBounds( const int, const int, const int, const int );
