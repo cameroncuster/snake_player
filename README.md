@@ -1,4 +1,4 @@
-# Snake Player - Cameron Custer #
+# Snake Player #
 Well-written implementation in C++ of generic snake player for the classic "Snake
 Game." Player is dictated only by SSSP graph traversal algorithms. The player was
 developed through a series of trail and error. Initially I intended to develop a
