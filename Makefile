@@ -47,16 +47,16 @@ libPlayer.so: $(PLAYER_OBJS)
 clean:
 	rm -rf src/*.o src/*.d core snake driver libPlayer.so
 
-debug: CXXFLAGS = -DDEBUG -Wall -g -fPIC -shared -I.
+debug: CXXFLAGS = -DDEBUG -Wall -g -fPIC -shared -I inc
 debug: LIBS = -L. -lX11 -lGL -lpng -lpthread -lstdc++fs -ldl
 debug: snake
 
-debug_driver: CXXFLAGS = -DDEBUG -Wall -g -fPIC -shared -I.
+debug_driver: CXXFLAGS = -DDEBUG -Wall -g -fPIC -shared -I inc
 debug_driver: LIBS = -L. -ldl
 debug_driver: driver
 
 tar: clean
-	tar zcvf snake.tgz $(SOURCE) *.h Makefile
+	tar zcvf snake.tgz $(PLAYER_SOURCE) $(COMMON_SOURCE) $(DRIVER_SOURCE) $(GRAPHICS) inc/*.h Makefile
 
 help:
 	@echo "	make snake  - same as make all"
@@ -71,4 +71,3 @@ help:
 
 %.d: %.cpp
 	@set -e; rm -rf $@;$(GCC) -MM $< $(CXXFLAGS) > $@
-
