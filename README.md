@@ -98,3 +98,6 @@ knowledge.
 My current player performs well enough to satisfy my goals for the purpose of
 this project, and anyone seeking to continue the project should begin by
 consulting my idea's above.
+
+
+Special thanks to [Javidx9](https://github.com/OneLoneCoder) for providing the Pixel Game Engine for free and open source.
