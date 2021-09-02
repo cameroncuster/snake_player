@@ -15,6 +15,12 @@ Overall the algorithm gave outstanding performance, frequency achieving a perfec
 score, and nearing a perfect score almost every run. The player also handles non-
 traditional size grids well (with or without obstacles).
 
+## Design and Implementation ##
+The snake player's design was inspired by the factory method. When the player's
+"MakeMove" method is called (at every iteration), the player will follow the
+cached path, or instantiate a cycle, which will find the path the snake should
+take to preserve the simulated Hamiltonian cycle as described below.
+
 ## Steps in the Pathfinding Algorithm ##
 1. Locate a path to the food.
 2. Simulate the path to the food.
